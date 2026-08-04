@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>नोंदणी | त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  <script type="module" crossorigin src="/assets/register-C49fvbGy.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/supabase-Bz0haH2D.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-CZhpOv5s.css">
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-logo">
+    <img src="/logo.png" alt="त्रिमूर्ती ज्योतिषालय"/>
+    <h1>त्रिमूर्ती ज्योतिषालय</h1>
+    <p>नवीन खाते तयार करा</p>
+  </div>
+
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <a href="login.html" class="auth-tab" style="text-decoration:none;">लॉगिन</a>
+      <button class="auth-tab active">नोंदणी</button>
+    </div>
+
+    <div class="auth-error" id="authError"></div>
+
+    <form class="auth-form active" id="registerForm">
+      <div class="form-group">
+        <label>पूर्ण नाव</label>
+        <input type="text" id="regName" required placeholder="तुमचे पूर्ण नाव"/>
+      </div>
+      <div class="form-group">
+        <label>ईमेल</label>
+        <input type="email" id="regEmail" required placeholder="तुमचा ईमेल"/>
+      </div>
+      <div class="form-group">
+        <label>मोबाईल नंबर</label>
+        <input type="tel" id="regPhone" required placeholder="उदा: ९८७६५४३२१०" maxlength="10"/>
+      </div>
+      <div class="form-group">
+        <label>पासवर्ड</label>
+        <input type="password" id="regPassword" required placeholder="किमान ६ अक्षरे" minlength="6"/>
+        <div class="form-group-hint">किमान ६ अक्षरे आवश्यक आहे.</div>
+      </div>
+      <button type="submit" class="btn-auth" id="registerBtn">खाते तयार करा →</button>
+    </form>
+
+    <div class="auth-footer">
+      आधीच खाते आहे? <a href="login.html">लॉगिन करा</a>
+    </div>
+  </div>
+
+  <div class="back-home">
+    <a href="/">← मुख्यपृष्ठावर जा</a>
+  </div>
+</div>
+
+</body>
+</html>

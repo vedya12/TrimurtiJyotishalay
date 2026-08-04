@@ -1,0 +1,1 @@
+import{s as a}from"./supabase-Bz0haH2D.js";(async()=>{const{data:{session:o}}=await a.auth.getSession();o||(window.location.href="/login.html?redirect="+encodeURIComponent(window.location.pathname))})();

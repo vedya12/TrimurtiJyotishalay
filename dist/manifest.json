@@ -1,0 +1,51 @@
+{
+  "name": "त्रिमूर्ती ज्योतिषालय",
+  "short_name": "TJ Jyotish",
+  "description": "ज्योतिषाचार्य श्री. अभयराव जोशी महाराज — ज्योतिष मार्गदर्शन, वैदिक पूजा विधी, भागवत कथा प्रवचन. मोर्शी, अमरावती.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff7ed",
+  "theme_color": "#8b1a1a",
+  "lang": "mr",
+  "scope": "/",
+  "categories": ["religion", "lifestyle", "education"],
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "temple-bg.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "label": "Trimurti Jyotishalay Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "अपॉइंटमेंट बुक करा",
+      "short_name": "Appointment",
+      "description": "Book an appointment with Shri. Abhayrao Joshi Maharaj",
+      "url": "/#appointment",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "WhatsApp संपर्क",
+      "short_name": "WhatsApp",
+      "description": "Chat on WhatsApp for quick advice",
+      "url": "https://wa.me/919999999999",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    }
+  ]
+}
