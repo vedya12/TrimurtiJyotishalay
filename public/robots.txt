@@ -1,0 +1,13 @@
+# robots.txt — Trimurti Jyotishalay
+# https://www.trimurtijyotishalay.com
+
+User-agent: *
+Allow: /
+
+# Block any future admin or private paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://www.trimurtijyotishalay.com/sitemap.xml

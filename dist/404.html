@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>पृष्ठ सापडले नाही | त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff7ed;
+      color: #3b1f0b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .logo-wrap { margin-bottom: 28px; }
+    .logo-wrap img { height: 72px; width: auto; }
+
+    .om {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 16px;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1);   opacity: 1;    }
+      50%       { transform: scale(1.1); opacity: 0.75; }
+    }
+
+    h1 {
+      font-family: 'Tiro Devanagari Marathi', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      color: #8b1a1a;
+      margin-bottom: 10px;
+    }
+    .code { font-size: 1rem; color: #b08060; margin-bottom: 8px; letter-spacing: .1em; }
+    p {
+      font-size: .97rem;
+      color: #6b3a1f;
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #8b1a1a;
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(139,26,26,.3);
+      transition: background .25s, transform .25s;
+      margin-bottom: 16px;
+    }
+    .btn-home:hover { background: #5c0f0f; transform: translateY(-2px); }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a7a3c;
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(26,122,60,.25);
+      transition: background .25s, transform .25s;
+    }
+    .btn-wa:hover { background: #145c2d; transform: translateY(-2px); }
+
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, #c8860a, transparent);
+      margin: 24px auto;
+    }
+    .contact-note {
+      font-size: .82rem;
+      color: #a08060;
+    }
+    .contact-note a { color: #8b1a1a; text-decoration: none; }
+    .contact-note a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="logo-wrap">
+    <a href="index.html">
+      <img src="logo.png" alt="त्रिमूर्ती ज्योतिषालय"/>
+    </a>
+  </div>
+
+  <div class="om">🕉</div>
+
+  <p class="code">404 — Page Not Found</p>
+  <h1>हे पृष्ठ सापडले नाही</h1>
+  <p>आपण शोधत असलेले पृष्ठ हलवले गेले आहे किंवा उपलब्ध नाही.<br/>
+     मुख्यपृष्ठावर परत जा किंवा आमच्याशी संपर्क साधा.</p>
+
+  <div class="actions">
+    <a href="index.html" class="btn-home">🏠 मुख्यपृष्ठ</a>
+    <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="btn-wa">💬 WhatsApp</a>
+  </div>
+
+  <div class="divider"></div>
+  <p class="contact-note">
+    थेट संपर्कासाठी: <a href="tel:+919999999999">9999999999</a> &nbsp;|&nbsp;
+    <a href="mailto:info@trimurtijyotishalay.com">info@trimurtijyotishalay.com</a>
+  </p>
+
+</body>
+</html>

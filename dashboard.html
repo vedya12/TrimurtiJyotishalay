@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>माझे डॅशबोर्ड | त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="src/styles/dashboard.css"/>
+</head>
+<body>
+
+<div class="redirect-screen" id="redirectScreen">तपासणी होत आहे...</div>
+
+<!-- ── NAVBAR (hidden until authed) ── -->
+<nav class="navbar" id="navbar" style="display:none;">
+  <div class="navbar-left">
+    <img src="logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+    <span class="navbar-brand">त्रिमूर्ती ज्योतिषालय</span>
+  </div>
+  <div class="nav-right">
+    <span class="user-name" id="userName"></span>
+    <a href="booking.html" class="btn-primary" style="padding:7px 16px;font-size:.8rem;">+ बुक करा</a>
+    <button class="btn-logout" id="logoutBtn">लॉगआउट</button>
+  </div>
+</nav>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar" id="tabBar" style="display:none;">
+  <button class="tab-btn active" data-tab="overview">🏠 आढावा</button>
+  <button class="tab-btn" data-tab="appointments">📋 माझी बुकिंग</button>
+  <button class="tab-btn" data-tab="documents">📄 दस्तऐवज</button>
+  <button class="tab-btn" data-tab="muhurta">📅 मुहूर्त</button>
+  <button class="tab-btn" data-tab="profile">👤 प्रोफाइल</button>
+</div>
+
+<!-- ── OVERVIEW ── -->
+<div class="dashboard-page" id="dashboardPage" style="display:none;">
+  <div class="tab-content active" id="tab-overview">
+    <div class="overview-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📋</div>
+        <div class="stat-num" id="statTotal">0</div>
+        <div class="stat-label">एकूण बुकिंग</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-num" id="statUpcoming">0</div>
+        <div class="stat-label">आगामी भेटी</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📄</div>
+        <div class="stat-num" id="statDocs">0</div>
+        <div class="stat-label">दस्तऐवज</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏁</div>
+        <div class="stat-num" id="statCompleted">0</div>
+        <div class="stat-label">पूर्ण झालेल्या</div>
+      </div>
+    </div>
+
+    <div class="section-h">
+      <h2>आगामी भेटी</h2>
+      <a href="booking.html" class="btn-primary" style="padding:8px 18px;font-size:.82rem;">+ नवीन बुकिंग</a>
+    </div>
+    <div class="appt-list" id="overviewUpcoming">
+      <div class="loading-text">लोड होत आहे...</div>
+    </div>
+  </div>
+
+  <!-- ── APPOINTMENTS ── -->
+  <div class="tab-content" id="tab-appointments">
+    <div class="section-h">
+      <h2>माझी सर्व बुकिंग</h2>
+      <a href="booking.html" class="btn-primary" style="padding:8px 18px;font-size:.82rem;">+ नवीन बुकिंग</a>
+    </div>
+    <div class="appt-list" id="allAppointments">
+      <div class="loading-text">लोड होत आहे...</div>
+    </div>
+  </div>
+
+  <!-- ── DOCUMENTS ── -->
+  <div class="tab-content" id="tab-documents">
+    <div class="section-h">
+      <h2>माझे दस्तऐवज</h2>
+    </div>
+    <div class="doc-list" id="docList">
+      <div class="loading-text">लोड होत आहे...</div>
+    </div>
+  </div>
+
+  <!-- ── MUHURTA ── -->
+  <div class="tab-content" id="tab-muhurta">
+    <div class="section-h">
+      <h2>शुभ मुहूर्त</h2>
+    </div>
+    <div class="muhurta-filter" id="muhurtaFilter">
+      <button class="muhurta-chip active" data-cat="all">सर्व</button>
+      <button class="muhurta-chip" data-cat="marriage">विवाह</button>
+      <button class="muhurta-chip" data-cat="griha_pravesh">गृहप्रवेश</button>
+      <button class="muhurta-chip" data-cat="business">व्यवसाय</button>
+      <button class="muhurta-chip" data-cat="naming">नामकरण</button>
+    </div>
+    <div class="muhurta-grid" id="muhurtaGrid">
+      <div class="loading-text">लोड होत आहे...</div>
+    </div>
+  </div>
+
+  <!-- ── PROFILE ── -->
+  <div class="tab-content" id="tab-profile">
+    <div class="section-h">
+      <h2>माझी प्रोफाइल</h2>
+    </div>
+    <div class="profile-card">
+      <div class="profile-row">
+        <label>पूर्ण नाव</label>
+        <input type="text" id="profileName" disabled/>
+      </div>
+      <div class="profile-row">
+        <label>ईमेल</label>
+        <input type="email" id="profileEmail" disabled/>
+      </div>
+      <div class="profile-row">
+        <label>मोबाईल नंबर</label>
+        <input type="tel" id="profilePhone"/>
+      </div>
+      <button class="btn-primary" id="saveProfileBtn" style="margin-top:8px;">प्रोफाइल जतन करा</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="src/scripts/dashboard.js"></script>
+</body>
+</html>

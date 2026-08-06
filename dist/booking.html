@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>अपॉइंटमेंट बुक करा | त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  <script type="module" crossorigin src="/assets/booking-BrqrweW1.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/supabase-Bz0haH2D.js">
+  <link rel="stylesheet" crossorigin href="/assets/booking-CLldQ8Wp.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-logo-link">
+    <img src="logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+  </a>
+  <div class="nav-right">
+    <a href="/" class="nav-back-btn">← मुख्यपृष्ठ</a>
+  </div>
+</nav>
+
+<!-- ── BOOKING PAGE ── -->
+<div class="booking-page">
+  <div class="booking-header">
+    <div class="booking-om">🕉</div>
+    <h1>अपॉइंटमेंट बुक करा</h1>
+    <p>सेवा निवडा → तारीख आणि वेळ निवडा → तपशील भरा</p>
+  </div>
+
+  <!-- ── STEP INDICATOR ── -->
+  <div class="step-indicator">
+    <div class="step active" data-step="1">
+      <div class="step-circle">१</div>
+      <span>सेवा निवडा</span>
+    </div>
+    <div class="step-line" id="line1"></div>
+    <div class="step" data-step="2">
+      <div class="step-circle">२</div>
+      <span>तारीख आणि वेळ</span>
+    </div>
+    <div class="step-line" id="line2"></div>
+    <div class="step" data-step="3">
+      <div class="step-circle">३</div>
+      <span>तपशील भरा</span>
+    </div>
+  </div>
+
+  <!-- ── STEP 1: SERVICE SELECTION ── -->
+  <div class="step-content active" id="step1">
+    <div class="service-grid" id="serviceGrid">
+      <div class="loading-spinner">सेवा लोड होत आहे...</div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: DATE & TIME ── -->
+  <div class="step-content" id="step2">
+    <div class="calendar-section">
+      <div class="calendar-header">
+        <button class="cal-nav-btn" id="prevMonth">‹</button>
+        <h2 id="monthLabel"></h2>
+        <button class="cal-nav-btn" id="nextMonth">›</button>
+      </div>
+
+      <div class="calendar-legend">
+        <span class="legend-item"><span class="legend-dot available"></span> उपलब्ध</span>
+        <span class="legend-item"><span class="legend-dot booked"></span> बुक आहे</span>
+        <span class="legend-item"><span class="legend-dot blocked"></span> सुट्टी</span>
+        <span class="legend-item"><span class="legend-dot selected"></span> निवडलेली</span>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+
+    <div class="time-section" id="timeSection" style="display:none;">
+      <h3>वेळ निवडा</h3>
+      <div class="time-slots" id="timeSlots"></div>
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-secondary" onclick="goToStep(1)">← मागे</button>
+      <button class="btn-primary" id="nextFromStep2" disabled>पुढे जा →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: DETAILS FORM ── -->
+  <div class="step-content" id="step3">
+    <div class="booking-summary" id="bookingSummary"></div>
+
+    <form id="bookingForm" class="booking-form">
+      <div class="form-row">
+        <label>पूर्ण नाव *</label>
+        <input type="text" id="clientName" required placeholder="तुमचे पूर्ण नाव"/>
+      </div>
+
+      <div class="form-row">
+        <label>मोबाईल नंबर *</label>
+        <input type="tel" id="clientPhone" required placeholder="उदा: ९८७६५४३२१०" maxlength="10"/>
+      </div>
+
+      <div class="form-row">
+        <label>ईमेल (पर्यायी)</label>
+        <input type="email" id="clientEmail" placeholder="तुमचा ईमेल"/>
+      </div>
+
+      <div class="form-row">
+        <label>स्थान / पत्ता</label>
+        <input type="text" id="clientLocation" placeholder="कार्यक्रमाचे ठिकाण किंवा पत्ता"/>
+      </div>
+
+      <div class="form-row">
+        <label>अतिरिक्त माहिती / विशेष सूचना</label>
+        <textarea id="clientNotes" rows="3" placeholder="जन्म तपशील, विशेष विनंती इत्यादी..."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" onclick="goToStep(2)">← मागे</button>
+        <button type="submit" class="btn-primary btn-submit" id="submitBtn">बुकिंग पाठवा ✓</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ── SUCCESS SCREEN ── -->
+  <div class="step-content" id="successScreen">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <h2>बुकिंग यशस्वी!</h2>
+      <p>तुमची अपॉइंटमेंट विनंती प्राप्त झाली आहे.</p>
+      <div class="booking-ref-box">
+        <span class="ref-label">तुमचा बुकिंग आयडी:</span>
+        <span class="ref-value" id="bookingRef"></span>
+      </div>
+      <div class="success-details" id="successDetails"></div>
+      <div class="success-actions">
+        <button class="btn-whatsapp" id="waBtn">💬 WhatsApp पाठवा</button>
+        <a href="/" class="btn-secondary btn-link">मुख्यपृष्ठावर जा</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
