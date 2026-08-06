@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
      6. SCROLL REVEAL ANIMATION
      ===================================================== */
   const revealEls = document.querySelectorAll(
-    '.svc-card, .about-grid, .appt-form-wrap, .about-badge, .contact-item, .loc-banner, .stat-card, .why-card, .testimonial-card'
+    '.svc-card, .about-grid, .appt-form-wrap, .about-badge, .contact-item, .loc-banner'
   );
 
   revealEls.forEach(el => el.classList.add('reveal'));
@@ -329,27 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
     field.addEventListener('input',  () => field.classList.remove('error'));
     field.addEventListener('change', () => field.classList.remove('error'));
   });
-
-  // ── Stats counter animation ──
-  const statNums = document.querySelectorAll('.stat-num');
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseInt(el.dataset.target, 10);
-      let current = 0;
-      const step = Math.ceil(target / 50);
-      const tick = () => {
-        current += step;
-        if (current >= target) { el.textContent = target.toLocaleString('en-IN'); return; }
-        el.textContent = current.toLocaleString('en-IN');
-        requestAnimationFrame(tick);
-      };
-      tick();
-      statObserver.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  statNums.forEach(el => statObserver.observe(el));
 
 }); // end DOMContentLoaded
 

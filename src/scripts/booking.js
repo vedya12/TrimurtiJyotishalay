@@ -1,5 +1,4 @@
 import { supabase, generateBookingRef, formatDateDisplay, formatTimeDisplay, WHATSAPP_NUMBER, getCurrentUser } from '../lib/supabase.js';
-import { isLoggedIn, getSession, signOut } from '../lib/auth.js';
 
 /* ── State ── */
 let currentStep = 1;
@@ -323,7 +322,7 @@ form.addEventListener('submit', async (e) => {
   const endStr = endTime.toTimeString().substring(0, 5);
 
   // Link to authenticated user if logged in
-  const currentUser = isLoggedIn() ? getSession() : null;
+  const currentUser = await getCurrentUser();
   const clientId = currentUser?.id || null;
 
   try {

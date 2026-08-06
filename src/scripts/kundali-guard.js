@@ -1,5 +1,8 @@
-import { isLoggedIn } from '../lib/auth.js';
+import { supabase } from '../lib/supabase.js';
 
-if (!isLoggedIn()) {
-  window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname);
-}
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname);
+  }
+})();

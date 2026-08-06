@@ -1,32 +1,42 @@
-import { isLoggedIn, getSession, signOut } from '../lib/auth.js';
-import { supabase, formatDateDisplay, formatTimeDisplay } from '../lib/supabase.js';
+import { supabase, getCurrentUser, getUserProfile, signOut, formatDateDisplay, formatTimeDisplay, WHATSAPP_NUMBER } from '../lib/supabase.js';
 
 /* ── Auth Guard ── */
 async function init() {
-  if (!isLoggedIn()) {
+  const user = await getCurrentUser();
+  if (!user) {
     window.location.href = '/login.html';
     return;
   }
 
-  const session = getSession();
-  if (session.role === 'admin') {
+  const profile = await getUserProfile();
+  if (!profile) {
+    window.location.href = '/login.html';
+    return;
+  }
+
+  // If admin, redirect to admin panel
+  if (profile.role === 'admin') {
     window.location.href = '/admin.html';
     return;
   }
 
+  // Show UI
   document.getElementById('redirectScreen').style.display = 'none';
   document.getElementById('navbar').style.display = 'flex';
   document.getElementById('tabBar').style.display = 'flex';
   document.getElementById('dashboardPage').style.display = 'block';
 
-  document.getElementById('userName').textContent = session.full_name || 'client';
+  document.getElementById('userName').textContent = profile.full_name || ' client';
+
+  // Logout
   document.getElementById('logoutBtn').addEventListener('click', signOut);
 
-  loadOverview(session.username);
-  loadAppointments(session.username);
-  loadDocuments(session.username);
+  // Load data
+  loadOverview(profile.id);
+  loadAppointments(profile.id);
+  loadDocuments(profile.id);
   loadMuhurtas();
-  loadProfile(session);
+  loadProfile(profile, user);
 
   // Tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -233,10 +243,10 @@ function renderMuhurtas(cat) {
 }
 
 /* ── Profile ── */
-function loadProfile(session) {
-  document.getElementById('profileName').value = session.full_name || '';
-  document.getElementById('profileEmail').value = '';
-  document.getElementById('profilePhone').value = '';
+function loadProfile(profile, user) {
+  document.getElementById('profileName').value = profile.full_name || '';
+  document.getElementById('profileEmail').value = user.email || '';
+  document.getElementById('profilePhone').value = profile.phone || '';
 }
 
 document.getElementById('saveProfileBtn').addEventListener('click', async () => {
@@ -248,6 +258,12 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
   btn.textContent = '⏳ जतन होत आहे...';
 
   try {
+    const { error } = await supabase
+      .from('profiles')
+      .update({ phone, full_name: name })
+      .eq('id', (await getCurrentUser()).id);
+
+    if (error) throw error;
     showToast('प्रोफाइल जतन झाली.');
   } catch (err) {
     showToast('प्रोफाइल जतन करताना त्रुटी.', 'error');

@@ -1,4 +1,4 @@
-import { login } from '../lib/auth.js';
+import { supabase, getUserProfile } from '../lib/supabase.js';
 
 const form = document.getElementById('loginForm');
 const errorEl = document.getElementById('authError');
@@ -16,33 +16,42 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
   clearError();
 
-  const username = document.getElementById('loginUsername').value.trim();
+  const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value;
 
-  if (!username || !password) {
-    showError('कृपया युजरनेम आणि पासवर्ड भरा.');
+  if (!email || !password) {
+    showError('कृपया ईमेल आणि पासवर्ड भरा.');
     return;
   }
 
   btn.disabled = true;
   btn.textContent = '⏳ लॉगिन होत आहे...';
 
-  const session = login(username, password);
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
 
-  if (session) {
+    // Check role and redirect
+    const profile = await getUserProfile();
     const params = new URLSearchParams(window.location.search);
     const redirectTo = params.get('redirect');
-    if (redirectTo && session.role !== 'admin') {
+    if (redirectTo && profile?.role !== 'admin') {
       window.location.href = '/' + redirectTo.replace(/^\//, '');
       return;
     }
-    if (session.role === 'admin') {
+    if (profile?.role === 'admin') {
       window.location.href = '/admin.html';
     } else {
       window.location.href = '/dashboard.html';
     }
-  } else {
-    showError('युजरनेम किंवा पासवर्ड चुकीचा आहे.');
+  } catch (err) {
+    let msg = 'लॉगिन अयशस्वी. कृपया पुन्हा प्रयत्न करा.';
+    if (err.message?.includes('Invalid login')) {
+      msg = 'ईमेल किंवा पासवर्ड चुकीचा आहे.';
+    } else if (err.message?.includes('Email not confirmed')) {
+      msg = 'ईमेल अजून प्रमाणित झालेला नाही.';
+    }
+    showError(msg);
     btn.disabled = false;
     btn.textContent = 'लॉगिन करा →';
   }
