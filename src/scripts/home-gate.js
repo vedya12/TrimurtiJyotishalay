@@ -1,14 +1,21 @@
-import { isLoggedIn } from '../lib/auth.js';
+// index.html is a pure landing page — this script only toggles the
+// navbar between guest (Login/Register) and logged-in (Dashboard/Logout) states.
+import { isLoggedIn, getSession, logout } from '../lib/auth.js';
 
-if (isLoggedIn()) {
-  document.querySelectorAll('.kc-gated-section').forEach(el => el.style.display = '');
-  document.querySelectorAll('.kc-gated[data-real-href]').forEach(a => {
-    a.href = a.dataset.realHref;
-  });
-  const gateBanner = document.getElementById('kcLoginGate');
-  if (gateBanner) gateBanner.style.display = 'none';
+const loggedIn = isLoggedIn();
+const session = loggedIn ? getSession() : null;
+
+const navGuest = document.getElementById('navAuthGuest');
+const navUser = document.getElementById('navAuthUser');
+const navUserName = document.getElementById('navUserName');
+const navLogoutBtn = document.getElementById('navLogoutBtn');
+
+if (loggedIn) {
+  if (navGuest) navGuest.style.display = 'none';
+  if (navUser) navUser.style.display = '';
+  if (navUserName) navUserName.textContent = session?.name || session?.user || '';
+  if (navLogoutBtn) navLogoutBtn.addEventListener('click', () => logout());
 } else {
-  document.querySelectorAll('.kc-gated-section').forEach(el => el.style.display = 'none');
-  const gateBanner = document.getElementById('kcLoginGate');
-  if (gateBanner) gateBanner.style.display = 'block';
+  if (navGuest) navGuest.style.display = '';
+  if (navUser) navUser.style.display = 'none';
 }

@@ -1,42 +1,28 @@
-import { supabase, getCurrentUser, getUserProfile, signOut, formatDateDisplay, formatTimeDisplay, WHATSAPP_NUMBER } from '../lib/supabase.js';
+import { isLoggedIn, getSession, logout } from '../lib/auth.js';
+// import { supabase, formatDateDisplay, formatTimeDisplay } from '../lib/supabase.js';
 
 /* ── Auth Guard ── */
 async function init() {
-  const user = await getCurrentUser();
-  if (!user) {
+  if (!isLoggedIn()) {
     window.location.href = '/login.html';
     return;
   }
 
-  const profile = await getUserProfile();
-  if (!profile) {
-    window.location.href = '/login.html';
-    return;
-  }
+  const session = getSession();
 
-  // If admin, redirect to admin panel
-  if (profile.role === 'admin') {
-    window.location.href = '/admin.html';
-    return;
-  }
-
-  // Show UI
   document.getElementById('redirectScreen').style.display = 'none';
   document.getElementById('navbar').style.display = 'flex';
   document.getElementById('tabBar').style.display = 'flex';
   document.getElementById('dashboardPage').style.display = 'block';
 
-  document.getElementById('userName').textContent = profile.full_name || ' client';
+  document.getElementById('userName').textContent = session.name || session.user || 'client';
+  document.getElementById('logoutBtn').addEventListener('click', logout);
 
-  // Logout
-  document.getElementById('logoutBtn').addEventListener('click', signOut);
-
-  // Load data
-  loadOverview(profile.id);
-  loadAppointments(profile.id);
-  loadDocuments(profile.id);
+  loadOverview(session.user);
+  loadAppointments(session.user);
+  loadDocuments(session.user);
   loadMuhurtas();
-  loadProfile(profile, user);
+  loadProfile(session);
 
   // Tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -243,10 +229,10 @@ function renderMuhurtas(cat) {
 }
 
 /* ── Profile ── */
-function loadProfile(profile, user) {
-  document.getElementById('profileName').value = profile.full_name || '';
-  document.getElementById('profileEmail').value = user.email || '';
-  document.getElementById('profilePhone').value = profile.phone || '';
+function loadProfile(session) {
+  document.getElementById('profileName').value = session.name || session.user || '';
+  document.getElementById('profileEmail').value = '';
+  document.getElementById('profilePhone').value = '';
 }
 
 document.getElementById('saveProfileBtn').addEventListener('click', async () => {
@@ -258,12 +244,6 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
   btn.textContent = '⏳ जतन होत आहे...';
 
   try {
-    const { error } = await supabase
-      .from('profiles')
-      .update({ phone, full_name: name })
-      .eq('id', (await getCurrentUser()).id);
-
-    if (error) throw error;
     showToast('प्रोफाइल जतन झाली.');
   } catch (err) {
     showToast('प्रोफाइल जतन करताना त्रुटी.', 'error');
@@ -274,3 +254,14 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
 });
 
 init();
+
+function contactForBooking(bookingId, pujaName) {
+  // Get logged-in user details from local state / Supabase session
+  const currentUser = JSON.parse(localStorage.getItem('user_session')) || {};
+  const userName = currentUser.name || "Devotee";
+  
+  const text = `नमस्कार गुरुजी 🙏\n\nमाझे नाव: ${userName}\nबुकिंग आयडी: #${bookingId}\nपूजा: ${pujaName}\n\nमला या पूजेबद्दल खालील चौकशी करायची आहे:`;
+  
+  const waUrl = `https://wa.me/919876543210?text=${encodeURIComponent(text)}`;
+  window.open(waUrl, '_blank');
+}

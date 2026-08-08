@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
      6. SCROLL REVEAL ANIMATION
      ===================================================== */
   const revealEls = document.querySelectorAll(
-    '.svc-card, .about-grid, .appt-form-wrap, .about-badge, .contact-item, .loc-banner'
+    '.svc-card, .about-grid, .appt-form-wrap, .about-badge, .contact-item, .loc-banner, .stat-card, .why-card, .testimonial-card'
   );
 
   revealEls.forEach(el => el.classList.add('reveal'));
@@ -260,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return (lines[lang] || lines.mr).filter(Boolean).join('\n');
   }
 
+  if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let valid = true;
@@ -329,6 +330,28 @@ document.addEventListener('DOMContentLoaded', () => {
     field.addEventListener('input',  () => field.classList.remove('error'));
     field.addEventListener('change', () => field.classList.remove('error'));
   });
+  } // end if (form)
+
+  // ── Stats counter animation ──
+  const statNums = document.querySelectorAll('.stat-num');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      let current = 0;
+      const step = Math.ceil(target / 50);
+      const tick = () => {
+        current += step;
+        if (current >= target) { el.textContent = target.toLocaleString('en-IN'); return; }
+        el.textContent = current.toLocaleString('en-IN');
+        requestAnimationFrame(tick);
+      };
+      tick();
+      statObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => statObserver.observe(el));
 
 }); // end DOMContentLoaded
 
@@ -615,3 +638,86 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.deity-card').forEach(c => deityObserver.observe(c));
 })();
 
+function toggleHomeFaq(buttonEl) {
+  const itemEl = buttonEl.closest('.home-faq-item');
+  const bodyEl = itemEl.querySelector('.home-faq-body');
+  const iconEl = itemEl.querySelector('.faq-icon');
+  const isOpen = itemEl.classList.contains('open');
+
+  if (isOpen) {
+    itemEl.classList.remove('open');
+    buttonEl.setAttribute('aria-expanded', 'false');
+    bodyEl.style.maxHeight = null;
+    iconEl.textContent = '＋';
+  } else {
+    itemEl.classList.add('open');
+    buttonEl.setAttribute('aria-expanded', 'true');
+    bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
+    iconEl.textContent = '−';
+  }
+}
+
+// ===================================================
+// LANGUAGE DROPDOWN TOGGLE LOGIC
+// ===================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const langWrap = document.querySelector('.lang-dropdown-wrap');
+  const langDropdownBtn = document.getElementById('langDropdownBtn');
+  const currentLangLabel = document.getElementById('currentLangLabel');
+
+  if (langDropdownBtn && langWrap) {
+    // Toggle dropdown open/close
+    langDropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langWrap.classList.toggle('open');
+      langDropdownBtn.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      langWrap.classList.remove('open');
+      langDropdownBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Handle language selection
+    const langBtns = langWrap.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        langBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Update main button label
+        if (currentLangLabel) {
+          currentLangLabel.textContent = btn.textContent.trim();
+        }
+
+        // Close dropdown
+        langWrap.classList.remove('open');
+        langDropdownBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+});
+
+// ===================================================
+// ACCOUNT DROPDOWN TOGGLE LOGIC
+// ===================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const accountWrap = document.querySelector('.account-dropdown-wrap');
+  const accountBtn = document.getElementById('accountDropdownBtn');
+
+  if (accountBtn && accountWrap) {
+    // Toggle menu open/close
+    accountBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = accountWrap.classList.toggle('open');
+      accountBtn.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close menu when clicking anywhere outside
+    document.addEventListener('click', () => {
+      accountWrap.classList.remove('open');
+      accountBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+});
