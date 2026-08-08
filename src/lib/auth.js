@@ -1,19 +1,31 @@
+// Unified auth library for Trimurti Jyotishalay
+// Uses same storage key and session format as auth-login.js
+
+const STORAGE_KEY = 'trimurti_session';
+
 const DEMO_USERS = [
   { username: 'vedant', password: '123', role: 'admin', full_name: 'Vedant' },
+  // { username: 'guest', password: 'guest', role: 'user', full_name: 'Guest User' }
 ];
-
-const SESSION_KEY = 'tj_session';
 
 export function login(username, password) {
   const user = DEMO_USERS.find(u => u.username === username && u.password === password);
   if (!user) return null;
-  const session = { username: user.username, role: user.role, full_name: user.full_name };
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+
+  const session = {
+    user: user.username,
+    name: user.full_name,
+    role: user.role,
+    token: `dev-${user.username}-${Date.now()}`,
+    issuedAt: Date.now()
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
   return session;
 }
 
 export function getSession() {
-  const raw = localStorage.getItem(SESSION_KEY);
+  const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) return null;
   try {
     return JSON.parse(raw);
@@ -23,10 +35,11 @@ export function getSession() {
 }
 
 export function isLoggedIn() {
-  return getSession() !== null;
+  const s = getSession();
+  return Boolean(s && s.user);
 }
 
-export function signOut() {
-  localStorage.removeItem(SESSION_KEY);
-  window.location.href = '/';
+export function logout() {
+  localStorage.removeItem(STORAGE_KEY);
+  window.location.href = 'login.html';
 }
