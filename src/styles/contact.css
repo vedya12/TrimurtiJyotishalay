@@ -1,0 +1,495 @@
+/* ── CONTACT HERO ── */
+.contact-hero {
+  padding: 3.5rem 1rem 2rem;
+  background: linear-gradient(180deg, #fdf8eb 0%, #faf6f0 100%);
+  border-bottom: 1px solid #e8dccb;
+}
+
+.contact-hero .hero-title {
+  font-family: 'Tiro Devanagari Marathi', Georgia, serif;
+  font-size: 2.25rem;
+  color: #8b1a1a;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-hero .hero-subtitle {
+  color: #665a52;
+  font-size: 1.05rem;
+}
+
+/* ── CONTACT CARDS (TOP 4) ── */
+.contact-cards-section {
+  margin-top: -2rem;
+  padding-bottom: 3rem;
+}
+
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.contact-card {
+  background: #ffffff;
+  border: 1px solid #e8dccb;
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(139, 26, 26, 0.08);
+}
+
+.contact-card.highlight {
+  border-color: #25d366;
+  background: #f7fdf9;
+}
+
+.card-icon-wrapper {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card h3 {
+  font-size: 1.1rem;
+  color: #2c221e;
+  margin-bottom: 0.35rem;
+}
+
+.card-detail {
+  font-size: 0.9rem;
+  color: #665a52;
+  margin-bottom: 1.25rem;
+  word-break: break-word;
+}
+
+/* ── BUTTON VARIATIONS ── */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #8b1a1a;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #6b1313;
+}
+
+.btn-outline {
+  border-color: #8b1a1a;
+  color: #8b1a1a;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #8b1a1a;
+  color: #ffffff;
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+  color: #ffffff;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1eb856;
+}
+
+.btn-whatsapp-secondary {
+  background-color: #e8f8ef;
+  color: #128c7e;
+  border: 1px solid #25d366;
+}
+
+.btn-whatsapp-secondary:hover {
+  background-color: #25d366;
+  color: #ffffff;
+}
+
+/* ── LAYOUT GRID: FORM + SIDEBAR ── */
+.contact-main-section {
+  padding-bottom: 4rem;
+}
+
+.contact-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .contact-layout-grid {
+    grid-template-columns: 1.6fr 1fr;
+  }
+}
+
+/* Form Styles */
+.form-wrapper-card {
+  background: #ffffff;
+  border: 1px solid #e8dccb;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.form-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.6rem;
+  color: #8b1a1a;
+  margin-bottom: 0.2rem;
+}
+
+.form-sub {
+  color: #665a52;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2c221e;
+  margin-bottom: 0.35rem;
+}
+
+.required {
+  color: #d93025;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #dcd0c0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #fafaf8;
+  transition: border-color 0.2s, background-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8b1a1a;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.1);
+}
+
+.form-input.input-invalid {
+  border-color: #d93025;
+  background-color: #fff8f8;
+}
+
+.field-error {
+  color: #d93025;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  min-height: 1.1rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.form-actions .btn {
+  flex: 1;
+  min-width: 180px;
+}
+
+/* Alert Boxes */
+.form-alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form-alert.success {
+  background-color: #e6f4ea;
+  border: 1px solid #34a853;
+  color: #137333;
+}
+
+.form-alert.error {
+  background-color: #fce8e6;
+  border: 1px solid #ea4335;
+  color: #c5221f;
+}
+
+/* ── SIDEBAR: HOURS & URGENT ── */
+.contact-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-box {
+  background: #ffffff;
+  border: 1px solid #e8dccb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.box-title {
+  font-size: 1.2rem;
+  color: #8b1a1a;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hours-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed #e8dccb;
+  font-size: 0.9rem;
+}
+
+.hours-list li:last-child {
+  border-bottom: none;
+}
+
+.hours-day {
+  font-weight: 600;
+  color: #2c221e;
+}
+
+.hours-time {
+  color: #665a52;
+}
+
+/* Urgent Box */
+.urgent-box {
+  background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+  border-color: #f59e0b;
+}
+
+.urgent-badge {
+  display: inline-block;
+  background: #d97706;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+
+}
+
+.urgent-box h3 {
+  font-size: 1.15rem;
+  color: #78350f;
+  margin-bottom: 0.3rem;
+}
+
+.urgent-box p {
+  font-size: 0.85rem;
+  color: #92400e;
+  margin-bottom: 1rem;
+}
+
+.urgent-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-urgent-call {
+  background: #b45309;
+  color: #ffffff;
+  flex: 1;
+}
+
+.btn-urgent-call:hover {
+  background: #92400e;
+}
+
+.btn-urgent-wa {
+  background: #25d366;
+  color: #ffffff;
+  flex: 1;
+}
+
+.btn-urgent-wa:hover {
+  background: #1eb856;
+}
+
+/* ── LOCATION & MAPS ── */
+.location-section {
+  background-color: #faf6f0;
+  padding: 3.5rem 0;
+  border-top: 1px solid #e8dccb;
+}
+
+.section-header-center {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.8rem;
+  color: #8b1a1a;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.section-subtitle {
+  color: #665a52;
+  font-size: 0.95rem;
+}
+
+.map-embed-container {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e8dccb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: #eee;
+}
+
+.map-embed-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-placeholder-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #f3efe6;
+  color: #665a52;
+  text-align: center;
+  padding: 2rem;
+}
+
+.reach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.reach-card {
+  background: #ffffff;
+  border: 1px solid #e8dccb;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.reach-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.reach-card h4 {
+  font-size: 1rem;
+  color: #8b1a1a;
+  margin-bottom: 0.35rem;
+}
+
+.reach-card p {
+  font-size: 0.85rem;
+  color: #665a52;
+  line-height: 1.4;
+}
+
+/* ── FAQ CTA BANNER ── */
+.faq-cta-banner {
+  padding: 2.5rem 1rem;
+}
+
+.faq-cta-content {
+  background: linear-gradient(135deg, #8b1a1a 0%, #5c1010 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .faq-cta-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.faq-cta-text h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.3rem;
+  color: #fff;
+}
+
+.faq-cta-text p {
+  color: #f3efe6;
+  font-size: 0.95rem;
+}
+
+.btn-gold-outline {
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.btn-gold-outline:hover {
+  background: #d4af37;
+  color: #2c221e;
+}

@@ -1,0 +1,396 @@
+/* ── TESTIMONIALS & REVIEWS SYSTEM STYLES ── */
+:root {
+  --rev-maroon: #8b1a1a;
+  --rev-maroon-dark: #5e1010;
+  --rev-gold: #c8860a;
+  --rev-gold-light: #fef9ed;
+  --rev-bg: #faf6f0;
+  --rev-card-bg: #ffffff;
+  --rev-text-main: #2b211b;
+  --rev-text-muted: #6b5a4e;
+  --rev-border: #e8d7c3;
+  --rev-star: #f39c12;
+  --rev-radius: 16px;
+}
+
+.testimonials-section {
+  background-color: var(--rev-bg);
+  padding: 60px 20px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--rev-text-main);
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Trust Statistics Bar */
+.trust-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: var(--rev-card-bg);
+  border: 1fr solid var(--rev-border);
+  border-radius: var(--rev-radius);
+  padding: 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(139, 26, 26, 0.05);
+}
+
+@media (max-width: 768px) {
+  .trust-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat-item {
+  text-align: center;
+  border-right: 1px dashed var(--rev-border);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-value {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--rev-maroon);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--rev-text-muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Section Header & Rating Summary */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.testimonials-header h2 {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 2.2rem;
+  color: var(--rev-maroon);
+  margin: 0 0 10px 0;
+}
+
+.rating-badge-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--rev-gold-light);
+  border: 1px solid var(--rev-border);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.rating-stars {
+  color: var(--rev-star);
+  letter-spacing: 2px;
+}
+
+/* Search & Filter Bar */
+.controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  background: var(--rev-card-bg);
+  border: 1px solid var(--rev-border);
+  color: var(--rev-text-main);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-chip.active, .filter-chip:hover {
+  background: var(--rev-maroon);
+  color: #ffffff;
+  border-color: var(--rev-maroon);
+}
+
+.search-box-wrapper {
+  position: relative;
+  min-width: 260px;
+}
+
+.search-box-wrapper input {
+  width: 100%;
+  padding: 8px 14px 8px 36px;
+  border: 1px solid var(--rev-border);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+  background: var(--rev-card-bg);
+}
+
+.search-box-wrapper .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--rev-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Featured Testimonial Card */
+.featured-story-card {
+  background: linear-gradient(135deg, #fffdfa 0%, #fef5e7 100%);
+  border: 2px solid var(--rev-gold);
+  border-radius: var(--rev-radius);
+  padding: 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px rgba(200, 134, 10, 0.12);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .featured-story-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.featured-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--rev-gold);
+  flex-shrink: 0;
+}
+
+.featured-content {
+  flex-grow: 1;
+}
+
+.featured-badge {
+  display: inline-block;
+  background: var(--rev-gold);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.featured-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.3rem;
+  color: var(--rev-maroon);
+  margin: 0 0 8px 0;
+}
+
+.featured-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--rev-text-main);
+  font-style: italic;
+  margin: 0 0 12px 0;
+}
+
+.featured-author {
+  font-weight: 700;
+  color: var(--rev-text-main);
+  font-size: 0.9rem;
+}
+
+/* Carousel Container */
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0 30px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.testimonial-card {
+  min-width: 320px;
+  max-width: 360px;
+  background: var(--rev-card-bg);
+  border: 1px solid var(--rev-border);
+  border-radius: var(--rev-radius);
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(139, 26, 26, 0.08);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-review-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--rev-text-main);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.card-footer {
+  border-top: 1px dashed var(--rev-border);
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--rev-maroon);
+}
+
+.user-meta {
+  font-size: 0.78rem;
+  color: var(--rev-text-muted);
+}
+
+.verified-badge {
+  font-size: 0.72rem;
+  color: #137333;
+  background: #e6f4ea;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Carousel Nav & Dots */
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.carousel-btn {
+  background: var(--rev-card-bg);
+  border: 1px solid var(--rev-border);
+  color: var(--rev-maroon);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.carousel-btn:hover {
+  background: var(--rev-maroon);
+  color: #ffffff;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #d4c3b0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dot.active {
+  background: var(--rev-maroon);
+  width: 22px;
+  border-radius: 10px;
+}
+
+/* Review Submission Action Bar */
+.submit-review-banner {
+  margin-top: 40px;
+  background: var(--rev-gold-light);
+  border: 1px solid var(--rev-border);
+  border-radius: var(--rev-radius);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-open-review-modal {
+  background: var(--rev-maroon);
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(139, 26, 26, 0.2);
+}
+
+/* Modal Overlay */
+.review-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.review-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: var(--rev-radius);
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,179 @@
+:root {
+  --panchang-bg: #ffffff;
+  --panchang-border: #f0e0c0;
+  --maroon: #8b1a1a;
+  --gold: #c8860a;
+  --brown: #3b1f0b;
+  --brown-lt: #6b3a1f;
+  --green: #2e7d32;
+  --red: #c62828;
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(59, 31, 11, 0.08);
+}
+
+.panchang-widget {
+  background: var(--panchang-bg);
+  border: 2px solid var(--panchang-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  color: var(--brown);
+}
+
+/* Header */
+.panchang-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--panchang-border);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+.panchang-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.om-icon {
+  font-size: 2.2rem;
+  color: var(--gold);
+}
+.panchang-title h2 {
+  margin: 0;
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.4rem;
+  color: var(--maroon);
+}
+.panchang-date {
+  font-size: 0.85rem;
+  color: var(--brown-lt);
+  font-weight: 500;
+}
+.panchang-actions {
+  display: flex;
+  gap: 8px;
+}
+.icon-btn {
+  background: #fff8f0;
+  border: 1px solid var(--panchang-border);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.icon-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Grid Layout */
+.panchang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* Cards */
+.p-card {
+  background: #fffaf2;
+  border: 1px solid var(--panchang-border);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s;
+}
+.p-card:hover { transform: translateY(-2px); border-color: var(--gold); }
+.p-icon {
+  font-size: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.p-info { display: flex; flex-direction: column; }
+.p-info small { font-size: 0.75rem; color: var(--brown-lt); }
+.p-info strong { font-size: 0.95rem; font-weight: 600; color: var(--maroon); }
+
+/* Specific Card Styles */
+.timing-card strong { font-size: 0.85rem; }
+.timing-card.alert { background: #fff0f0; border-color: #ffcccc; }
+.timing-card.alert strong { color: var(--red); }
+.timing-card.warning { background: #fff8e1; border-color: #ffecb3; }
+.timing-card.warning strong { color: #d84315; }
+
+.highlight { grid-column: span 2; background: #fdf5e6; border-color: var(--gold); }
+.highlight.secondary { grid-column: span 1; }
+
+.list-card {
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column: span 2;
+  gap: 8px;
+}
+.list-card small { font-weight: 600; font-size: 0.85rem; }
+.list-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.list-card li {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #fff;
+}
+.list-card.good small { color: var(--green); }
+.list-card.good li { border: 1px solid #a5d6a7; color: var(--green); }
+.list-card.avoid small { color: var(--red); }
+.list-card.avoid li { border: 1px solid #ef9a9a; color: var(--red); }
+
+/* Footer */
+.panchang-footer {
+  margin-top: 20px;
+  text-align: center;
+  border-top: 1px solid var(--panchang-border);
+  padding-top: 16px;
+}
+.btn-primary {
+  background: var(--maroon);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn-primary:hover { background: #6b1414; }
+
+/* Skeleton Loading Animation */
+.panchang-skeleton .skel-card {
+  height: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 10px;
+}
+.panchang-skeleton .skel-wide { grid-column: span 2; height: 100px; }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .highlight, .list-card { grid-column: span 1; }
+  .panchang-grid { grid-template-columns: 1fr; }
+}

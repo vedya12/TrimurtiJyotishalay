@@ -1,0 +1,489 @@
+/* ==========================================================================
+   Life Event Planner Module - Trimurti Jyotishalay
+   ========================================================================== */
+
+:root {
+  --lep-maroon: #8b1a1a;
+  --lep-maroon-dark: #5c1010;
+  --lep-gold: #c8860a;
+  --lep-gold-light: #fdf5e6;
+  --lep-border: #e2c08d;
+  --lep-bg: #fffdf9;
+  --lep-text: #2c1a0e;
+  --lep-text-muted: #665243;
+  --lep-green: #10b981;
+  --lep-shadow: 0 8px 24px rgba(139, 26, 26, 0.08);
+  --lep-radius: 14px;
+}
+
+.lep-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--lep-text);
+}
+
+/* Event Switcher Cards (Hub Grid) */
+.lep-hub-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.lep-hub-title {
+  font-size: 2rem;
+  color: var(--lep-maroon);
+  margin: 0 0 8px 0;
+  font-family: 'Georgia', serif;
+}
+
+.lep-hub-subtitle {
+  color: var(--lep-text-muted);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.lep-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.lep-select-card {
+  background: #ffffff;
+  border: 1.5px solid var(--lep-border);
+  border-radius: var(--lep-radius);
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.lep-select-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--lep-maroon);
+  box-shadow: var(--lep-shadow);
+}
+
+.lep-select-card.active {
+  background: var(--lep-gold-light);
+  border-color: var(--lep-maroon);
+  box-shadow: 0 0 0 2px var(--lep-maroon);
+}
+
+.lep-card-icon {
+  font-size: 1.8rem;
+}
+
+.lep-card-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--lep-text);
+}
+
+/* Hero Section */
+.lep-hero-banner {
+  background: linear-gradient(135deg, #fff7ea, #fdf1dc);
+  border: 2px solid var(--lep-border);
+  border-radius: var(--lep-radius);
+  padding: 32px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lep-badge {
+  display: inline-block;
+  background: var(--lep-maroon);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.lep-hero-title {
+  font-size: 2.2rem;
+  color: var(--lep-maroon);
+  margin: 0 0 8px 0;
+  font-family: 'Georgia', serif;
+}
+
+.lep-hero-desc {
+  font-size: 1.05rem;
+  color: var(--lep-text-muted);
+  max-width: 780px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Section Shell */
+.lep-section {
+  margin-bottom: 40px;
+}
+
+.lep-section-title {
+  font-size: 1.4rem;
+  color: var(--lep-maroon);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--lep-gold-light);
+  padding-bottom: 8px;
+}
+
+/* Recommended Pujas Grid */
+.lep-puja-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.lep-puja-card {
+  background: #ffffff;
+  border: 1px solid var(--lep-border);
+  border-radius: var(--lep-radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+.lep-puja-card.popular {
+  border: 2px solid var(--lep-gold);
+}
+
+.lep-popular-tag {
+  position: absolute;
+  top: -12px; right: 16px;
+  background: var(--lep-gold);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.lep-puja-name {
+  font-size: 1.2rem;
+  color: var(--lep-maroon);
+  margin: 0 0 4px 0;
+}
+
+.lep-puja-name-mr {
+  font-size: 0.9rem;
+  color: var(--lep-gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.lep-puja-meta {
+  font-size: 0.85rem;
+  color: var(--lep-text-muted);
+  margin-bottom: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.lep-puja-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--lep-maroon);
+  margin-bottom: 16px;
+}
+
+/* Interactive Checklist */
+.lep-checklist-box {
+  background: #ffffff;
+  border: 1.5px solid var(--lep-border);
+  border-radius: var(--lep-radius);
+  padding: 20px;
+}
+
+.lep-progress-wrapper {
+  margin-bottom: 16px;
+}
+
+.lep-progress-bar-bg {
+  height: 10px;
+  background: #f3e8d7;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.lep-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--lep-gold), var(--lep-maroon));
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.lep-progress-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--lep-text-muted);
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lep-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--lep-border);
+}
+
+.lep-check-item:last-child {
+  border-bottom: none;
+}
+
+.lep-check-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--lep-maroon);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.lep-check-item.done span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.lep-timeframe {
+  font-size: 0.75rem;
+  background: var(--lep-gold-light);
+  color: var(--lep-maroon);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* Documents & Samagri Cards */
+.lep-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.lep-doc-card, .lep-samagri-card {
+  background: #ffffff;
+  border: 1px solid var(--lep-border);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.lep-samagri-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lep-samagri-icon {
+  font-size: 2rem;
+  background: var(--lep-gold-light);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Timeline Nodes */
+.lep-timeline-list {
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid var(--lep-gold);
+}
+
+.lep-timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 16px;
+}
+
+.lep-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -27px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--lep-maroon);
+  border: 2px solid #fff;
+}
+
+.lep-tl-phase {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--lep-gold);
+}
+
+.lep-tl-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--lep-maroon);
+  margin: 2px 0;
+}
+
+.lep-tl-desc {
+  font-size: 0.88rem;
+  color: var(--lep-text-muted);
+  margin: 0;
+}
+
+/* Budget Table */
+.lep-budget-box {
+  background: #ffffff;
+  border: 1.5px solid var(--lep-border);
+  border-radius: var(--lep-radius);
+  padding: 20px;
+}
+
+.lep-budget-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lep-budget-table th, .lep-budget-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--lep-gold-light);
+}
+
+.lep-budget-table th {
+  color: var(--lep-maroon);
+  font-size: 0.9rem;
+}
+
+.lep-budget-input {
+  width: 100px;
+  padding: 6px 8px;
+  border: 1px solid var(--lep-border);
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--lep-maroon);
+}
+
+.lep-budget-total {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--lep-maroon);
+  text-align: right;
+  margin-top: 16px;
+}
+
+/* FAQ Accordion */
+.lep-faq-item {
+  background: #ffffff;
+  border: 1px solid var(--lep-border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 14px 16px;
+}
+
+.lep-faq-q {
+  font-weight: 700;
+  color: var(--lep-maroon);
+  cursor: pointer;
+}
+
+.lep-faq-a {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--lep-text-muted);
+  line-height: 1.5;
+}
+
+/* Dashboard Widget Preview */
+.lep-dash-widget {
+  background: #ffffff;
+  border: 2px solid var(--lep-maroon);
+  border-radius: var(--lep-radius);
+  padding: 20px;
+  box-shadow: var(--lep-shadow);
+  margin-top: 40px;
+}
+
+.lep-dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--lep-gold-light);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.lep-countdown-pill {
+  background: #fff0f0;
+  color: #b82828;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid #f7d2d2;
+}
+
+/* Buttons */
+.btn-lep {
+  background: var(--lep-maroon);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.btn-lep:hover {
+  background: var(--lep-maroon-dark);
+}
+
+.btn-lep-secondary {
+  background: var(--lep-gold-light);
+  color: var(--lep-maroon);
+  border: 1px solid var(--lep-border);
+}
+
+.btn-lep-secondary:hover {
+  background: #f7efe4;
+}
+
+/* Sticky Mobile CTA */
+.lep-sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #ffffff;
+  border-top: 2px solid var(--lep-border);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+
+@media (min-width: 769px) {
+  .lep-sticky-cta { display: none; }
+}

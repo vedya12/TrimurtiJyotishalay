@@ -1,0 +1,320 @@
+/* ==========================================================================
+   Digital Sankalp Generator & Printable Document Styles
+   ========================================================================== */
+
+:root {
+  --sk-maroon: #8b1a1a;
+  --sk-maroon-dark: #5c1010;
+  --sk-gold: #c8860a;
+  --sk-gold-light: #fdf5e6;
+  --sk-border: #e2c08d;
+  --sk-text: #2c1a0e;
+  --sk-text-muted: #5c4033;
+  --sk-bg-card: #ffffff;
+  --sk-radius: 12px;
+}
+
+/* Container & Step Form */
+.sankalp-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 16px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.sankalp-card {
+  background: var(--sk-bg-card);
+  border: 2px solid var(--sk-border);
+  border-radius: var(--sk-radius);
+  box-shadow: 0 10px 30px rgba(139, 26, 26, 0.08);
+  overflow: hidden;
+}
+
+.sankalp-header {
+  background: var(--sk-gold-light);
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--sk-border);
+  text-align: center;
+}
+
+.sankalp-title {
+  margin: 0;
+  color: var(--sk-maroon);
+  font-family: 'Tiro Devanagari Marathi', serif, sans-serif;
+  font-size: 1.6rem;
+}
+
+.sankalp-subtitle {
+  margin: 6px 0 0 0;
+  color: var(--sk-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Step Bar */
+.sankalp-progress-bar {
+  display: flex;
+  background: #f7efe4;
+  border-bottom: 1px solid var(--sk-border);
+}
+
+.sankalp-step-tab {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sk-text-muted);
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.sankalp-step-tab.active {
+  color: var(--sk-maroon);
+  border-bottom-color: var(--sk-maroon);
+  background: #fff;
+}
+
+.sankalp-step-tab.completed {
+  color: var(--sk-gold);
+}
+
+/* Form Body */
+.sankalp-body {
+  padding: 24px;
+}
+
+.sankalp-step-panel {
+  display: none;
+}
+
+.sankalp-step-panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form Controls */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sk-text);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  padding: 10px 14px;
+  border: 1.5px solid var(--sk-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+
+.form-control:focus {
+  border-color: var(--sk-maroon);
+  box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.1);
+}
+
+/* Action Footer */
+.sankalp-footer {
+  padding: 16px 24px;
+  background: #faf6f0;
+  border-top: 1px solid var(--sk-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-sk {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--sk-border);
+  background: #fff;
+  color: var(--sk-text);
+  transition: all 0.2s ease;
+}
+
+.btn-sk.primary {
+  background: var(--sk-maroon);
+  color: #fff;
+  border: none;
+}
+
+.btn-sk.primary:hover {
+  background: var(--sk-maroon-dark);
+}
+
+.btn-sk:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   TEMPLE STYLE PRINTABLE PDF DOCUMENT LAYOUT
+   ========================================================================== */
+
+.sankalp-document-wrapper {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.sankalp-document {
+  width: 100%;
+  max-width: 700px;
+  background: #fffdf9;
+  border: 10px double var(--sk-gold);
+  padding: 30px 40px;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  color: #2c1a0e;
+  font-family: 'Tiro Devanagari Marathi', serif;
+}
+
+/* Inner Decorative Border */
+.sankalp-document::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1.5px solid var(--sk-maroon);
+  pointer-events: none;
+}
+
+/* Om Watermark */
+.sankalp-watermark {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16rem;
+  color: rgba(200, 134, 10, 0.05);
+  user-select: none;
+  pointer-events: none;
+  font-family: serif;
+}
+
+.doc-header {
+  text-align: center;
+  border-bottom: 2px solid var(--sk-border);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.doc-symbol {
+  font-size: 2.2rem;
+  color: var(--sk-maroon);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.doc-title {
+  font-size: 2rem;
+  color: var(--sk-maroon);
+  margin: 0;
+  font-weight: 700;
+}
+
+.doc-sub {
+  font-size: 1.1rem;
+  color: var(--sk-gold);
+  margin: 4px 0 0 0;
+  font-weight: 600;
+}
+
+.doc-body {
+  line-height: 2.2;
+  font-size: 1.15rem;
+  text-align: justify;
+  position: relative;
+  z-index: 2;
+}
+
+.doc-variable {
+  color: var(--sk-maroon);
+  font-weight: 700;
+  border-bottom: 1.5px dotted var(--sk-gold);
+  padding: 0 4px;
+}
+
+.doc-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0;
+  background: var(--sk-gold-light);
+  padding: 16px;
+  border: 1px solid var(--sk-border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.doc-footer {
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--sk-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.doc-brand {
+  font-size: 0.9rem;
+  color: var(--sk-text-muted);
+}
+
+.doc-brand strong {
+  color: var(--sk-maroon);
+  display: block;
+  font-size: 1rem;
+}
+
+.doc-sig {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--sk-maroon);
+}
+
+/* Printable Rules */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #sankalpPrintArea, #sankalpPrintArea * {
+    visibility: visible;
+  }
+  #sankalpPrintArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .sankalp-document {
+    box-shadow: none;
+    border-width: 6px;
+  }
+}

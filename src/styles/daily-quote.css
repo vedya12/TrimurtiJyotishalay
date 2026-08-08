@@ -1,0 +1,153 @@
+/* ===================================================
+   FEATURE 14: DAILY QUOTE / SHLOKA OF THE DAY STYLES
+   =================================================== */
+
+.daily-quote-section {
+  background: linear-gradient(135deg, #fdfbf7 0%, #f7f1e5 100%);
+  padding: 45px 20px;
+  border-top: 1px solid #e0c286;
+  border-bottom: 1px solid #e0c286;
+}
+
+.daily-quote-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.daily-quote-card {
+  background: #ffffff;
+  border: 1.5px solid #ebd3a7;
+  border-radius: 16px;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(139, 26, 26, 0.05);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.daily-quote-card:hover {
+  box-shadow: 0 10px 25px rgba(139, 26, 26, 0.09);
+}
+
+.daily-quote-symbol {
+  font-size: 2.2rem;
+  color: #8b1a1a;
+  line-height: 1;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.daily-quote-heading {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #8b1a1a;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.daily-quote-body {
+  position: relative;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.quote-text {
+  font-family: 'Tiro Devanagari Marathi', 'Poppins', serif;
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: #3a2518;
+  line-height: 1.7;
+  margin: 0;
+  quotes: "“" "”";
+}
+
+.quote-source {
+  font-size: 0.95rem;
+  color: #7a5a40;
+  font-weight: 500;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* Meaning Toggle Button */
+.quote-meaning-btn {
+  background: #fff8ee;
+  color: #8b1a1a;
+  border: 1px solid #d4a359;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quote-meaning-btn:hover,
+.quote-meaning-btn:focus-visible {
+  background: #8b1a1a;
+  color: #ffffff;
+  border-color: #8b1a1a;
+  outline: none;
+}
+
+/* Expandable Meaning Box */
+.quote-meaning-box {
+  background: #fffcf5;
+  border-top: 1px dashed #e2c999;
+  margin-top: 20px;
+  padding-top: 18px;
+  text-align: left;
+  display: none; /* Controlled by JS */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.quote-meaning-box.active {
+  display: block;
+}
+
+.quote-meaning-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #8b1a1a;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quote-meaning-content {
+  font-size: 0.98rem;
+  color: #4a382c;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Error Fallback Box */
+.quote-error-box {
+  color: #7a5a40;
+  font-size: 0.95rem;
+  padding: 10px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .daily-quote-card {
+    padding: 24px 18px;
+  }
+  .quote-text {
+    font-size: 1.08rem;
+  }
+  .daily-quote-heading {
+    font-size: 1.2rem;
+  }
+}

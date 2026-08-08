@@ -438,3 +438,377 @@ a { text-decoration: none; color: inherit; }
   .appt-date-box .ad-day { font-size: 1rem; }
   .muhurta-grid { grid-template-columns: 1fr; }
 }
+/* ============================================================
+   BHAJAN SANGRAH SECTION
+   ============================================================ */
+.bhajan-section {
+  padding: 70px 6%;
+  background: linear-gradient(180deg, var(--cream-dk) 0%, var(--cream) 100%);
+}
+
+.bhajan-subtitle {
+  text-align: center;
+  font-size: .93rem;
+  color: var(--brown-lt);
+  margin-top: -24px;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+/* --- Deity Grid --- */
+.deity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.deity-card {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1.5px solid #f0dfc0;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  user-select: none;
+}
+
+.deity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.deity-card.active {
+  border-color: var(--maroon);
+  box-shadow: 0 0 0 3px rgba(139,26,26,.15), var(--shadow-lg);
+}
+
+.deity-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+
+.deity-card:hover img { transform: scale(1.04); }
+
+.deity-card .deity-name {
+  padding: 10px 10px 12px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--maroon);
+  text-align: center;
+  font-family: 'Tiro Devanagari Marathi', serif;
+  line-height: 1.3;
+}
+
+/* --- Bhajan Panel --- */
+.bhajan-panel {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1.5px solid #f0dfc0;
+  overflow: hidden;
+  display: none;
+  animation: fadeUp .35s ease both;
+}
+
+.bhajan-panel.open { display: block; }
+
+.bhajan-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--maroon-dk), var(--maroon));
+  color: var(--white);
+}
+
+.bhajan-panel-header img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.4);
+}
+
+.bhajan-panel-header h3 {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.bhajan-panel-close {
+  margin-left: auto;
+  background: rgba(255,255,255,.15);
+  border: none;
+  color: var(--white);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+
+.bhajan-panel-close:hover { background: rgba(255,255,255,.3); }
+
+/* --- Bhajan Items List --- */
+.bhajan-list {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.bhajan-item {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid #ecdcc0;
+  transition: background var(--transition);
+}
+
+.bhajan-item:hover { background: var(--cream-dk); }
+
+.bhajan-item-title {
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bhajan-item-title::before {
+  content: '🎵';
+  font-size: .9rem;
+}
+
+.bhajan-audio {
+  width: 100%;
+  height: 36px;
+  border-radius: 20px;
+  accent-color: var(--maroon);
+}
+
+/* Scrollbar for bhajan list */
+.bhajan-list::-webkit-scrollbar { width: 5px; }
+.bhajan-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+@media (max-width: 640px) {
+  .deity-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .deity-card img { height: 100px; }
+  .deity-card .deity-name { font-size: .78rem; padding: 7px; }
+  .bhajan-panel-header { padding: 14px 16px; }
+  .bhajan-list { padding: 14px 16px; }
+}
+
+/* ============================================================
+   KUNDALI SECTION
+   ============================================================ */
+.kundali-section {
+  padding: 70px 6%;
+  background: var(--white);
+}
+
+.kundali-subtitle {
+  text-align: center;
+  font-size: .93rem;
+  color: var(--brown-lt);
+  margin-top: -24px;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+/* --- Login gate banner (guests) --- */
+.kc-login-gate {
+  max-width: 560px;
+  margin: 0 auto 48px;
+  background: linear-gradient(135deg, #fff8e8 0%, #fff3e0 100%);
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  text-align: center;
+}
+.kc-login-gate-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.kc-lock-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.15));
+}
+.kc-login-gate-inner p {
+  font-size: .95rem;
+  color: var(--brown);
+  line-height: 1.5;
+  max-width: 380px;
+}
+.kc-login-gate-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+/* --- 3-column grid --- */
+.kundali-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 48px;
+}
+
+/* --- Individual kundali card --- */
+.kundali-card {
+  background: var(--cream);
+  border: 1.5px solid #ecdcc0;
+  border-radius: var(--radius);
+  padding: 30px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.kundali-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.kc-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.15));
+}
+
+.kc-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.1rem;
+  color: var(--maroon);
+  margin: 0;
+}
+
+.kc-desc {
+  font-size: .82rem;
+  color: var(--brown-lt);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.kc-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.kc-tag {
+  background: var(--cream-dk);
+  border: 1px solid #e0c898;
+  color: var(--brown-lt);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 600;
+}
+
+.kc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--maroon);
+  color: var(--white);
+  padding: 11px 24px;
+  border-radius: 30px;
+  font-size: .88rem;
+  font-weight: 600;
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 4px 14px rgba(139,26,26,.28);
+  margin-top: 4px;
+  text-decoration: none;
+}
+
+.kc-btn:hover {
+  background: var(--maroon-dk);
+  transform: translateY(-2px);
+}
+
+/* --- Puja PDFs strip --- */
+.puja-pdfs {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--maroon-dk) 0%, var(--maroon) 100%);
+  border-radius: var(--radius);
+  padding: 30px 32px;
+  text-align: center;
+}
+
+.puja-pdfs-title {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 1.15rem;
+  color: var(--gold-lt);
+  margin-bottom: 20px;
+}
+
+.puja-pdf-grid {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.puja-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,.25);
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: .87rem;
+  font-weight: 500;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  text-decoration: none;
+}
+
+.puja-pdf-btn:hover {
+  background: rgba(255,255,255,.22);
+  border-color: var(--gold-lt);
+  transform: translateY(-2px);
+  color: var(--gold-lt);
+}
+
+.puja-note {
+  font-size: .78rem;
+  color: rgba(255,255,255,.55);
+  font-style: italic;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .kundali-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* ── Small overrides so these reused sections fit dashboard tab layout ── */
+.kundali-section, .bhajan-section { padding: 0; background: none; }
+.kundali-subtitle, .bhajan-subtitle { font-size: .88rem; color: var(--brown-lt); margin-bottom: 20px; }
+.kc-login-gate { display: none !important; }
