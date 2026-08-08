@@ -3,15 +3,23 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "Trimurti Jyotishalay Website",
+  "author": "Vedant Velukar",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build"
   },
   "devDependencies": {
     "vite": "^5.4.0"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

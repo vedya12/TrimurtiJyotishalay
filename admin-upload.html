@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>गुरुजी ॲडमिन — दस्तऐवज अपलोड | Admin Document Upload</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      --primary-color: #8b1a1a;
+      --primary-hover: #6e1313;
+      --accent-gold: #c8860a;
+      --border-color: #ebdcc4;
+      --bg-cream: #fffdfa;
+      --bg-card: #ffffff;
+      --text-main: #2c1e16;
+      --text-muted: #665243;
+      --focus-ring: rgba(139, 26, 26, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Tiro Devanagari Marathi', sans-serif;
+    }
+
+    body {
+      background-color: #f7f3ed;
+      color: var(--text-main);
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .admin-upload-panel {
+      width: 100%;
+      max-width: 880px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(139, 26, 26, 0.06);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .panel-header {
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .panel-header-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(139, 26, 26, 0.08);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+    }
+
+    .panel-title h1 {
+      font-family: 'Tiro Devanagari Marathi', serif;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      line-height: 1.2;
+    }
+
+    .panel-title p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .admin-badge {
+      background: #fdf5e6;
+      color: var(--accent-gold);
+      border: 1px solid #e2c08d;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* Form Layout */
+    .panel-body {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .panel-body {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    label .req {
+      color: #b91c1c;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--bg-cream);
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+      background: #ffffff;
+    }
+
+    /* PDF Dropzone */
+    .dropzone-container {
+      border: 2px dashed var(--border-color);
+      background: var(--bg-cream);
+      border-radius: 14px;
+      padding: 28px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .dropzone-container:hover,
+    .dropzone-container.dragover {
+      border-color: var(--primary-color);
+      background: #fdf5e6;
+    }
+
+    .dropzone-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .dropzone-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .dropzone-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .dropzone-subtext {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .file-preview-card {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .file-icon {
+      font-size: 1.5rem;
+    }
+
+    .file-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .file-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      word-break: break-all;
+    }
+
+    .file-size {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .remove-file-btn {
+      background: none;
+      border: none;
+      color: #b91c1c;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Category Tag Pills */
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .category-pill {
+      background: var(--bg-cream);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .category-pill.selected {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+    }
+
+    /* Searchable Client Selector */
+    .client-select-box {
+      position: relative;
+    }
+
+    .client-chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--bg-cream);
+      min-height: 44px;
+      align-items: center;
+    }
+
+    .client-chip {
+      background: #f0e6d6;
+      color: var(--text-main);
+      border: 1px solid #ebdcc4;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .client-chip-remove {
+      cursor: pointer;
+      color: #8b1a1a;
+      font-weight: bold;
+    }
+
+    .client-search-input {
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 4px 8px !important;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .client-dropdown-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-top: 4px;
+      max-height: 180px;
+      overflow-y: auto;
+      z-index: 10;
+      display: none;
+    }
+
+    .client-dropdown-item {
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f9f5ef;
+    }
+
+    .client-dropdown-item:hover {
+      background: #fdf5e6;
+    }
+
+    .client-phone {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Submit Actions */
+    .panel-footer {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .notify-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      background: var(--primary-color);
+      color: #ffffff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-upload-panel">
+  <!-- Header -->
+  <div class="panel-header">
+    <div class="panel-header-left">
+      <div class="panel-header-icon">📄</div>
+      <div class="panel-title">
+        <h1>दस्तऐवज अपलोड करा (Admin Upload)</h1>
+        <p>गुरुजी पॅनेल — ग्राहकांसाठी PDF अहवाल व साहित्य शेअर करा</p>
+      </div>
+    </div>
+    <span class="admin-badge">गुरुजी ॲडमिन</span>
+  </div>
+
+  <!-- Form -->
+  <form id="adminUploadForm">
+    <div class="panel-body">
+
+      <!-- PDF Dropzone (Full Width) -->
+      <div class="form-group full-width">
+        <label>PDF फाईल निवडा <span class="req">*</span></label>
+        <div class="dropzone-container" id="dropzone">
+          <input type="file" id="pdfFileInput" class="dropzone-input" accept="application/pdf" required />
+          <div class="dropzone-icon">📥</div>
+          <div class="dropzone-text">PDF फाईल येथे ड्रॅग करा किंवा कॉम्प्युटरवरून निवडा</div>
+          <div class="dropzone-subtext">फक्त PDF स्वरूपात फाईल (कमाल आकार: २५ MB)</div>
+        </div>
+
+        <div id="filePreviewContainer" style="display: none;">
+          <div class="file-preview-card">
+            <div class="file-info">
+              <span class="file-icon">📕</span>
+              <div class="file-details">
+                <span class="file-name" id="fileName">document.pdf</span>
+                <span class="file-size" id="fileSize">0 KB</span>
+              </div>
+            </div>
+            <button type="button" class="remove-file-btn" id="removeFileBtn" title="काढून टाका">&times;</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Title -->
+      <div class="form-group">
+        <label for="docTitle">दस्तऐवजाचे नाव (Title) <span class="req">*</span></label>
+        <input type="text" id="docTitle" placeholder="उदा. गुण मिलन तक्ता / जन्म कुंडली" required />
+      </div>
+
+      <!-- Category Tagging -->
+      <div class="form-group">
+        <label>वर्गवारी निवडा (Category Tags) <span class="req">*</span></label>
+        <input type="hidden" id="selectedCategory" required />
+        <div class="category-pills" id="categoryPills">
+          <div class="category-pill" data-value="janma_kundali">🕉 जन्म कुंडली</div>
+          <div class="category-pill" data-value="kundali_milan">💒 कुंडली मिलन</div>
+          <div class="category-pill" data-value="puja_sahitya">🔥 पूजा साहित्य यादी</div>
+          <div class="category-pill" data-value="muhurta_patrika">📅 मुहूर्त पत्रिका</div>
+          <div class="category-pill" data-value="sankalp">📜 संकल्प पत्रिका</div>
+          <div class="category-pill" data-value="other">📋 इतर दस्तऐवज</div>
+        </div>
+      </div>
+
+      <!-- Assign Clients -->
+      <div class="form-group full-width">
+        <label>ग्राहक असाइन करा (Assign Clients) <span class="req">*</span></label>
+        <div class="client-select-box">
+          <div class="client-chips-container" id="clientChipsContainer">
+            <input type="text" id="clientSearchInput" class="client-search-input" placeholder="नाव किंवा मोबाईल नंबरने शोधा..." />
+          </div>
+          <div class="client-dropdown-results" id="clientDropdownResults">
+            <div class="client-dropdown-item" data-id="c1" data-name="रमेश कुलकर्णी" data-phone="9822012345">
+              <span>रमेश कुलकर्णी</span>
+              <span class="client-phone">+91 9822012345</span>
+            </div>
+            <div class="client-dropdown-item" data-id="c2" data-name="सुप्रिया देशपांडे" data-phone="9423098765">
+              <span>सुप्रिया देशपांडे</span>
+              <span class="client-phone">+91 9423098765</span>
+            </div>
+            <div class="client-dropdown-item" data-id="c3" data-name="अमित पाटील" data-phone="8888123456">
+              <span>अमित पाटील</span>
+              <span class="client-phone">+91 8888123456</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional Description -->
+      <div class="form-group full-width">
+        <label for="docDescription">टीप किंवा वर्णन (Description / Instructions)</label>
+        <textarea id="docDescription" rows="3" placeholder="ग्राहकासाठी काही विशेष सूचना किंवा माहिती लिहावी..."></textarea>
+      </div>
+
+      <!-- Footer / Actions -->
+      <div class="panel-footer">
+        <label class="notify-toggle">
+          <input type="checkbox" id="notifyClient" checked />
+          <span>ग्राहकाला WhatsApp/SMS वर दस्तऐवज मिळाल्याची सूचना पाठवा</span>
+        </label>
+
+        <button type="submit" class="btn-submit">
+          <span>📤</span> दस्तऐवज अपलोड करा
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<script>
+  // PDF Upload Preview Logic
+  const pdfFileInput = document.getElementById('pdfFileInput');
+  const dropzone = document.getElementById('dropzone');
+  const filePreviewContainer = document.getElementById('filePreviewContainer');
+  const fileNameEl = document.getElementById('fileName');
+  const fileSizeEl = document.getElementById('fileSize');
+  const removeFileBtn = document.getElementById('removeFileBtn');
+
+  function handleFileSelect(file) {
+    if (file && file.type === 'application/pdf') {
+      fileNameEl.textContent = file.name;
+      fileSizeEl.textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+      dropzone.style.display = 'none';
+      filePreviewContainer.style.display = 'block';
+    } else {
+      alert('कृपया फक्त PDF फाईल निवडा.');
+    }
+  }
+
+  pdfFileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+      handleFileSelect(e.target.files[0]);
+    }
+  });
+
+  removeFileBtn.addEventListener('click', () => {
+    pdfFileInput.value = '';
+    filePreviewContainer.style.display = 'none';
+    dropzone.style.display = 'block';
+  });
+
+  // Drag and Drop
+  ['dragenter', 'dragover'].forEach(eventName => {
+    dropzone.addEventListener(eventName, (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    }, false);
+  });
+
+  ['dragleave', 'drop'].forEach(eventName => {
+    dropzone.addEventListener(eventName, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+    }, false);
+  });
+
+  dropzone.addEventListener('drop', (e) => {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    if (files.length > 0) {
+      pdfFileInput.files = files;
+      handleFileSelect(files[0]);
+    }
+  });
+
+  // Category Selector
+  const categoryPills = document.querySelectorAll('.category-pill');
+  const selectedCategoryInput = document.getElementById('selectedCategory');
+
+  categoryPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      categoryPills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedCategoryInput.value = pill.getAttribute('data-value');
+    });
+  });
+
+  // Client Selection logic
+  const clientSearchInput = document.getElementById('clientSearchInput');
+  const clientDropdownResults = document.getElementById('clientDropdownResults');
+  const clientChipsContainer = document.getElementById('clientChipsContainer');
+  const assignedClients = new Map();
+
+  clientSearchInput.addEventListener('focus', () => {
+    clientDropdownResults.style.display = 'block';
+  });
+
+  clientSearchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const items = clientDropdownResults.querySelectorAll('.client-dropdown-item');
+    
+    items.forEach(item => {
+      const name = item.getAttribute('data-name').toLowerCase();
+      const phone = item.getAttribute('data-phone');
+      if (name.includes(query) || phone.includes(query)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    clientDropdownResults.style.display = 'block';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.client-select-box')) {
+      clientDropdownResults.style.display = 'none';
+    }
+  });
+
+  clientDropdownResults.querySelectorAll('.client-dropdown-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const id = item.getAttribute('data-id');
+      const name = item.getAttribute('data-name');
+      
+      if (!assignedClients.has(id)) {
+        assignedClients.set(id, name);
+        renderClientChips();
+      }
+      clientSearchInput.value = '';
+      clientDropdownResults.style.display = 'none';
+    });
+  });
+
+  function renderClientChips() {
+    // Remove existing chips
+    clientChipsContainer.querySelectorAll('.client-chip').forEach(chip => chip.remove());
+
+    // Re-render
+    assignedClients.forEach((name, id) => {
+      const chip = document.createElement('div');
+      chip.className = 'client-chip';
+      chip.innerHTML = `
+        <span>👤 ${name}</span>
+        <span class="client-chip-remove" onclick="removeClient('${id}')">&times;</span>
+      `;
+      clientChipsContainer.insertBefore(chip, clientSearchInput);
+    });
+  }
+
+  window.removeClient = function(id) {
+    assignedClients.delete(id);
+    renderClientChips();
+  };
+
+  // Form Submit Handler
+  document.getElementById('adminUploadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!selectedCategoryInput.value) {
+      alert('कृपया एक वर्गवारी (Category Tag) निवडा.');
+      return;
+    }
+
+    if (assignedClients.size === 0) {
+      alert('कृपया किमान एका ग्राहकाला असाइन करा.');
+      return;
+    }
+
+    const payload = {
+      title: document.getElementById('docTitle').value,
+      category: selectedCategoryInput.value,
+      clients: Array.from(assignedClients.keys()),
+      description: document.getElementById('docDescription').value,
+      notify: document.getElementById('notifyClient').checked,
+      fileName: pdfFileInput.files[0] ? pdfFileInput.files[0].name : ''
+    };
+
+    console.log('Document Payload:', payload);
+    alert('दस्तऐवज यशस्वीरीत्या अपलोड करण्यात आला आहे!');
+  });
+</script>
+
+</body>
+</html>

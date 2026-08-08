@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="mr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>संपर्क करा | Trimurti Jyotishalay</title>
+  <meta name="description" content="त्रिमूर्ती ज्योतिषालय - आमच्याशी थेट कॉल, व्हॉट्सॲप, ई-मेल किंवा भेट देऊन संपर्क साधा." />
+
+  <!-- Google Fonts for Marathi Text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="src/styles/index.css" />
+  <link rel="stylesheet" href="src/styles/contact.css" />
+  
+  <style>
+    /* Reset & Base Setup */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Mukta', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    /* Navbar General Setup */
+    .main-header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
+    .navbar-custom {
+      padding: 0.6rem 1.5rem;
+      width: 100%;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Standard Nav Item */
+    .nav-item {
+      color: #333333;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 0.4rem 0.6rem;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-item:hover {
+      color: #8b1e1e;
+    }
+
+    /* Highlighted Gold/Brown Box - 'योग्य पूजा शोधा' */
+    .nav-btn-highlight {
+      background: linear-gradient(180deg, #c46d14 0%, #8b3a00 100%);
+      color: #ffffff !important;
+      padding: 0.5rem 1rem;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      line-height: 1.2;
+    }
+
+    .nav-btn-highlight .icon {
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+    }
+
+    .nav-btn-highlight .btn-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    /* Panchang Outlined Button */
+    .nav-btn-outline-gold {
+      border: 1.5px solid #b85d19;
+      color: #b85d19 !important;
+      border-radius: 25px;
+      padding: 0.4rem 1.1rem;
+      font-weight: 600;
+    }
+
+    .nav-btn-outline-gold:hover {
+      background-color: #fdf6f0;
+    }
+
+    /* User Name Label */
+    .user-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #333333;
+      padding: 0 0.2rem;
+    }
+
+    /* Maroon Filled Button - 'डॅशबोर्ड' */
+    .nav-btn-filled-maroon {
+      background-color: #7a1a1a;
+      color: #ffffff !important;
+      border-radius: 25px;
+      padding: 0.4rem 1.1rem;
+      font-weight: 600;
+    }
+
+    .nav-btn-filled-maroon:hover {
+      background-color: #5c1313;
+    }
+
+    /* Maroon Outlined Button - 'लॉगआउट' */
+    .nav-btn-outline-maroon {
+      border: 1.5px solid #7a1a1a;
+      color: #7a1a1a !important;
+      border-radius: 25px;
+      padding: 0.4rem 1.1rem;
+      font-weight: 600;
+    }
+
+    .nav-btn-outline-maroon:hover {
+      background-color: #fcf2f2;
+    }
+
+    /* Language Switcher Buttons */
+    .lang-switch-group {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: 0.4rem;
+    }
+
+    .lang-btn {
+      background-color: transparent;
+      border: 1px solid #7a1a1a;
+      color: #7a1a1a;
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .lang-btn.active {
+      background-color: #7a1a1a;
+      color: #ffffff;
+    }
+
+    .lang-btn:hover:not(.active) {
+      background-color: #f5e8e8;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        gap: 0.5rem;
+      }
+      .nav-item {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GLOBAL NEW NAVBAR -->
+  <header class="main-header">
+    <nav class="navbar-custom">
+      <div class="nav-container">
+        
+        <ul class="nav-menu">
+          <!-- User Profile & Action Buttons -->
+          <li class="user-name">Vedant</li>
+          <li><a href="dashboard.html" class="nav-item nav-btn-filled-maroon">डॅशबोर्ड</a></li>
+          <li><a href="#logout" class="nav-item nav-btn-outline-maroon">लॉगआउट</a></li>
+
+          <!-- Language Selector Pills -->
+          <li class="lang-switch-group">
+            <button class="lang-btn active">मराठी</button>
+            <button class="lang-btn">हिंदी</button>
+            <button class="lang-btn">English</button>
+          </li>
+          <li><a href="/" class="btn-secondary btn-link nav-item nav-btn-filled-maroon">मुख्यपृष्ठावर जा</a></li>
+        </ul>
+
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION -->
+    <section class="contact-hero">
+      <div class="container text-center">
+        <span class="section-badge">📞 संपर्क</span>
+        <h1 class="hero-title" data-i18n="contact_hero_title">आमच्याशी संपर्क करा</h1>
+        <p class="hero-subtitle" data-i18n="contact_hero_sub">आपल्या आध्यात्मिक व पूजा विषयक प्रश्नांसाठी आम्ही येथे आहोत.</p>
+      </div>
+    </section>
+
+    <!-- 2. QUICK CONTACT CARDS (4 CARDS) -->
+    <section class="contact-cards-section container">
+      <div class="contact-cards-grid">
+        
+        <!-- Phone Card -->
+        <div class="contact-card">
+          <div class="card-icon-wrapper">📞</div>
+          <h3 data-i18n="card_phone_title">कॉल करा</h3>
+          <p class="card-detail" id="displayPhone">+91 XXXXX XXXXX</p>
+          <a href="#" id="btnPhoneCall" class="btn btn-outline" target="_blank" rel="noopener">
+            <span data-i18n="btn_call_now">कॉल करा</span> ➔
+          </a>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="contact-card highlight">
+          <div class="card-icon-wrapper">💬</div>
+          <h3 data-i18n="card_wa_title">WhatsApp संपर्क</h3>
+          <p class="card-detail" data-i18n="card_wa_sub">तुमच्या प्रश्नासाठी थेट संदेश पाठवा.</p>
+          <a href="#" id="btnWhatsappChat" class="btn btn-whatsapp" target="_blank" rel="noopener">
+            <span data-i18n="btn_wa_chat">WhatsApp करा</span> ➔
+          </a>
+        </div>
+
+        <!-- Email Card -->
+        <div class="contact-card">
+          <div class="card-icon-wrapper">📧</div>
+          <h3 data-i18n="card_email_title">ई-मेल</h3>
+          <p class="card-detail" id="displayEmail">info@example.com</p>
+          <a href="#" id="btnSendEmail" class="btn btn-outline">
+            <span data-i18n="btn_send_email">ई-मेल करा</span> ➔
+          </a>
+        </div>
+
+        <!-- Location Card -->
+        <div class="contact-card">
+          <div class="card-icon-wrapper">📍</div>
+          <h3 data-i18n="card_address_title">पत्ता</h3>
+          <p class="card-detail" id="displayAddress">Trimurti Jyotishalay, Pune, Maharashtra</p>
+          <a href="#" id="btnGetDirections" class="btn btn-outline" target="_blank" rel="noopener">
+            <span data-i18n="btn_directions">दिशा पहा</span> ➔
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. MAIN SECTION: FORM + HOURS & URGENT -->
+    <section class="contact-main-section container">
+      <div class="contact-layout-grid">
+
+        <!-- Left: Contact Form -->
+        <div class="form-wrapper-card">
+          <h2 class="form-title" data-i18n="form_heading">संदेश पाठवा</h2>
+          <p class="form-sub" data-i18n="form_subheading">खालील फॉर्म भरा, आम्ही लवकरच आपल्याशी संपर्क साधू.</p>
+
+          <!-- Alert Container for Feedback -->
+          <div id="formAlert" class="form-alert" role="alert" style="display: none;"></div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="fullName"><span data-i18n="lbl_name">पूर्ण नाव</span> <span class="required">*</span></label>
+              <input type="text" id="fullName" name="fullName" class="form-input" placeholder="उदा. सचिन शर्मा" required />
+              <span class="field-error" id="errFullName"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phoneNum"><span data-i18n="lbl_phone">मोबाईल नंबर</span> <span class="required">*</span></label>
+                <input type="tel" id="phoneNum" name="phoneNum" class="form-input" placeholder="10-अंकी नंबर" required />
+                <span class="field-error" id="errPhoneNum"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="emailAddr" data-i18n="lbl_email">ई-मेल (ऐच्छिक)</label>
+                <input type="email" id="emailAddr" name="emailAddr" class="form-input" placeholder="name@example.com" />
+                <span class="field-error" id="errEmailAddr"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="serviceSelect"><span data-i18n="lbl_service">सेवा निवडा</span> <span class="required">*</span></label>
+              <select id="serviceSelect" name="serviceSelect" class="form-input" required>
+                <option value="" disabled selected data-i18n="opt_select">-- सेवा निवडा --</option>
+                <option value="पूजा" data-i18n="opt_puja">पूजा (Puja)</option>
+                <option value="कुंडली" data-i18n="opt_kundali">कुंडली (Kundali)</option>
+                <option value="वास्तू" data-i18n="opt_vastu">वास्तू (Vastu)</option>
+                <option value="मुहूर्त" data-i18n="opt_muhurta">मुहूर्त (Muhurta)</option>
+                <option value="ऑनलाइन सल्ला" data-i18n="opt_online">ऑनलाइन सल्ला (Online Consultation)</option>
+                <option value="इतर" data-i18n="opt_other">इतर (Other)</option>
+              </select>
+              <span class="field-error" id="errServiceSelect"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="messageBody"><span data-i18n="lbl_message">तुमचा संदेश</span> <span class="required">*</span></label>
+              <textarea id="messageBody" name="messageBody" rows="4" class="form-input" placeholder="तुमची चौकशी सविस्तर लिहा..." required></textarea>
+              <span class="field-error" id="errMessageBody"></span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="btnSubmitForm" class="btn btn-primary">
+                <span data-i18n="btn_submit_standard">संदेश पाठवा</span>
+              </button>
+              <button type="button" id="btnSubmitWhatsapp" class="btn btn-whatsapp-secondary">
+                <span data-i18n="btn_submit_wa">💬 WhatsApp द्वारे पाठवा</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Side: Working Hours & Urgent Enquiry -->
+        <aside class="contact-sidebar">
+
+          <!-- Working Hours Box -->
+          <div class="info-box hours-box">
+            <h3 class="box-title">
+              <span class="box-icon">🕐</span>
+              <span data-i18n="hours_title">आमचे कार्यरत वेळ</span>
+            </h3>
+            <ul class="hours-list" id="workingHoursList">
+              <!-- Dynamically populated via JS config -->
+            </ul>
+          </div>
+
+          <!-- Urgent Booking Enquiry Box -->
+          <div class="info-box urgent-box">
+            <div class="urgent-badge">⚡ तातडीची चौकशी</div>
+            <h3 data-i18n="urgent_heading">त्वरित पूजेचे नियोजन हवे आहे?</h3>
+            <p data-i18n="urgent_sub">तातडीच्या किंवा महत्त्वाच्या मुहूर्तासाठी थेट कॉल करा किंवा संदेश द्या.</p>
+            <div class="urgent-actions">
+              <a href="#" id="urgentCallBtn" class="btn btn-urgent-call" target="_blank" rel="noopener">📞 Call Now</a>
+              <a href="#" id="urgentWaBtn" class="btn btn-urgent-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4. GOOGLE MAPS & HOW TO REACH -->
+    <section class="location-section">
+      <div class="container">
+        <div class="section-header-center">
+          <span class="section-badge">📍 स्थान</span>
+          <h2 class="section-title" data-i18n="maps_heading">आम्हाला येथे भेट द्या</h2>
+          <p class="section-subtitle" data-i18n="maps_subheading">नकाशाच्या साहाय्याने आमच्या कार्यालयापर्यंत सहजरीत्या पोहोचा.</p>
+        </div>
+
+        <div class="map-embed-container" id="mapWrapper">
+          <!-- Populated by JS or Fallback Placeholder -->
+        </div>
+
+        <!-- How to Reach Cards -->
+        <div class="reach-grid" id="reachGrid">
+          <div class="reach-card">
+            <span class="reach-icon">🚗</span>
+            <h4 data-i18n="reach_car_title">स्वतःच्या वाहनाने</h4>
+            <p id="reachCarText"></p>
+          </div>
+          <div class="reach-card">
+            <span class="reach-icon">🚌</span>
+            <h4 data-i18n="reach_bus_title">बसने</h4>
+            <p id="reachBusText"></p>
+          </div>
+          <div class="reach-card">
+            <span class="reach-icon">🚆</span>
+            <h4 data-i18n="reach_train_title">रेल्वेने</h4>
+            <p id="reachTrainText"></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. FAQ PROMPT FOOTER CTA -->
+    <section class="faq-cta-banner container">
+      <div class="faq-cta-content">
+        <div class="faq-cta-text">
+          <h3 data-i18n="faq_cta_title">तुमच्या प्रश्नाचे उत्तर मिळाले नाही?</h3>
+          <p data-i18n="faq_cta_sub">आमच्या वारंवार विचारल्या जाणाऱ्या प्रश्नांची सूची तपासा.</p>
+        </div>
+        <a href="faq.html" class="btn btn-gold-outline" data-i18n="btn_goto_faq">FAQ पहा ➔</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <h3>Trimurti Jyotishalay</h3>
+        <p data-i18n="footer_tagline">सनातन परंपरा आणि अचूक ज्योतिष मार्गदर्शन</p>
+      </div>
+      
+      <div class="footer-socials" id="socialLinksContainer" style="display: none;">
+        <span class="social-label" data-i18n="follow_us">आम्हाला Follow करा:</span>
+        <div class="social-icons" id="socialIconsList"></div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Trimurti Jyotishalay. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Page Logic Script -->
+  <script type="module" src="src/scripts/contact.js"></script>
+</body>
+</html>

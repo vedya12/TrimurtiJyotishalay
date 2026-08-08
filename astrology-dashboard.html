@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>माझी कुंडली आणि ज्योतिष प्लॅटफॉर्म | Digital Kundali - त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="src/styles/astrology-dashboard.css"/>
+</head>
+<body>
+
+  <div class="astro-container">
+    
+    <!-- Top Header Banner -->
+    <div class="astro-header">
+      <div>
+        <h1>🔮 माझी डिजिटल कुंडली (Digital Kundali Dashboard)</h1>
+        <p>Interactive Birth Chart, Planetary Positions, Dosha Analysis & Personal Guidance</p>
+      </div>
+      <div>
+        <a href="dashboard.html" style="color:#fff1d6; text-decoration:none; font-weight:600; font-size:0.9rem; background:rgba(255,255,255,0.15); padding:8px 16px; border-radius:20px;">
+          🏠 मुख्य डॅशबोर्ड
+        </a>
+      </div>
+    </div>
+
+    <!-- Family Kundali Switcher Bar -->
+    <div class="family-switcher-bar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-weight:700; color:var(--astro-maroon); font-size:0.95rem;">👨‍👩‍👧‍👦 कुटुंब कुंडली (Family Profiles):</span>
+        <div class="family-chips" id="familyChipsContainer">
+          <!-- Dynamic Chips Rendered Here -->
+        </div>
+      </div>
+      <button class="btn-add-family" id="openAddFamilyModalBtn">
+        ➕ नवीन सदस्य जोडा (Add Member)
+      </button>
+    </div>
+
+    <!-- Main Grid: Profile Info & Horoscope Summary -->
+    <div class="astro-grid-2">
+      
+      <!-- Birth Details Profile Card -->
+      <div class="astro-card" style="margin-bottom:0;">
+        <div class="astro-card-title">
+          <span>📌 जन्म माहिती (Birth Details)</span>
+          <button id="editProfileBtn" style="background:none; border:none; color:var(--astro-gold); cursor:pointer; font-size:0.82rem; font-weight:600;">Edit</button>
+        </div>
+        <div class="detail-list" id="birthDetailsContainer">
+          <!-- Dynamic Details -->
+        </div>
+      </div>
+
+      <!-- Horoscope Summary Grid -->
+      <div class="astro-card" style="margin-bottom:0;">
+        <div class="astro-card-title">
+          <span>✨ ग्रहांची ग्रहमान स्थिती (Horoscope Summary)</span>
+        </div>
+        <div class="summary-grid" id="horoscopeSummaryContainer">
+          <!-- Dynamic Cards -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Interactive Kundali Chart Section -->
+    <div class="astro-card">
+      <div class="astro-card-title">
+        <span>🕉️ जन्म कुंडली तक्ता (Interactive Kundali Chart)</span>
+        <div class="chart-controls">
+          <button class="chart-btn active" data-chart="north">North Indian</button>
+          <button class="chart-btn" data-chart="south">South Indian</button>
+          <button class="chart-btn" data-chart="east">East Indian</button>
+        </div>
+      </div>
+
+      <div class="kundali-canvas-wrapper" id="kundaliCanvasContainer">
+        <!-- Dynamic SVG Rendered Here -->
+      </div>
+    </div>
+
+    <!-- Planetary Positions Table -->
+    <div class="astro-card">
+      <div class="astro-card-title">
+        <span>🪐 नवग्रह स्थान तक्ता (Planetary Positions)</span>
+      </div>
+      <div class="astro-table-wrapper">
+        <table class="astro-table">
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Zodiac Sign</th>
+              <th>House</th>
+              <th>Degree</th>
+              <th>Nakshatra</th>
+              <th>State / Status</th>
+            </tr>
+          </thead>
+          <tbody id="planetaryTableBody">
+            <!-- Dynamic Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Dosha Analysis & Remedies -->
+    <div class="astro-grid-2">
+      
+      <!-- Doshas -->
+      <div class="astro-card" style="margin-bottom:0;">
+        <div class="astro-card-title">
+          <span>🧿 दोष विश्लेषण (Dosha Analysis)</span>
+        </div>
+        <div class="dosha-grid" id="doshasContainer">
+          <!-- Dynamic Dosha Cards -->
+        </div>
+      </div>
+
+      <!-- Remedies -->
+      <div class="astro-card" style="margin-bottom:0;">
+        <div class="astro-card-title">
+          <span>📿 सुचवलेले उपाय (Recommended Remedies)</span>
+        </div>
+        <div id="remediesContainer" style="display:flex; flex-direction:column; gap:12px;">
+          <!-- Dynamic Remedies -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mahadasha Timeline & Lucky Info -->
+    <div style="margin-top:24px;" class="astro-grid-2">
+      
+      <!-- Mahadasha -->
+      <div class="astro-card" style="margin-bottom:0;">
+        <div class="astro-card-title">
+          <span>⏳ महादशा आणि अंतर्दशा (Dasha Timeline)</span>
+        </div>
+        <div id="dashaContainer">
+          <!-- Dynamic Dasha Timeline -->
+        </div>
+      </div>
+
+      <!-- Lucky Info & Transits -->
+      <div>
+        <div class="astro-card" style="margin-bottom:16px;">
+          <div class="astro-card-title">
+            <span>🍀 नशीबवान घटक (Lucky Parameters)</span>
+          </div>
+          <div class="lucky-grid" id="luckyGridContainer">
+            <!-- Dynamic Lucky Info -->
+          </div>
+        </div>
+
+        <div class="astro-card" style="margin-bottom:0;">
+          <div class="astro-card-title">
+            <span>🌌 आगामी महत्त्वाचे ग्रह गोचर (Upcoming Transits)</span>
+          </div>
+          <div id="transitsContainer" style="display:flex; flex-direction:column; gap:10px;">
+            <!-- Dynamic Transits -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Downloads Center -->
+    <div class="astro-card" style="margin-top:24px;">
+      <div class="astro-card-title">
+        <span>⬇️ अहवाल डाउनलोड केंद्र (Astrology Reports Download)</span>
+      </div>
+      <div class="downloads-grid" id="downloadsContainer">
+        <!-- Dynamic Downloads -->
+      </div>
+    </div>
+
+    <!-- Direct Consultation CTA -->
+    <div class="consultation-cta">
+      <div>
+        <h3 style="margin:0 0 6px 0; color:var(--astro-maroon); font-family:'Tiro Devanagari Marathi', serif; font-size:1.3rem;">
+          वैयक्तिक मार्गदर्शनाची गरज आहे? (Need Direct Guidance?)
+        </h3>
+        <p style="margin:0; color:var(--astro-text-muted); font-size:0.9rem;">
+          गुरुजींकडून आपल्या कुंडलीचे सविस्तर विश्लेषण करून घेण्यासाठी आजच अपॉइंटमेंट बुक करा.
+        </p>
+      </div>
+      <a href="booking.html?type=astrology" class="btn-cta">
+        📅 गुरुजींसोबत अपॉइंटमेंट बुक करा &rarr;
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ADD FAMILY MEMBER MODAL -->
+  <div class="astro-modal-overlay" id="addFamilyModal" style="display:none;">
+    <div class="astro-modal">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="margin:0; color:var(--astro-maroon);">➕ नवीन सदस्य कुंडली जोडा</h3>
+        <button id="closeFamilyModalBtn" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">&times;</button>
+      </div>
+
+      <form id="addFamilyForm">
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:4px;">पूर्ण नाव (Name)</label>
+          <input type="text" id="popName" required style="width:100%; padding:8px; border:1px solid var(--astro-border); border-radius:6px; box-sizing:border-box;"/>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:4px;">नाते (Relation)</label>
+          <select id="popRelation" style="width:100%; padding:8px; border:1px solid var(--astro-border); border-radius:6px; box-sizing:border-box;">
+            <option value="Father">Father (वडील)</option>
+            <option value="Mother">Mother (आई)</option>
+            <option value="Spouse">Spouse (पती/पत्नी)</option>
+            <option value="Son">Son (मुलगा)</option>
+            <option value="Daughter">Daughter (मुलगी)</option>
+            <option value="Sibling">Sibling (भाऊ/बहीण)</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+          <div>
+            <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:4px;">जन्म तारीख (DOB)</label>
+            <input type="date" id="popDob" required style="width:100%; padding:8px; border:1px solid var(--astro-border); border-radius:6px; box-sizing:border-box;"/>
+          </div>
+          <div>
+            <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:4px;">जन्म वेळ (Time)</label>
+            <input type="time" id="popTime" required style="width:100%; padding:8px; border:1px solid var(--astro-border); border-radius:6px; box-sizing:border-box;"/>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:4px;">जन्म ठिकाण (Place)</label>
+          <input type="text" id="popPlace" required placeholder="e.g. Pune, Maharashtra" style="width:100%; padding:8px; border:1px solid var(--astro-border); border-radius:6px; box-sizing:border-box;"/>
+        </div>
+
+        <button type="submit" class="btn-cta" style="width:100%; border-radius:8px;">प्रोफाईल जतन करा</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { AstrologyEngine } from './src/scripts/astrology-engine.js';
+
+    const engine = new AstrologyEngine();
+
+    async function init() {
+      await engine.init();
+      renderAll();
+      setupEvents();
+    }
+
+    function renderAll() {
+      renderFamilyChips();
+      renderBirthDetails();
+      renderHoroscopeSummary();
+      renderKundaliChart();
+      renderPlanetaryTable();
+      renderDoshas();
+      renderRemedies();
+      renderDashaTimeline();
+      renderLuckyInfo();
+      renderTransits();
+      renderDownloads();
+    }
+
+    function renderFamilyChips() {
+      const container = document.getElementById('familyChipsContainer');
+      const profiles = engine.getProfiles();
+      const active = engine.activeProfile;
+
+      container.innerHTML = profiles.map(p => `
+        <button class="family-chip ${p.profile_id === active.profile_id ? 'active' : ''}" data-profid="${p.profile_id}">
+          👤 ${p.birth_details.name} (${p.relation})
+        </button>
+      `).join('');
+
+      container.querySelectorAll('.family-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          engine.setActiveProfile(chip.dataset.profid);
+          renderAll();
+        });
+      });
+    }
+
+    function renderBirthDetails() {
+      const b = engine.activeProfile.birth_details;
+      document.getElementById('birthDetailsContainer').innerHTML = `
+        <div class="detail-item"><span class="detail-label">Name</span><span class="detail-val">${b.name}</span></div>
+        <div class="detail-item"><span class="detail-label">Father's Name</span><span class="detail-val">${b.father_name}</span></div>
+        <div class="detail-item"><span class="detail-label">Date of Birth</span><span class="detail-val">${b.dob}</span></div>
+        <div class="detail-item"><span class="detail-label">Time of Birth</span><span class="detail-val">${b.time}</span></div>
+        <div class="detail-item"><span class="detail-label">Place of Birth</span><span class="detail-val">${b.place}</span></div>
+        <div class="detail-item"><span class="detail-label">Gender</span><span class="detail-val">${b.gender}</span></div>
+        <div class="detail-item"><span class="detail-label">Lat / Long</span><span class="detail-val">${b.latitude}, ${b.longitude}</span></div>
+      `;
+    }
+
+    function renderHoroscopeSummary() {
+      const s = engine.activeProfile.horoscope_summary;
+      document.getElementById('horoscopeSummaryContainer').innerHTML = `
+        <div class="summary-card"><div class="summary-icon">♈</div><div class="summary-title">Rashi</div><div class="summary-val">${s.rashi}</div></div>
+        <div class="summary-card"><div class="summary-icon">⭐</div><div class="summary-title">Nakshatra</div><div class="summary-val">${s.nakshatra}</div></div>
+        <div class="summary-card"><div class="summary-icon">🪐</div><div class="summary-title">Lagna</div><div class="summary-val">${s.lagna}</div></div>
+        <div class="summary-card"><div class="summary-icon">🌙</div><div class="summary-title">Moon Sign</div><div class="summary-val">${s.moon_sign}</div></div>
+        <div class="summary-card"><div class="summary-icon">☀️</div><div class="summary-title">Sun Sign</div><div class="summary-val">${s.sun_sign}</div></div>
+        <div class="summary-card"><div class="summary-icon">🧿</div><div class="summary-title">Gotra</div><div class="summary-val">${s.gotra}</div></div>
+      `;
+    }
+
+    function renderKundaliChart() {
+      document.getElementById('kundaliCanvasContainer').innerHTML = engine.renderKundaliSVG();
+    }
+
+    function renderPlanetaryTable() {
+      const planets = engine.activeProfile.planet_positions || [];
+      const tbody = document.getElementById('planetaryTableBody');
+
+      if (planets.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No computed planetary positions available.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = planets.map(p => `
+        <tr>
+          <td style="font-weight:600; color:var(--astro-maroon);">${p.planet}</td>
+          <td>${p.sign}</td>
+          <td>House ${p.house}</td>
+          <td>${p.degree}</td>
+          <td>${p.nakshatra}</td>
+          <td><span style="background:#f0e6d6; padding:2px 8px; border-radius:10px; font-size:0.78rem;">${p.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function renderDoshas() {
+      const doshas = engine.activeProfile.doshas || [];
+      document.getElementById('doshasContainer').innerHTML = doshas.map(d => {
+        const badgeClass = d.status === 'No' ? 'no' : (d.status === 'Present' ? 'present' : 'mild');
+        return `
+          <div class="dosha-card">
+            <div class="dosha-header">
+              <span style="font-weight:700; font-size:0.95rem;">${d.name}</span>
+              <span class="dosha-badge ${badgeClass}">${d.status} (${d.severity})</span>
+            </div>
+            <p class="dosha-desc">${d.description}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderRemedies() {
+      const remedies = engine.activeProfile.remedies || [];
+      document.getElementById('remediesContainer').innerHTML = remedies.map(r => `
+        <div style="background:#fffdfa; border:1px solid var(--astro-border); border-radius:10px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="font-weight:700; color:var(--astro-maroon); font-size:0.95rem;">🪔 ${r.title}</div>
+            <div style="font-size:0.83rem; color:var(--astro-text-muted); margin-top:2px;">${r.reason}</div>
+          </div>
+          <a href="booking.html?puja=${r.puja_id}" class="btn-cta" style="padding:6px 16px; font-size:0.82rem;">पूजा बुक करा &rarr;</a>
+        </div>
+      `).join('');
+    }
+
+    function renderDashaTimeline() {
+      const d = engine.activeProfile.dasha_timeline || {};
+      document.getElementById('dashaContainer').innerHTML = `
+        <div class="timeline-box">
+          <div style="font-weight:700; color:var(--astro-maroon); font-size:1.05rem;">
+            Current Mahadasha: ${d.current_mahadasha} (${d.start_year} – ${d.end_year})
+          </div>
+          <div style="font-size:0.88rem; color:var(--astro-text-muted); margin-top:4px;">
+            Active Antardasha: <strong>${d.current_antardasha}</strong> (${d.antardasha_start} to ${d.antardasha_end})
+          </div>
+        </div>
+        <div class="timeline-items">
+          ${(d.upcoming_periods || []).map(p => `
+            <div class="timeline-item">
+              <span>Upcoming: <strong>${p.period}</strong></span>
+              <span style="color:var(--astro-text-muted);">${p.start} – ${p.end}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderLuckyInfo() {
+      const l = engine.activeProfile.lucky_info || {};
+      document.getElementById('luckyGridContainer').innerHTML = `
+        <div class="lucky-card"><div style="font-size:0.75rem; color:#888;">COLOR</div><div style="font-weight:700; color:var(--astro-maroon);">${l.color}</div></div>
+        <div class="lucky-card"><div style="font-size:0.75rem; color:#888;">LUCKY DAY</div><div style="font-weight:700; color:var(--astro-maroon);">${l.day}</div></div>
+        <div class="lucky-card"><div style="font-size:0.75rem; color:#888;">NUMBER</div><div style="font-weight:700; color:var(--astro-maroon);">${l.number}</div></div>
+        <div class="lucky-card"><div style="font-size:0.75rem; color:#888;">DIRECTION</div><div style="font-weight:700; color:var(--astro-maroon);">${l.direction}</div></div>
+      `;
+    }
+
+    function renderTransits() {
+      const transits = engine.activeProfile.upcoming_events || [];
+      document.getElementById('transitsContainer').innerHTML = transits.map(t => `
+        <div style="background:#ffffff; border:1px solid var(--astro-border); border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-weight:600; font-size:0.88rem; color:var(--astro-text-main);">${t.event}</div>
+            <div style="font-size:0.8rem; color:var(--astro-text-muted);">${t.impact}</div>
+          </div>
+          <span style="font-size:0.78rem; font-weight:700; background:#f0e6d6; padding:3px 8px; border-radius:6px; color:var(--astro-maroon); white-space:nowrap;">${t.date}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderDownloads() {
+      const docs = engine.activeProfile.download_reports || [];
+      document.getElementById('downloadsContainer').innerHTML = docs.map(d => `
+        <div class="download-item">
+          <div>
+            <div style="font-weight:600; font-size:0.88rem;">📄 ${d.title}</div>
+            <div style="font-size:0.75rem; color:#888;">PDF • ${d.size}</div>
+          </div>
+          <a href="public/docs/${d.filename}" class="btn-download" download>Download</a>
+        </div>
+      `).join('');
+    }
+
+    function setupEvents() {
+      // Chart Switcher Buttons
+      document.querySelectorAll('.chart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          engine.setChartLayout(e.target.dataset.chart);
+          renderKundaliChart();
+        });
+      });
+
+      // Add Family Modal
+      const modal = document.getElementById('addFamilyModal');
+      document.getElementById('openAddFamilyModalBtn').addEventListener('click', () => modal.style.display = 'flex');
+      document.getElementById('closeFamilyModalBtn').addEventListener('click', () => modal.style.display = 'none');
+
+      document.getElementById('addFamilyForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const payload = {
+          name: document.getElementById('popName').value,
+          relation: document.getElementById('popRelation').value,
+          dob: document.getElementById('popDob').value,
+          time: document.getElementById('popTime').value,
+          place: document.getElementById('popPlace').value
+        };
+        engine.addNewProfile(payload);
+        modal.style.display = 'none';
+        renderAll();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>डिजिटल संकल्प जनरेटर | त्रिमूर्ती ज्योतिषालय</title>
+  
+  <link rel="stylesheet" href="src/styles/sankalp.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf CDN for Client-side PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body style="background:#fcf8f2; margin:0; padding:20px 0;">
+
+  <div class="sankalp-container">
+    <div class="sankalp-card">
+      
+      <!-- Header -->
+      <div class="sankalp-header">
+        <h2 class="sankalp-title">📜 डिजिटल संकल्प पत्रिका जनरेटर</h2>
+        <p class="sankalp-subtitle">वैदिक शास्त्राप्रमाणे तुमचा अचूक संकल्प दस्तऐवज तयार करा</p>
+      </div>
+
+      <!-- Step Indicator -->
+      <div class="sankalp-progress-bar">
+        <div class="sankalp-step-tab active" id="skTabStep1">१. वैयक्तिक माहिती</div>
+        <div class="sankalp-step-tab" id="skTabStep2">२. पूजा व विधी तपशील</div>
+        <div class="sankalp-step-tab" id="skTabStep3">३. संकल्प दस्तऐवज व PDF</div>
+      </div>
+
+      <!-- Form Body -->
+      <div class="sankalp-body">
+        
+        <!-- STEP 1: Personal Details -->
+        <div class="sankalp-step-panel active" id="skStepPanel1">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>👤 यजमानाचे पूर्ण नाव (Full Name) *</label>
+              <input type="text" id="skName" class="form-control" placeholder="उदा. वेदांत अभयराव वेळूकार">
+            </div>
+            <div class="form-group">
+              <label>👨 वडिलांचे नाव (Father's Name)</label>
+              <input type="text" id="skFatherName" class="form-control" placeholder="उदा. अभयराव वेळूकार">
+            </div>
+            <div class="form-group">
+              <label>🏡 गोत्र (Gotra)</label>
+              <select id="skGotra" class="form-control">
+                <option value="कश्यप">कश्यप (Kashyap)</option>
+                <option value="भारद्वाज">भारद्वाज (Bharadwaj)</option>
+                <option value="वसिष्ठ">वसिष्ठ (Vasishta)</option>
+                <option value="गौतम">गौतम (Gautam)</option>
+                <option value="अंगिरस">अंगिरस (Angiras)</option>
+                <option value="अत्रि">अत्रि (Atri)</option>
+                <option value="जमदग्नि">जमदग्नि (Jamadagni)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>⭐ नक्षत्र (Nakshatra)</label>
+              <select id="skNakshatra" class="form-control">
+                <option value="रोहिणी">रोहिणी</option>
+                <option value="अश्विनी">अश्विनी</option>
+                <option value="भरणी">भरणी</option>
+                <option value="मृगशीर्ष">मृगशीर्ष</option>
+                <option value="पुष्य">पुष्य</option>
+                <option value="हस्त">हस्त</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Puja Details -->
+        <div class="sankalp-step-panel" id="skStepPanel2">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>🕉️ पूजेचा प्रकार</label>
+              <select id="skPujaOption" class="form-control" onchange="document.getElementById('skPuja').value = this.value">
+                <option value="satyanarayan">श्री सत्यनारायण पूजा</option>
+                <option value="vastu">वास्तू शांती व गृहप्रवेश</option>
+                <option value="rudrabhishek">रुद्राभिषेक पूजन</option>
+                <option value="general">इतर धार्मिक विधी</option>
+              </select>
+              <input type="hidden" id="skPuja" value="satyanarayan">
+            </div>
+            <div class="form-group">
+              <label>🎯 पूजेचा हेतू / उद्देश (Purpose)</label>
+              <input type="text" id="skPurpose" class="form-control" placeholder="उदा. कौटुंबिक सुख, आरोग्य व यश">
+            </div>
+            <div class="form-group">
+              <label>📍 स्थळ / ठिकाण (Venue)</label>
+              <input type="text" id="skVenue" class="form-control" placeholder="उदा. घर क्र. १२, निगडी, पुणे">
+            </div>
+            <div class="form-group">
+              <label>📅 तारीख</label>
+              <input type="date" id="skDate" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>⏰ वेळ</label>
+              <input type="text" id="skTime" class="form-control" placeholder="उदा. सकाळी ०९:०० वाजता">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Preview & Download -->
+        <div class="sankalp-step-panel" id="skStepPanel3">
+          
+          <div style="text-align: right; margin-bottom: 12px;">
+            <button class="btn-sk" id="skBtnPrint">🖨️ प्रिंट करा</button>
+            <button class="btn-sk primary" id="skBtnDownloadPdf">📥 PDF डाऊनलोड</button>
+            <button class="btn-sk" id="skBtnShare">🔗 शेअर करा</button>
+          </div>
+
+          <!-- Printable Document Container -->
+          <div class="sankalp-document-wrapper">
+            <div class="sankalp-document" id="sankalpPrintArea">
+              <div class="sankalp-watermark">🕉</div>
+
+              <div class="doc-header">
+                <span class="doc-symbol">卐</span>
+                <h1 class="doc-title">संकल्प पत्रिका</h1>
+                <p class="doc-sub">त्रिमूर्ती ज्योतिषालय व पुरोहित केंद्र</p>
+              </div>
+
+              <!-- Dynamic Render Body -->
+              <div class="doc-body" id="sankalpDocBody">
+                <!-- Injected via JavaScript -->
+              </div>
+
+              <!-- Meta Summary Grid -->
+              <div class="doc-details-grid">
+                <div><strong>यजमान:</strong> <span id="docMetaName">-</span></div>
+                <div><strong>गोत्र:</strong> <span id="docMetaGotra">-</span></div>
+                <div><strong>विधी:</strong> <span id="docMetaPuja">-</span></div>
+                <div><strong>दिनांक व वेळ:</strong> <span id="docMetaDate">-</span></div>
+                <div style="grid-column: span 2;"><strong>स्थान:</strong> <span id="docMetaVenue">-</span></div>
+              </div>
+
+              <div class="doc-footer">
+                <div class="doc-brand">
+                  <strong>त्रिमूर्ती ज्योतिषालय</strong>
+                  www.trimurtijyotishalay.com
+                </div>
+                <div class="doc-sig">
+                  ____________________<br>
+                  गुरुजी स्वाक्षरी / आशीर्वाद
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="sankalp-footer">
+        <button class="btn-sk" id="skBtnPrev" disabled>← मागे</button>
+        <button class="btn-sk primary" id="skBtnNext">पुढे →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="src/scripts/sankalp-templates.js"></script>
+  <script src="src/scripts/sankalp.js"></script>
+</body>
+</html>

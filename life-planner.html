@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Event Planner | Trimurti Jyotishalay</title>
+  
+  <link rel="stylesheet" href="src/styles/life-planner.css">
+</head>
+<body style="background: #fcf8f2; margin: 0; padding-bottom: 60px;">
+
+  <div class="lep-container">
+    
+    <!-- 1. Hub Header & Event Selector -->
+    <div class="lep-hub-header">
+      <h1 class="lep-hub-title">🚀 धार्मिक जीवन कार्य नियोजक (Life Event Planner)</h1>
+      <p class="lep-hub-subtitle">निवडा तुमची प्रसंगाची गरज — आम्ही देऊ संपूर्ण वैदिक मार्गदर्शन व तयारी</p>
+    </div>
+
+    <!-- Category Selector Grid -->
+    <div class="lep-selector-grid" id="lepHubSelector">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- 2. Dynamic Hero Banner -->
+    <div id="lepHeroContainer"></div>
+
+    <!-- 3. Dashboard Event Widget Preview -->
+    <div id="lepDashboardWidget"></div>
+
+    <div style="margin-top: 36px;"></div>
+
+    <!-- 4. Recommended Pujas -->
+    <div class="lep-section">
+      <h2 class="lep-section-title">📿 आवश्यक व शिफारस केलेल्या पूजा (Recommended Pujas)</h2>
+      <div class="lep-puja-grid" id="lepPujasContainer"></div>
+    </div>
+
+    <!-- 5. Interactive Checklist -->
+    <div class="lep-section">
+      <h2 class="lep-section-title">📋 तयारीची चेकलिस्ट (Auto-Saving Checklist)</h2>
+      <div id="lepChecklistContainer"></div>
+    </div>
+
+    <!-- 6. Required Documents & Samagri -->
+    <div class="lep-section">
+      <h2 class="lep-section-title">📦 कागदपत्रे व साहित्य यादी (Documents & Samagri)</h2>
+      <div class="lep-grid-2" id="lepDocsContainer" style="margin-bottom: 16px;"></div>
+      <div class="lep-grid-2" id="lepSamagriContainer"></div>
+    </div>
+
+    <!-- 7. Step-by-Step Timeline -->
+    <div class="lep-section">
+      <h2 class="lep-section-title">⏳ वेळेचे नियोजन (Event Timeline)</h2>
+      <div class="lep-budget-box" id="lepTimelineContainer"></div>
+    </div>
+
+    <!-- 8. Budget Planner -->
+    <div class="lep-section">
+      <h2 class="lep-section-title">💰 अंदाजपत्रक (Editable Budget Planner)</h2>
+      <div id="lepBudgetContainer"></div>
+    </div>
+
+    <!-- 9. FAQs -->
+    <div class="lep-section">
+      <h2 class="lep-section-title">❓ वारंवार विचारले जाणारे प्रश्न (FAQs)</h2>
+      <div id="lepFaqContainer"></div>
+    </div>
+
+  </div>
+
+  <!-- Mobile Sticky CTA Bar -->
+  <div class="lep-sticky-cta">
+    <div>
+      <span style="font-size: 0.75rem; color: #665243; display: block;">मार्गदर्शन हवे आहे?</span>
+      <strong style="color: #8b1a1a; font-size: 0.95rem;">गुरुजींशी चर्चा करा</strong>
+    </div>
+    <a href="#booking" class="btn-lep">Book Guruji</a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="src/data/life-events-data.js"></script>
+  <script src="src/scripts/life-planner.js"></script>
+</body>
+</html>

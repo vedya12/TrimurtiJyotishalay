@@ -1,0 +1,130 @@
+<!-- TESTIMONIALS & REVIEWS SECTION -->
+<link rel="stylesheet" href="src/styles/testimonials.css"/>
+
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-container">
+    
+    <!-- Trust Statistics Bar -->
+    <div class="trust-stats-grid" id="trustStatsContainer">
+      <!-- Dynamic Trust Stats -->
+    </div>
+
+    <!-- Section Header & Rating Summary -->
+    <div class="testimonials-header">
+      <h2>🙏 भक्तांचे अनुभव (What Our Devotees Say)</h2>
+      <div id="ratingSummaryContainer">
+        <!-- Dynamic Rating Summary -->
+      </div>
+    </div>
+
+    <!-- Controls Bar: Category Filters & Search -->
+    <div class="controls-bar">
+      <div class="filter-chips">
+        <button class="filter-chip active" data-category="all">All</button>
+        <button class="filter-chip" data-category="griha-pravesh">Griha Pravesh</button>
+        <button class="filter-chip" data-category="marriage">Marriage</button>
+        <button class="filter-chip" data-category="satyanarayan">Satyanarayan</button>
+        <button class="filter-chip" data-category="kundali">Kundali</button>
+        <button class="filter-chip" data-category="vastu">Vastu</button>
+        <button class="filter-chip" data-category="business">Business</button>
+      </div>
+
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="reviewSearchInput" placeholder="Search by name, city or puja..."/>
+      </div>
+    </div>
+
+    <!-- Featured Devotee Story -->
+    <div id="featuredStoryContainer">
+      <!-- Dynamic Featured Story -->
+    </div>
+
+    <!-- Testimonials Carousel -->
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="carousel-track" id="testimonialTrack">
+        <!-- Dynamic Testimonial Cards -->
+      </div>
+
+      <!-- Controls & Pagination -->
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevReviewBtn" aria-label="Previous Review">❮</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="nextReviewBtn" aria-label="Next Review">❯</button>
+      </div>
+    </div>
+
+    <!-- Submit Review Banner -->
+    <div class="submit-review-banner">
+      <div>
+        <h4 style="margin: 0 0 4px 0; color: var(--rev-maroon); font-family: 'Tiro Devanagari Marathi', serif; font-size: 1.1rem;">
+          आपला अनुभव शेअर करा (Share Your Experience)
+        </h4>
+        <p style="margin: 0; font-size: 0.85rem; color: var(--rev-text-muted);">
+          Have you recently experienced a puja or consultation with Trimurti Jyotishalay?
+        </p>
+      </div>
+      <button class="btn-open-review-modal" id="openReviewModalBtn">
+        ✍️ अनुभव लिहा (Write a Review)
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUBMIT REVIEW MODAL OVERLAY -->
+<div class="review-modal-overlay" id="reviewModalOverlay" style="display: none;">
+  <div class="review-modal">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <h3 style="margin: 0; color: var(--rev-maroon); font-family: 'Tiro Devanagari Marathi', serif;">
+        🙏 आपला अभिप्राय नोंदवा
+      </h3>
+      <button id="closeReviewModalBtn" style="background: none; border: none; font-size: 1.4rem; cursor: pointer;">&times;</button>
+    </div>
+
+    <form id="addReviewForm">
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">पूर्ण नाव (Your Name)</label>
+        <input type="text" id="revInputName" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;"/>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">शहर (City)</label>
+          <input type="text" id="revInputCity" required placeholder="e.g. Pune" style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;"/>
+        </div>
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">सेवा (Service)</label>
+          <input type="text" id="revInputService" required placeholder="e.g. Vastu Shanti" style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;"/>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">रेटिंग (Rating)</label>
+        <select id="revInputRating" style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;">
+          <option value="5">★★★★★ (5 / 5)</option>
+          <option value="4">★★★★☆ (4 / 5)</option>
+          <option value="3">★★★☆☆ (3 / 5)</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">आपला अनुभव (Your Review)</label>
+        <textarea id="revInputText" rows="4" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box; font-family: inherit;"></textarea>
+      </div>
+
+      <button type="submit" class="btn-open-review-modal" style="width: 100%; border-radius: 8px;">
+        अभिप्राय सबमिट करा
+      </button>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+  import { TestimonialEngine } from './src/scripts/testimonials-engine.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const engine = new TestimonialEngine();
+    engine.init();
+  });
+</script>

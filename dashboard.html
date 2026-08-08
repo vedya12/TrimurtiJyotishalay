@@ -4,22 +4,403 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>माझे डॅशबोर्ड | त्रिमूर्ती ज्योतिषालय</title>
-  <link rel="icon" href="/logo.png" type="image/png"/>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/src/styles/dashboard.css"/>
+  <link rel="stylesheet" href="src/styles/panchang.css">
+  <link rel="stylesheet" href="src/styles/dashboard.css"/>
+
+  <!-- External Panchang Script -->
+  <script src="src/scripts/panchang.js" defer></script>
+  <link rel="stylesheet" href="src/styles/documents-vault.css"/>
+
+  <style>
+    /* ── DASHBOARD NAVBAR EXTENSIONS ── */
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-service-btn {
+      background: rgba(139, 26, 26, 0.08);
+      color: #8b1a1a;
+      border: 1px solid #e2c08d;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .nav-service-btn:hover {
+      background: #8b1a1a;
+      color: #ffffff;
+      border-color: #8b1a1a;
+    }
+
+    /* ── MODAL OVERLAY & CONTAINER ── */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .modal-container {
+      background: #fffdfa;
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      overflow-y: auto;
+      position: relative;
+      animation: modalSlideUp 0.25s ease-out;
+      border: 1px solid #ebdcc4;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ── PANCHANG MODAL EXACT DESIGN UI ── */
+    .pm-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ebdcc4;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .pm-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pm-om-icon {
+      font-size: 2.2rem;
+      color: #b45309;
+      line-height: 1;
+    }
+
+    .pm-title {
+      margin: 0;
+      color: #8b1a1a;
+      font-family: 'Tiro Devanagari Marathi', 'Poppins', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .pm-subtitle {
+      margin: 2px 0 0 0;
+      color: #665243;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .pm-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pm-action-btn {
+      background: #fdf8f0;
+      border: 1px solid #ebdcc4;
+      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .pm-action-btn:hover {
+      background: #f3e6d3;
+    }
+
+    .pm-close-btn {
+      background: transparent;
+      border: none;
+      color: #8b1a1a;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 6px;
+      padding: 0 4px;
+    }
+
+    /* Grid Layout */
+    .pm-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .pm-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .pm-grid-3, .pm-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pm-card {
+      background: #ffffff;
+      border: 1px solid #ebdcc4;
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pm-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #fdf5e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .pm-card-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pm-card-label {
+      font-size: 0.8rem;
+      color: #7a6858;
+      font-weight: 500;
+    }
+
+    .pm-card-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #8b1a1a;
+    }
+
+    /* Rahu / Yama / Gulika Color Overrides */
+    .pm-card-rahu {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+    .pm-card-rahu .pm-card-val {
+      color: #991b1b;
+    }
+
+    .pm-card-yama {
+      background: #fffbeb;
+      border-color: #fde047;
+    }
+    .pm-card-yama .pm-card-val {
+      color: #92400e;
+    }
+
+    .pm-card-gulika {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+    .pm-card-gulika .pm-card-val {
+      color: #166534;
+    }
+
+    /* Section Boxes (Good For / Avoid) */
+    .pm-section-box {
+      background: #ffffff;
+      border: 1px solid #ebdcc4;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .pm-section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .dot-good {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #16a34a;
+    }
+
+    .dot-avoid {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #b91c1c;
+    }
+
+    .pm-tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pm-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-good {
+      background: #e6f4ea;
+      color: #047857;
+      border: 1px solid #b7e1cd;
+    }
+
+    .chip-avoid {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .pm-footer-btn-wrap {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pm-full-btn {
+      background: #8b1a1a;
+      color: #ffffff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+
+    .pm-full-btn:hover {
+      background: #6e1313;
+    }
+
+    /* ── DASHBOARD WIDGET CARDS ── */
+    .dashboard-quick-widgets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .widget-card {
+      border: 1px solid #ebdcc4;
+      background: #fffdfa;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(139, 26, 26, 0.04);
+    }
+
+    /* ── FLOATING CHAT CIRCLE (BOTTOM RIGHT) ── */
+    .floating-chat-circle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      z-index: 9999;
+      border: 2px solid #ffffff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .floating-chat-circle:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .floating-chat-circle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 12px;
+      height: 12px;
+      background-color: #16a34a;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+  </style>
 </head>
 <body>
 
 <div class="redirect-screen" id="redirectScreen">तपासणी होत आहे...</div>
 
-<!-- ── NAVBAR (hidden until authed) ── -->
+<!-- ── NAVBAR ── -->
 <nav class="navbar" id="navbar" style="display:none;">
   <div class="navbar-left">
-    <img src="/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+    <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
     <span class="navbar-brand">त्रिमूर्ती ज्योतिषालय</span>
   </div>
+
+  <div class="nav-center">
+    <button class="nav-service-btn" id="openPanchangModalBtn" type="button">
+      <span>📅</span> पंचांग
+    </button>
+    <a href="life-planner.html" class="nav-service-btn">
+      <span>🚀</span> जीवन नियोजन
+    </a>
+    <a href="sankalp.html" class="nav-service-btn">
+      <span>📜</span> संकल्प पत्रिका
+    </a>
+  </div>
+  
   <div class="nav-right">
     <span class="user-name" id="userName"></span>
     <a href="booking.html" class="btn-primary" style="padding:7px 16px;font-size:.8rem;">+ बुक करा</a>
@@ -31,14 +412,58 @@
 <div class="tab-bar" id="tabBar" style="display:none;">
   <button class="tab-btn active" data-tab="overview">🏠 आढावा</button>
   <button class="tab-btn" data-tab="appointments">📋 माझी बुकिंग</button>
+  <button class="tab-btn" data-tab="kundali">🕉 कुंडली सेवा</button>
+  <button class="tab-btn" data-tab="bhajan">🎵 भजन संग्रह</button>
   <button class="tab-btn" data-tab="documents">📄 दस्तऐवज</button>
   <button class="tab-btn" data-tab="muhurta">📅 मुहूर्त</button>
   <button class="tab-btn" data-tab="profile">👤 प्रोफाइल</button>
 </div>
 
-<!-- ── OVERVIEW ── -->
+<!-- ── DASHBOARD CONTENT ── -->
 <div class="dashboard-page" id="dashboardPage" style="display:none;">
+
+  <!-- OVERVIEW TAB -->
   <div class="tab-content active" id="tab-overview">
+    
+    <div class="dashboard-quick-widgets">
+      <div class="widget-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #8b1a1a; font-size: 1.1rem;">आजचे पंचांग आणि मुहूर्त</h3>
+          <span style="background: #fdf5e6; color: #c8860a; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 0.78rem;">दैनिक अपडेट</span>
+        </div>
+        <p style="font-size: 0.88rem; color: #665243; margin-bottom: 16px;">आजची तिथी, नक्षत्र, योग आणि राहूकाळ त्वरित पहा.</p>
+        <button id="overviewPanchangBtn" style="background: #8b1a1a; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-block;">
+          पंचांग पहा &rarr;
+        </button>
+      </div>
+
+      <div class="widget-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #8b1a1a; font-size: 1.1rem;">विचारा गुरुजींना</h3>
+          <span style="background: #fdf5e6; color: #c8860a; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 0.78rem;">डिजिटल सेवा</span>
+        </div>
+        <p style="font-size: 0.88rem; color: #665243; margin-bottom: 16px;">धार्मिक शंका आणि विधींबाबत गुरुजींचे मार्गदर्शक मिळवा.</p>
+        <a href="ask-guruji.html" style="background: #c8860a; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-block;">
+          प्रश्न शोधा / विचारा &rarr;
+        </a>
+      </div>
+      
+      <div class="widget-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #8b1a1a; font-size: 1.1rem;">गुरुजींशी संपर्क साधा</h3>
+          <span style="background: #e6f4ea; color: #047857; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 0.78rem;">24/7 मदत</span>
+        </div>
+        <p style="font-size: 0.88rem; color: #665243; margin-bottom: 16px;">तुमच्या बुकिंगबद्दल किंवा पूजेबाबत काही प्रश्न आहेत?</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="contact.html" style="border: 1px solid #8b1a1a; color: #8b1a1a; padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">संपर्क पृष्ठ</a>
+        </div>
+      </div>
+      
+    </div>
+
+    <section id="vault-app-mount" class="dashboard-vault-section"></section>
+
+    <!-- Stats -->
     <div class="overview-grid">
       <div class="stat-card">
         <div class="stat-icon">📋</div>
@@ -58,7 +483,7 @@
       <div class="stat-card">
         <div class="stat-icon">🏁</div>
         <div class="stat-num" id="statCompleted">0</div>
-        <div class="stat-label">पूर्ण झालेल्या</div>
+        <div class="stat-label">पूर्ण झाल्याच्या</div>
       </div>
     </div>
 
@@ -71,7 +496,7 @@
     </div>
   </div>
 
-  <!-- ── APPOINTMENTS ── -->
+  <!-- APPOINTMENTS TAB -->
   <div class="tab-content" id="tab-appointments">
     <div class="section-h">
       <h2>माझी सर्व बुकिंग</h2>
@@ -82,34 +507,69 @@
     </div>
   </div>
 
-  <!-- ── DOCUMENTS ── -->
+  <!-- KUNDALI SERVICES TAB -->
+  <div class="tab-content" id="tab-kundali">
+    <div class="section-h">
+      <h2>कुंडली सेवा</h2>
+    </div>
+    <p class="kundali-subtitle">माहिती भरा आणि तयार कुंडली PDF डाउनलोड करा — एकदम प्रिंट-रेडी</p>
+
+    <div class="kundali-grid">
+      <div class="kundali-card">
+        <div class="kc-icon">🕉</div>
+        <h3 class="kc-title">जन्म कुंडली</h3>
+        <p class="kc-desc">एक चार्ट — नाव, जन्मतारीख, वेळ, ग्रहस्थिती, ज्योतिषशास्त्रीय माहिती</p>
+        <a href="janma-kundali.html" class="kc-btn">📄 <span>कुंडली तयार करा</span></a>
+      </div>
+
+      <div class="kundali-card">
+        <div class="kc-icon">☸</div>
+        <h3 class="kc-title">जन्म + लग्न कुंडली</h3>
+        <p class="kc-desc">एकाच पानावर दोन चार्ट — जन्म कुंडली व लग्न कुंडली एकत्र</p>
+        <a href="janma-lagna-kundali.html" class="kc-btn">📄 <span>कुंडली तयार करा</span></a>
+      </div>
+
+      <div class="kundali-card">
+        <div class="kc-icon">💒</div>
+        <h3 class="kc-title">वधू-वर कुंडली मिलन</h3>
+        <p class="kc-desc">वधू व वराची कुंडली, गुण मिलन तक्ता, निष्कर्ष एकाच पानावर</p>
+        <a href="vadhu-var-milan.html" class="kc-btn">📄 <span>कुंडली तयार करा</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BHAJAN TAB -->
+  <div class="tab-content" id="tab-bhajan">
+    <div class="section-h">
+      <h2>भजन संग्रह</h2>
+    </div>
+    <div class="deity-grid" id="deityGrid"></div>
+  </div>
+
+  <!-- DOCUMENTS TAB -->
   <div class="tab-content" id="tab-documents">
     <div class="section-h">
       <h2>माझे दस्तऐवज</h2>
     </div>
+    <a href="admin-upload.html" class="nav-service-btn">
+    <span>📤</span> दस्तऐवज अपलोड
+    </a>
     <div class="doc-list" id="docList">
       <div class="loading-text">लोड होत आहे...</div>
     </div>
   </div>
 
-  <!-- ── MUHURTA ── -->
+  <!-- MUHURTA TAB -->
   <div class="tab-content" id="tab-muhurta">
     <div class="section-h">
       <h2>शुभ मुहूर्त</h2>
-    </div>
-    <div class="muhurta-filter" id="muhurtaFilter">
-      <button class="muhurta-chip active" data-cat="all">सर्व</button>
-      <button class="muhurta-chip" data-cat="marriage">विवाह</button>
-      <button class="muhurta-chip" data-cat="griha_pravesh">गृहप्रवेश</button>
-      <button class="muhurta-chip" data-cat="business">व्यवसाय</button>
-      <button class="muhurta-chip" data-cat="naming">नामकरण</button>
     </div>
     <div class="muhurta-grid" id="muhurtaGrid">
       <div class="loading-text">लोड होत आहे...</div>
     </div>
   </div>
 
-  <!-- ── PROFILE ── -->
+  <!-- PROFILE TAB -->
   <div class="tab-content" id="tab-profile">
     <div class="section-h">
       <h2>माझी प्रोफाइल</h2>
@@ -130,8 +590,262 @@
       <button class="btn-primary" id="saveProfileBtn" style="margin-top:8px;">प्रोफाइल जतन करा</button>
     </div>
   </div>
+
 </div>
 
-<script type="module" src="/src/scripts/dashboard.js"></script>
+<!-- ── PANCHANG MODAL ── -->
+<div class="modal-overlay" id="panchangModal" style="display:none;">
+  <div class="modal-container">
+    <div id="modal-panchang-mount-point"></div>
+  </div>
+</div>
+
+<!-- ── FLOATING CHAT CIRCLE (BOTTOM RIGHT) ── -->
+<button class="floating-chat-circle" onclick="openDirectSupportWA()" title="गुरुजींशी थेट WhatsApp वर बोला" aria-label="WhatsApp Contact">
+  💬
+</button>
+
+<script>
+  // Global WhatsApp support function used by floating circle & widgets
+  window.openDirectSupportWA = function() {
+    const phoneNumber = "919876543210"; // आपण आपला WhatsApp नंबर येथे बदलू शकता
+    const defaultText = encodeURIComponent("नमस्कार गुरुजी, मला काही मार्गदर्शन / माहिती हवी आहे.");
+    window.open(`https://wa.me/${phoneNumber}?text=${defaultText}`, '_blank');
+  };
+</script>
+
+<script type="module">
+  import { getSession, logout } from './src/lib/auth.js';
+
+  const redirectScreen = document.getElementById('redirectScreen');
+  const navbar = document.getElementById('navbar');
+  const tabBar = document.getElementById('tabBar');
+  const dashboardPage = document.getElementById('dashboardPage');
+  const userNameEl = document.getElementById('userName');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  // Modal Elements
+  const panchangModal = document.getElementById('panchangModal');
+  const openPanchangModalBtn = document.getElementById('openPanchangModalBtn');
+  const overviewPanchangBtn = document.getElementById('overviewPanchangBtn');
+  const modalMountPoint = document.getElementById('modal-panchang-mount-point');
+
+  // Check Session
+  const session = getSession();
+
+  if (!session || !session.user) {
+    const params = new URLSearchParams();
+    params.set('redirect', 'dashboard.html');
+    window.location.replace('login.html?' + params.toString());
+  } else {
+    userNameEl.textContent = session.name || session.user;
+
+    redirectScreen.style.display = 'none';
+    navbar.style.display = 'flex';
+    tabBar.style.display = 'flex';
+    dashboardPage.style.display = 'block';
+
+    // Logout Handler
+    logoutBtn.addEventListener('click', () => {
+      logout();
+      window.location.href = 'login.html';
+    });
+
+    // Function to render identical UI as index.html screenshot
+    function buildExactIndexPanchangHTML() {
+      return `
+        <!-- Header -->
+        <div class="pm-header">
+          <div class="pm-header-left">
+            <span class="pm-om-icon">🕉</span>
+            <div>
+              <h2 class="pm-title">Today's Panchang</h2>
+              <p class="pm-subtitle">आजचा दिनांक: शनिवार, ८ ऑगस्ट, २०२६</p>
+            </div>
+          </div>
+          <div class="pm-header-actions">
+            <button class="pm-action-btn" title="Copy">📋</button>
+            <button class="pm-action-btn" title="Comment">💬</button>
+            <button class="pm-action-btn" title="Notes">📄</button>
+            <button class="pm-close-btn" id="closePanchangModalBtn">&times;</button>
+          </div>
+        </div>
+
+        <!-- 3x3 Grid -->
+        <div class="pm-grid-3">
+          <div class="pm-card">
+            <div class="pm-card-icon">🌞</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Sunrise</span>
+              <span class="pm-card-val">06:12 AM</span>
+            </div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-icon">🌆</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Sunset</span>
+              <span class="pm-card-val">06:58 PM</span>
+            </div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-icon">🌙</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Tithi</span>
+              <span class="pm-card-val">Shukla Tritiya</span>
+            </div>
+          </div>
+
+          <div class="pm-card">
+            <div class="pm-card-icon">⭐</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Nakshatra</span>
+              <span class="pm-card-val">Rohini</span>
+            </div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-icon">📖</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Yoga</span>
+              <span class="pm-card-val">Siddha</span>
+            </div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-icon">🐚</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Karana</span>
+              <span class="pm-card-val">Garaja</span>
+            </div>
+          </div>
+
+          <div class="pm-card pm-card-rahu">
+            <div class="pm-card-icon">⏰</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Rahu Kaal</span>
+              <span class="pm-card-val">01:30 PM – 03:00 PM</span>
+            </div>
+          </div>
+          <div class="pm-card pm-card-yama">
+            <div class="pm-card-icon">⏳</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Yamaganda</span>
+              <span class="pm-card-val">09:00 AM – 10:30 AM</span>
+            </div>
+          </div>
+          <div class="pm-card pm-card-gulika">
+            <div class="pm-card-icon">🐍</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Gulika Kalam</span>
+              <span class="pm-card-val">06:00 AM – 07:30 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Grid Row -->
+        <div class="pm-grid-2">
+          <div class="pm-card">
+            <div class="pm-card-icon">🙏</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Today's Festival</span>
+              <span class="pm-card-val">Nag Panchami</span>
+            </div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-icon">📿</div>
+            <div class="pm-card-content">
+              <span class="pm-card-label">Recommended Puja</span>
+              <span class="pm-card-val">Nag Puja</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Good For Section -->
+        <div class="pm-section-box">
+          <div class="pm-section-title">
+            <span class="dot-good"></span> Good For
+          </div>
+          <div class="pm-tags-container">
+            <span class="pm-chip chip-good">✓ Business</span>
+            <span class="pm-chip chip-good">✓ Education</span>
+            <span class="pm-chip chip-good">✓ Housewarming</span>
+          </div>
+        </div>
+
+        <!-- Avoid Section -->
+        <div class="pm-section-box">
+          <div class="pm-section-title">
+            <span class="dot-avoid"></span> Avoid
+          </div>
+          <div class="pm-tags-container">
+            <span class="pm-chip chip-avoid">✕ Marriage</span>
+            <span class="pm-chip chip-avoid">✕ Vehicle Purchase</span>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pm-footer-btn-wrap">
+          <a href="full-panchang.html" class="pm-full-btn">View Full Panchang &rarr;</a>
+        </div>
+      `;
+    }
+
+    // Open Modal Function
+    const openPanchang = () => {
+      panchangModal.style.display = 'flex';
+      
+      // Try external renderer first, fallback to exact index HTML
+      if (typeof window.renderPanchang === 'function') {
+        try {
+          modalMountPoint.innerHTML = '';
+          window.renderPanchang(modalMountPoint);
+        } catch (e) {
+          modalMountPoint.innerHTML = buildExactIndexPanchangHTML();
+        }
+      } else {
+        modalMountPoint.innerHTML = buildExactIndexPanchangHTML();
+      }
+
+      // Re-bind close button after rendering content
+      const closeBtn = document.getElementById('closePanchangModalBtn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          panchangModal.style.display = 'none';
+        });
+      }
+    };
+
+    // Event Listeners
+    if (openPanchangModalBtn) {
+      openPanchangModalBtn.addEventListener('click', openPanchang);
+    }
+
+    if (overviewPanchangBtn) {
+      overviewPanchangBtn.addEventListener('click', openPanchang);
+    }
+
+    panchangModal.addEventListener('click', (e) => {
+      if (e.target === panchangModal) {
+        panchangModal.style.display = 'none';
+      }
+    });
+
+    // Load extra dashboard scripts
+    import('./src/scripts/dashboard.js').catch(err => console.error(err));
+    import('./src/scripts/bhajan-widgets.js').catch(err => console.error(err));
+  }
+</script>
+
+<script type="module">
+  import { DocumentsVaultEngine } from './src/scripts/documents-vault.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new DocumentsVaultEngine({
+      dataPath: 'public/data/documents.json',
+      containerId: 'vault-app-mount'
+    });
+  });
+</script>
+
+<script src="src/scripts/documents-vault.js"></script>
+
 </body>
 </html>

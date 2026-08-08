@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>वारंवार विचारले जाणारे प्रश्न | त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="src/styles/faq.css"/>
+
+  <script src="src/scripts/faq.js" defer></script>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+      <span class="navbar-brand">त्रिमूर्ती ज्योतिषालय</span>
+    </div>
+
+    <div class="nav-right">
+      <!-- Language Switcher Button Group -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="mr">मराठी</button>
+        <button class="lang-btn" data-lang="hi">हिंदी</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <a href="index.html" class="btn-primary-nav" data-i18n="nav_book">मुख्यपृष्ठावर जा</a>
+    </div>
+  </nav>
+
+  <!-- ── FAQ HERO SECTION ── -->
+  <section class="faq-hero">
+    <div class="hero-container">
+      <div class="hero-om">❓</div>
+      <h1 class="hero-title" id="heroTitle" data-i18n="hero_title">वारंवार विचारले जाणारे प्रश्न</h1>
+      <p class="hero-subbrand">Trimurti Jyotishalay</p>
+
+      <div class="hero-divider">
+        <span class="line"></span>
+        <span class="symbol">🪔</span>
+        <span class="line"></span>
+      </div>
+
+      <p class="hero-tagline" id="heroTagline" data-i18n="hero_tagline">तुमच्या सामान्य प्रश्नांची उत्तरे</p>
+    </div>
+  </section>
+
+  <!-- ── MAIN FAQ CONTENT ── -->
+  <main class="faq-main-container">
+
+    <!-- Search Section -->
+    <div class="faq-search-wrapper">
+      <div class="faq-search-box">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          id="faqSearchInput" 
+          class="faq-search-input" 
+          placeholder="तुमचा प्रश्न शोधा..." 
+          aria-label="FAQ शोध" 
+          autocomplete="off"
+        />
+        <button type="button" id="faqSearchClearBtn" class="search-clear-btn" aria-label="शोध साफ करा" style="display: none;">&times;</button>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-bar-wrapper">
+      <div class="filter-bar" id="faqCategoryBar" role="tablist" aria-label="FAQ श्रेणी">
+        <button class="filter-btn active" data-category="all" role="tab" aria-selected="true" id="cat-all">सर्व</button>
+        <button class="filter-btn" data-category="puja" role="tab" aria-selected="false" id="cat-puja">पूजा</button>
+        <button class="filter-btn" data-category="booking" role="tab" aria-selected="false" id="cat-booking">बुकिंग</button>
+        <button class="filter-btn" data-category="kundali" role="tab" aria-selected="false" id="cat-kundali">कुंडली</button>
+        <button class="filter-btn" data-category="panchang" role="tab" aria-selected="false" id="cat-panchang">पंचांग</button>
+        <button class="filter-btn" data-category="payment" role="tab" aria-selected="false" id="cat-payment">पेमेंट</button>
+        <button class="filter-btn" data-category="documents" role="tab" aria-selected="false" id="cat-documents">दस्तऐवज</button>
+        <button class="filter-btn" data-category="other" role="tab" aria-selected="false" id="cat-other">इतर</button>
+      </div>
+    </div>
+
+    <!-- FAQ Accordions Container -->
+    <section class="faq-list-container" id="faqList" aria-live="polite">
+      <!-- Dynamically generated via JS -->
+    </section>
+
+    <!-- Empty Search State -->
+    <div class="faq-empty-state" id="faqEmptyState" style="display: none;">
+      <div class="empty-icon">🔍</div>
+      <h3 class="empty-title" id="emptyTitle">तुमच्या शोधाशी संबंधित प्रश्न सापडला नाही.</h3>
+      <p class="empty-sub" id="emptySub">कृपया वेगळा शब्द वापरून पहा किंवा आमच्याशी संपर्क साधा.</p>
+      <a href="contact.html" class="btn-primary-faq" id="emptyContactBtn">संपर्क करा</a>
+    </div>
+
+    <!-- Contact CTA Card -->
+    <section class="faq-contact-cta">
+      <div class="cta-card">
+        <div class="cta-icon">🛕</div>
+        <h2 class="cta-title" id="ctaTitle">तुमच्या प्रश्नाचे उत्तर मिळाले नाही?</h2>
+        <p class="cta-subtitle" id="ctaSub">आमच्याशी थेट संपर्क करा.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="cta-btn cta-btn-contact" id="ctaContactBtn">
+            <span>📞</span> <span id="ctaContactText">संपर्क करा</span>
+          </a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-whatsapp" id="ctaWhatsappBtn">
+            <span>💬</span> <span id="ctaWhatsappText">WhatsApp करा</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <p>© 2026 त्रिमूर्ती ज्योतिषालय. सर्व हक्क सुरक्षित.</p>
+  </footer>
+
+</body>
+</html>

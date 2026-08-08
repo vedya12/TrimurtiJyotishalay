@@ -6,12 +6,16 @@
 
   <!-- ===== Primary SEO ===== -->
   <title>त्रिमूर्ती ज्योतिषालय | ज्योतिषाचार्य श्री. अभयराव जोशी महाराज — मोर्शी, अमरावती</title>
-  <meta name="description" content="त्रिमूर्ती ज्योतिषालय — ज्योतिषाचार्य श्री. अभयराव जोशी महाराज (वेलुकार). कुंडली विश्लेषण, मुहूर्त, वास्तु सल्ला, सत्यनारायण पूजा, भागवत कथा. मोर्शी, अमरावती, वरूड व जगभर ऑनलाइन सेवा."/>
+  <meta name="description" content="त्रिमूर्ती ज्योतिषालय — ज्योतिषाचार्य श्री. अभयराव जोशी महाराज (वेळूकार). कुंडली विश्लेषण, मुहूर्त, वास्तु सल्ला, सत्यनारायण पूजा, भागवत कथा. मोर्शी, अमरावती, वरूड व जगभर ऑनलाइन सेवा."/>
   <meta name="keywords" content="jyotish morshi, kundali amravati, abhayrao joshi maharaj, trimurti jyotishalay, vastu shastra, bhagwat katha, puja vidhi, muhurta, kundali milan, astrology maharashtra"/>
   <meta name="author" content="Trimurti Jyotishalay — Shri. Abhayrao Joshi Maharaj"/>
   <meta name="robots" content="index, follow"/>
   <meta name="theme-color" content="#8b1a1a"/>
   <link rel="canonical" href="https://www.trimurtijyotishalay.com/"/>
+
+  <link rel="stylesheet" href="src/styles/panchang.css">
+  <link rel="stylesheet" href="src/styles/wizard.css">
+  <link rel="stylesheet" href="src/styles/daily-quote.css">
 
   <!-- ===== Open Graph (Facebook / WhatsApp preview) ===== -->
   <meta property="og:type"        content="website"/>
@@ -34,14 +38,14 @@
 
   <!-- ===== PWA / Mobile ===== -->
   <link rel="manifest" href="/manifest.json"/>
-  <link rel="apple-touch-icon" href="logo.png"/>
+  <link rel="apple-touch-icon" href="public/logo.png"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
   <meta name="apple-mobile-web-app-title" content="TJ Jyotish"/>
   <meta name="mobile-web-app-capable" content="yes"/>
 
   <!-- ===== Favicon ===== -->
-  <link rel="icon" href="/logo.png" type="image/png"/>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
 
   <!-- ===== Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -49,7 +53,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet"/>
 
   <!-- ===== Stylesheet ===== -->
-  <link rel="stylesheet" href="../src/styles/style.css"/>
+  <link rel="stylesheet" href="src/styles/style.css"/>
+  <link rel="stylesheet" href="src/styles/testimonials.css">
 
   <!-- ===== JSON-LD Structured Data ===== -->
   <script type="application/ld+json">
@@ -63,7 +68,7 @@
         "alternateName": "Trimurti Jyotishalay",
         "description": "ज्योतिषाचार्य श्री. अभयराव जोशी महाराज — कुंडली विश्लेषण, मुहूर्त, वास्तु, पूजाविधी, भागवत कथा. मोर्शी, अमरावती.",
         "url": "https://www.trimurtijyotishalay.com/",
-        "logo": "https://www.trimurtijyotishalay.com/logo.png",
+        "logo": "https://www.trimurtijyotishalay.com/public/logo.png",
         "image": "https://www.trimurtijyotishalay.com/temple-bg.jpg",
         "telephone": "+919999999999",
         "email": "info@trimurtijyotishalay.com",
@@ -134,26 +139,71 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
   <a href="#home" class="logo-wrap">
-    <img src="/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+    <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#home"        data-mr="होम"          data-hi="होम"            data-en="Home">होम</a></li>
-    <li><a href="#services"    data-mr="सेवा"          data-hi="सेवाएं"          data-en="Services">सेवा</a></li>
-    <li><a href="#appointment" data-mr="अपॉइंटमेंट"   data-hi="अपॉइंटमेंट"     data-en="Appointment">अपॉइंटमेंट</a></li>
-    <li><a href="#contact"     data-mr="संपर्क"        data-hi="संपर्क"          data-en="Contact">संपर्क</a></li>
-    <li><a href="#about"       data-mr="आमच्याबद्दल"  data-hi="हमारे बारे में"  data-en="About Us">आमच्याबद्दल</a></li>
-    <li><a href="#bhajan"      data-mr="भजन संग्रह"   data-hi="भजन संग्रह"      data-en="Bhajan Sangrah">भजन संग्रह</a></li>
-    <li><a href="#kundali"     data-mr="कुंडली"        data-hi="कुंडली"           data-en="Kundali">कुंडली</a></li>
-    <li><a href="booking.html" class="nav-book-btn" data-mr="बुक करा" data-hi="बुक करें" data-en="Book Now">बुक करा</a></li>
+    <li><a href="#home" data-mr="होम" data-hi="होम" data-en="Home">होम</a></li>
+    <li><a href="#about" data-mr="आमच्याबद्दल" data-hi="हमारे बारे में" data-en="About Us">आमच्याबद्दल</a></li>
+    
+    <!-- 🕉️ WIZARD BUTTON -->
+    <li>
+      <button class="nav-wizard-btn" onclick="window.pujaWizard.open()" data-mr="🔍 योग्य पूजा शोधा" data-hi="🔍 सही पूजा खोजें" data-en="🔍 Find Right Puja">
+        🔍 योग्य पूजा शोधा
+      </button>
+    </li>
+
+    <!-- 📅 TODAY'S PANCHANG -->
+    <li>
+      <button class="nav-panchang-btn" onclick="openPanchangModal()" data-mr="📅 आजचे पंचांग" data-hi="📅 आज का पंचांग" data-en="Daily Panchang">
+        📅 आजचे पंचांग
+      </button>
+    </li>
+    <li><a href="festival.html" data-mr="सण उत्सव" data-hi="त्योहार" data-en="Festivals">सण उत्सव</a></li>
+    <li><a href="#testimonials" data-mr="अनुभव" data-hi="अनुभव" data-en="Experience">अनुभव</a></li>
+    <li><a href="ask-guruji.html" class="nav-link" data-mr="विचारा गुरुजींना" data-hi="गुरुजी से पूछें" data-en="Ask Guruji">विचारा गुरुजींना</a></li>
+    <li><a href="#testimonials" data-mr="अभिप्राय" data-hi="प्रशंसापत्र" data-en="Testimonials">अभिप्राय</a></li>
+    <li><a href="#contact" data-mr="संपर्क" data-hi="संपर्क" data-en="Contact">संपर्क</a></li>
+    <li><a href="gallery.html" class="nav-link" data-mr="गॅलरी" data-hi="गॅलरी" data-en="Gallery">गॅलरी</a></li>
   </ul>
   <div class="nav-right">
-    <a href="login.html" class="nav-login-btn">लॉगिन</a>
-    <a href="register.html" class="nav-register-btn">नोंदणी</a>
-    <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="mr">मराठी</button>
-      <button class="lang-btn" data-lang="hi">हिंदी</button>
-      <button class="lang-btn" data-lang="en">English</button>
-    </div>
+    
+    <!-- Shown to logged-in users -->
+    <span id="navAuthUser" class="nav-auth-group" style="display:none;">
+      <span class="nav-user-name" id="navUserName"></span>
+      <a href="dashboard.html" class="nav-book-btn">डॅशबोर्ड</a>
+      <button type="button" class="nav-login-btn" id="navLogoutBtn" style="cursor:pointer;">लॉगआउट</button>
+    </span>
+
+    <div class="lang-dropdown-wrap">
+  <button type="button" class="lang-dropdown-btn" id="langDropdownBtn" aria-expanded="false" aria-haspopup="true">
+    <span id="currentLangLabel">मराठी</span>
+    <span class="dropdown-arrow">▾</span>
+  </button>
+  <div class="lang-dropdown-menu" id="langDropdownMenu" role="menu">
+    <button type="button" class="lang-btn active" data-lang="mr" role="menuitem">मराठी</button>
+    <button type="button" class="lang-btn" data-lang="hi" role="menuitem">हिंदी</button>
+    <button type="button" class="lang-btn" data-lang="en" role="menuitem">English</button>
+  </div>
+</div>
+
+  <!-- 👤 COMPACT ACCOUNT DROPDOWN -->
+<div class="account-dropdown-wrap">
+  <button type="button" class="account-btn" id="accountDropdownBtn" aria-expanded="false" aria-haspopup="true">
+    <span>खाते</span>
+    <span class="dropdown-arrow">▾</span>
+  </button>
+  <div class="account-dropdown-menu" id="accountDropdownMenu" role="menu">
+    <a href="login.html" class="account-menu-item" role="menuitem">
+      <span class="item-icon">🔑</span>
+      <span>लॉगिन</span>
+    </a>
+    <a href="register.html" class="account-menu-item" role="menuitem">
+      <span class="item-icon">📝</span>
+      <span>नोंदणी</span>
+    </a>
+  </div>
+</div>
+
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -163,7 +213,7 @@
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
   <div class="hero-bg">
-    <img src="/temple-bg.jpg" alt="" class="hero-bg-img" aria-hidden="true"/>
+    <img src="public/temple-bg.jpg" alt="" class="hero-bg-img" aria-hidden="true"/>
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
@@ -181,9 +231,9 @@
         data-hi="श्री. अभयराव जोशी महाराज"
         data-en="Shri. Abhayrao Joshi Maharaj">श्री. अभयराव जोशी महाराज</h1>
     <p class="hero-velukar"
-       data-mr="(वेलुकार)"
+       data-mr="(वेळूकार)"
        data-hi="(वेलुकार)"
-       data-en="(Velukar)">(वेलुकार)</p>
+       data-en="(Velukar)">(वेळूकार)</p>
     <p class="hero-tagline"
        data-mr="ज्योतिष मार्गदर्शन • वैदिक पूजा विधी • भागवत कथा प्रवचन"
        data-hi="ज्योतिष मार्गदर्शन • वैदिक पूजा विधी • भागवत कथा प्रवचन"
@@ -191,11 +241,11 @@
        >ज्योतिष मार्गदर्शन • वैदिक पूजा विधी • भागवत कथा प्रवचन</p>
     <div class="hero-divider">❦</div>
     <div class="hero-btns">
-      <a href="booking.html" class="hbtn hbtn-maroon">
-        <span class="hbtn-icon">📅</span>
+      <a href="login.html" class="hbtn hbtn-maroon">
+        <span class="hbtn-icon">🔑</span>
         <span class="hbtn-text">
-          <strong data-mr="अपॉइंटमेंट बुक करा" data-hi="अपॉइंटमेंट बुक करें" data-en="Book Appointment">अपॉइंटमेंट बुक करा</strong>
-          <small data-mr="ऑनलाइन वेळ निश्चित करा" data-hi="ऑनलाइन समय निश्चित करें" data-en="Schedule Online">ऑनलाइन वेळ निश्चित करा</small>
+          <strong data-mr="लॉगिन करा" data-hi="लॉगिन करें" data-en="Login">लॉगिन करा</strong>
+          <small data-mr="सेवा वापरण्यासाठी" data-hi="सेवाओं के लिए" data-en="To access services">सेवा वापरण्यासाठी</small>
         </span>
       </a>
       <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" class="hbtn hbtn-green">
@@ -216,55 +266,51 @@
   </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
-<section class="services-section" id="services">
-  <div class="section-header">
-    <span class="section-deco">❧</span>
-    <h2 class="section-title"
-        data-mr="आमच्या सेवा" data-hi="हमारी सेवाएं" data-en="Our Services">आमच्या सेवा</h2>
-    <span class="section-deco">❧</span>
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span data-mr="३०+ वर्षांचा अनुभव" data-hi="३०+ वर्षों का अनुभव" data-en="30+ Years Experience">३०+ वर्षांचा अनुभव</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span data-mr="५०००+ संतुष्ट भक्त" data-hi="५०००+ संतुष्ट भक्त" data-en="5000+ Happy Devotees">५०००+ संतुष्ट भक्त</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span data-mr="जगभर ऑनलाइन सेवा" data-hi="विश्वभर ऑनलाइन सेवा" data-en="Worldwide Online Service">जगभर ऑनलाइन सेवा</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span data-mr="वैदिक पद्धतीने मार्गदर्शन" data-hi="वैदिक विधि से मार्गदर्शन" data-en="Authentic Vedic Guidance">वैदिक पद्धतीने मार्गदर्शन</span>
+    </div>
   </div>
-  <div class="services-grid">
+</div>
 
-    <!-- Jyotish Card -->
-    <div class="svc-card">
-      <h3 class="svc-card-title" data-mr="ज्योतिष सेवा" data-hi="ज्योतिष सेवाएं" data-en="Astrology Services">ज्योतिष सेवा</h3>
-      <div class="svc-divider"></div>
-      <ul class="svc-list two-col">
-        <li><span class="si">☸</span><span data-mr="कुंडली विश्लेषण"  data-hi="कुंडली विश्लेषण"  data-en="Kundali Analysis">कुंडली विश्लेषण</span></li>
-        <li><span class="si">💍</span><span data-mr="विवाह जुळवणी"    data-hi="विवाह मिलान"       data-en="Kundali Matching">विवाह जुळवणी</span></li>
-        <li><span class="si">📅</span><span data-mr="मुहूर्त सल्ला"   data-hi="मुहूर्त परामर्श"   data-en="Muhurta Advice">मुहूर्त सल्ला</span></li>
-        <li><span class="si">📈</span><span data-mr="करिअर मार्गदर्शन" data-hi="करियर मार्गदर्शन" data-en="Career Guidance">करिअर मार्गदर्शन</span></li>
-        <li><span class="si">🏠</span><span data-mr="वास्तु सल्ला"    data-hi="वास्तु परामर्श"    data-en="Vastu Advice">वास्तु सल्ला</span></li>
-        <li><span class="si">💎</span><span data-mr="रत्न सल्ला"      data-hi="रत्न परामर्श"      data-en="Gemstone Advice">रत्न सल्ला</span></li>
-        <li><span class="si">📖</span><span data-mr="होरोस्कोप वाचन"  data-hi="राशिफल वाचन"      data-en="Horoscope Reading">होरोस्कोप वाचन</span></li>
-      </ul>
-      <a href="#appointment" class="svc-btn"
-         data-mr="सर्व ज्योतिष सेवा पहा →"
-         data-hi="सभी ज्योतिष सेवाएं →"
-         data-en="View All Astrology Services →">सर्व ज्योतिष सेवा पहा →</a>
+<!-- ===== STATS COUNTER ===== -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-num" data-target="30">0</div>
+      <div class="stat-plus">+</div>
+      <div class="stat-lbl" data-mr="वर्षांचा अनुभव" data-hi="वर्षों का अनुभव" data-en="Years Experience">वर्षांचा अनुभव</div>
     </div>
-
-    <!-- Dharmik Card -->
-    <div class="svc-card">
-      <h3 class="svc-card-title" data-mr="धार्मिक सेवा" data-hi="धार्मिक सेवाएं" data-en="Religious Services">धार्मिक सेवा</h3>
-      <div class="svc-divider"></div>
-      <ul class="svc-list two-col">
-        <li><span class="si">🪔</span><span data-mr="सत्यनारायण पूजा"    data-hi="सत्यनारायण पूजा"    data-en="Satyanarayan Puja">सत्यनारायण पूजा</span></li>
-        <li><span class="si">🕉</span><span data-mr="रुद्राभिषेक"         data-hi="रुद्राभिषेक"         data-en="Rudrabhishek">रुद्राभिषेक</span></li>
-        <li><span class="si">🏡</span><span data-mr="गृह प्रवेश"          data-hi="गृह प्रवेश"          data-en="Griha Pravesh">गृह प्रवेश</span></li>
-        <li><span class="si">🌟</span><span data-mr="नवग्रह शांती"        data-hi="नवग्रह शांति"        data-en="Navgrah Shanti">नवग्रह शांती</span></li>
-        <li><span class="si">💒</span><span data-mr="विवाह विधी"          data-hi="विवाह विधि"          data-en="Wedding Rituals">विवाह विधी</span></li>
-        <li><span class="si">🔥</span><span data-mr="सत चंडी / नव चंडी"  data-hi="सत चंडी / नव चंडी"  data-en="Sat/Nav Chandi">सत चंडी / नव चंडी</span></li>
-        <li><span class="si">👶</span><span data-mr="नामकरण संस्कार"     data-hi="नामकरण संस्कार"     data-en="Namkaran Sanskar">नामकरण संस्कार</span></li>
-        <li><span class="si">📚</span><span data-mr="भागवत कथा प्रवचन"  data-hi="भागवत कथा प्रवचन"  data-en="Bhagavat Katha">भागवत कथा प्रवचन</span></li>
-      </ul>
-      <a href="#appointment" class="svc-btn"
-         data-mr="सर्व धार्मिक सेवा पहा →"
-         data-hi="सभी धार्मिक सेवाएं →"
-         data-en="View All Religious Services →">सर्व धार्मिक सेवा पहा →</a>
+    <div class="stat-card reveal">
+      <div class="stat-num" data-target="5000">0</div>
+      <div class="stat-plus">+</div>
+      <div class="stat-lbl" data-mr="संतुष्ट भक्त" data-hi="संतुष्ट भक्त" data-en="Happy Devotees">संतुष्ट भक्त</div>
     </div>
-
+    <div class="stat-card reveal">
+      <div class="stat-num" data-target="15">0</div>
+      <div class="stat-plus">+</div>
+      <div class="stat-lbl" data-mr="सेवांचा प्रकार" data-hi="सेवाओं के प्रकार" data-en="Service Types">सेवांचा प्रकार</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-plus">%</div>
+      <div class="stat-lbl" data-mr="वैदिक अधिकारिकता" data-hi="वैदिक प्रामाणिकता" data-en="Vedic Authenticity">वैदिक अधिकारिकता</div>
+    </div>
   </div>
 </section>
 
@@ -282,7 +328,7 @@
          data-hi="तथा विश्वभर ऑनलाइन परामर्श उपलब्ध"
          data-en="Online Consultation Available Worldwide">तसेच जगभरात ऑनलाइन सल्ला व सेवा उपलब्ध</p>
     </div>
-    <a href="#appointment" class="worldwide-btn">
+    <a href="login.html" class="worldwide-btn">
       <span>🌍</span>
       <span>
         <span data-mr="जगभरातून सेवा" data-hi="विश्वभर सेवा" data-en="Worldwide Service">जगभरातून सेवा</span><br/>
@@ -291,6 +337,37 @@
     </a>
   </div>
 </div>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="why-section">
+  <div class="section-header">
+    <span class="section-deco">❧</span>
+    <h2 class="section-title" data-mr="आम्हाला का निवडावे" data-hi="हमें क्यों चुनें" data-en="Why Choose Us">आम्हाला का निवडावे</h2>
+    <span class="section-deco">❧</span>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">🎯</div>
+      <h3 data-mr="अचूक भविष्यसांगणी" data-hi="सटीक भविष्यवाणी" data-en="Accurate Predictions">अचूक भविष्यसांगणी</h3>
+      <p data-mr="वैदिक ज्योतिषाच्या आधारे केलेली कुंडली विश्लेषण अत्यंत अचूक आणि विश्वासार्ह." data-hi="वैदिक ज्योतिष के आधार पर कुंडली विश्लेषण अत्यंत सटीक और विश्वसनीय." data-en="Kundali analysis based on Vedic astrology is highly accurate and reliable.">वैदिक ज्योतिषाच्या आधारे केलेली कुंडली विश्लेषण अत्यंत अचूक आणि विश्वासार्ह.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🕉</div>
+      <h3 data-mr="परंपरागत पूजा विधी" data-hi="पारंपरिक पूजा विधि" data-en="Traditional Puja Rituals">परंपरागत पूजा विधी</h3>
+      <p data-mr="वैदिक शास्त्रानुसार संपूर्ण पूजा विधी, मंत्र आणि संस्कार योग्य पद्धतीने." data-hi="वैदिक शास्त्र के अनुसार संपूर्ण पूजा विधि, मंत्र और संस्कार उचित विधि से." data-en="Complete puja rituals, mantras and sanskars according to Vedic scriptures.">वैदिक शास्त्रानुसार संपूर्ण पूजा विधी, मंत्र आणि संस्कार योग्य पद्धतीने.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🌐</div>
+      <h3 data-mr="जगभर ऑनलाइन सेवा" data-hi="विश्वभर ऑनलाइन सेवा" data-en="Worldwide Online Service">जगभर ऑनलाइन सेवा</h3>
+      <p data-mr="जगातील कोणत्याही कोपऱ्यातून ऑनलाइन मार्गदर्शन आणि सल्ला घ्या." data-hi="दुनिया के किसी भी कोने से ऑनलाइन मार्गदर्शन और सलाह लें." data-en="Get online guidance and consultation from anywhere in the world.">जगातील कोणत्याही कोपऱ्यातून ऑनलाइन मार्गदर्शन आणि सल्ला घ्या.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔒</div>
+      <h3 data-mr="गोपनीयता आणि विश्वास" data-hi="गोपनीयता और विश्वास" data-en="Privacy & Trust">गोपनीयता आणि विश्वास</h3>
+      <p data-mr="तुमची सर्व माहिती संपूर्णपणे गोपनीय ठेवली जाते. आमच्यावर निर्भय होऊन विश्वास ठेवा." data-hi="आपकी सभी जानकारी पूर्णतः गोपनीय रखी जाती है. हम पर निस्संकोच विश्वास करें." data-en="All your information is kept completely confidential. Trust us without hesitation.">तुमची सर्व माहिती संपूर्णपणे गोपनीय ठेवली जाते. आमच्यावर निर्भय होऊन विश्वास ठेवा.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ===== ABOUT ===== -->
 <section class="about-section" id="about">
@@ -302,12 +379,12 @@
   </div>
   <div class="about-grid">
     <div class="about-img-wrap">
-      <img src="/om-book.png" alt="Trimurti Jyotishalay — Om and Sacred Texts" class="about-img"/>
+      <img src="public/om-book.png" alt="Trimurti Jyotishalay — Om and Sacred Texts" class="about-img"/>
     </div>
     <div class="about-content">
-      <h3 data-mr="श्री. अभयराव जोशी महाराज (वेलुकार)"
+      <h3 data-mr="श्री. अभयराव जोशी महाराज (वेळूकार)"
           data-hi="श्री. अभयराव जोशी महाराज (वेलुकार)"
-          data-en="Shri. Abhayrao Joshi Maharaj (Velukar)">श्री. अभयराव जोशी महाराज (वेलुकार)</h3>
+          data-en="Shri. Abhayrao Joshi Maharaj (Velukar)">श्री. अभयराव जोशी महाराज (वेळूकार)</h3>
       <p data-mr="ज्योतिषाचार्य श्री. अभयराव जोशी महाराज हे मोर्शी, अमरावती येथील एक अनुभवी व प्रसिद्ध ज्योतिषी व धार्मिक विद्वान आहेत. त्यांना वैदिक ज्योतिष, पूजाविधी आणि भागवत कथा यांमध्ये ३० वर्षांहून अधिक अनुभव आहे. ते मोर्शी, अमरावती, वरूड या परिसरात सेवा देतात तसेच जगभरातील भक्तांना ऑनलाइन सल्ला व मार्गदर्शन प्रदान करतात."
           data-hi="ज्योतिषाचार्य श्री. अभयराव जोशी महाराज मोर्शी, अमरावती के एक अनुभवी एवं प्रसिद्ध ज्योतिषी व धार्मिक विद्वान हैं। उन्हें वैदिक ज्योतिष, पूजा विधि और भागवत कथा में ३० वर्षों से अधिक का अनुभव है। वे मोर्शी, अमरावती, वरूड क्षेत्र में सेवाएं देते हैं तथा विश्वभर के भक्तों को ऑनलाइन परामर्श एवं मार्गदर्शन प्रदान करते हैं।"
           data-en="Jyotishacharya Shri. Abhayrao Joshi Maharaj is a highly experienced and renowned astrologer and religious scholar from Morshi, Amravati. With over 30 years of expertise in Vedic astrology, puja rituals, and Bhagavat Katha, he serves devotees in Morshi, Amravati, and Warud, and provides online guidance to devotees worldwide."
@@ -330,182 +407,276 @@
   </div>
 </section>
 
-<!-- ===== APPOINTMENT CTA + FORM ===== -->
-<section class="appt-section" id="appointment">
-  <div class="appt-cta">
-    <h2 data-mr="आजच अपॉइंटमेंट बुक करा"
-        data-hi="आज ही अपॉइंटमेंट बुक करें"
-        data-en="Book Your Appointment Today">आजच अपॉइंटमेंट बुक करा</h2>
-    <p data-mr="आपल्या समस्या, शंका आणि मार्गदर्शनासाठी आमच्याशी संपर्क साधा आणि निश्चित वेळेत भेट घ्या."
-       data-hi="अपनी समस्याओं, शंकाओं और मार्गदर्शन के लिए हमसे संपर्क करें और निश्चित समय पर मिलें।"
-       data-en="Reach out for your queries and guidance. Book a confirmed time slot with us."
-       >आपल्या समस्या, शंका आणि मार्गदर्शनासाठी आमच्याशी संपर्क साधा आणि निश्चित वेळेत भेट घ्या.</p>
+<!-- =================================================== -->
+<!-- 🕉 FEATURE 14: DAILY QUOTE / SHLOKA OF THE DAY -->
+<!-- =================================================== -->
+<section class="daily-quote-section" id="daily-quote">
+  <div class="daily-quote-container">
+    <div class="daily-quote-card" id="dailyQuoteCard">
+      <!-- JavaScript will automatically populate the quote here -->
+    </div>
   </div>
-  <div class="appt-form-wrap">
-    <form class="appointment-form" id="appointmentForm" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fname" data-mr="पूर्ण नाव *" data-hi="पूरा नाम *" data-en="Full Name *">पूर्ण नाव *</label>
-          <input type="text" id="fname" name="name" placeholder="आपले पूर्ण नाव" required/>
+</section>
+
+<!-- =================================================== -->
+<!-- 🪔 FEATURE 12: FESTIVAL CALENDAR HOMEPAGE TEASER -->
+<!-- =================================================== -->
+<section class="home-festival-teaser" style="background: linear-gradient(135deg, #fffbf0 0%, #f7ebd4 100%); padding: 55px 20px; border-top: 2px solid #e0c286; border-bottom: 2px solid #e0c286;">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <h2 style="font-family: 'Tiro Devanagari Marathi', serif; color: #8b1a1a; font-size: 2.1rem; margin: 12px 0 8px 0;" data-mr="सण आणि उत्सव कॅलेंडर" data-hi="त्योहार और उत्सव कैलेंडर" data-en="Festival & Event Calendar">
+      सण आणि उत्सव कॅलेंडर
+    </h2>
+    <p style="color: #665243; font-size: 1.05rem; max-width: 720px; margin: 0 auto 30px auto;" data-mr="आगामी हिंदू सण, व्रत, जयंती आणि विशेष धार्मिक दिवसांची संपूर्ण माहिती एकाच ठिकाणी पहा." data-hi="आगामी हिंदू त्योहारों, व्रत और धार्मिक दिनों की पूरी जानकारी एक ही जगह देखें।" data-en="Explore upcoming Hindu festivals, vrat, jayanti and sacred events all in one place.">
+      आगामी हिंदू सण, व्रत, जयंती आणि विशेष धार्मिक दिवसांची संपूर्ण माहिती एकाच ठिकाणी पहा.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px;">
+      <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ebd3a7; box-shadow: 0 4px 12px rgba(139,26,26,0.06); text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 6px;">🚩</div>
+        <strong style="color: #8b1a1a; font-size: 1.1rem; display: block;" data-mr="सण व मुहूर्त" data-hi="त्योहार और मुहूर्त" data-en="Festivals & Timing">सण व मुहूर्त</strong>
+        <small style="color: #777;" data-mr="अचूक वेळ आणि पूजा विधी" data-hi="सटीक समय और पूजा विधि" data-en="Accurate Puja Timings">अचूक वेळ आणि पूजा विधी</small>
+      </div>
+
+      <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ebd3a7; box-shadow: 0 4px 12px rgba(139,26,26,0.06); text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 6px;">⏳</div>
+        <strong style="color: #8b1a1a; font-size: 1.1rem; display: block;" data-mr="काउंटडाऊन टायमर" data-hi="काउंटडाउन टाइमर" data-en="Live Countdown">काउंटडाऊन टायमर</strong>
+        <small style="color: #777;" data-mr="पुढील सणासाठी उरलेले दिवस" data-hi="अगले त्योहार के दिन" data-en="Days left for next event">पुढील सणासाठी उरलेले दिवस</small>
+      </div>
+
+      <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ebd3a7; box-shadow: 0 4px 12px rgba(139,26,26,0.06); text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
+        <strong style="color: #8b1a1a; font-size: 1.1rem; display: block;" data-mr="शोधा व फिल्टर करा" data-hi="खोजें और फ़िल्टर करें" data-en="Search & Filter">शोधा व फिल्टर करा</strong>
+        <small style="color: #777;" data-mr="व्रत, जयंती व धार्मिक उत्सव" data-hi="व्रत, जयंती व धार्मिक उत्सव" data-en="Vrat, Jayanti & Special Days">व्रत, जयंती व धार्मिक उत्सव</small>
+      </div>
+    </div>
+
+    <a href="festival.html" style="background: #8b1a1a; color: #ffffff; text-decoration: none; padding: 12px 32px; border-radius: 30px; font-weight: 600; font-size: 1rem; display: inline-block; box-shadow: 0 4px 14px rgba(139,26,26,0.3); transition: transform 0.2s;" data-mr="संपूर्ण सण कॅलेंडर पहा →" data-hi="पूरा त्योहार कैलेंडर देखें →" data-en="View Full Festival Calendar →">संपूर्ण सण कॅलेंडर पहा &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- 🚀 TESTIMONIALS & REVIEWS SECTION -->
+<!-- ========================================== -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-container">
+    
+    <!-- Trust Statistics Bar -->
+    <div class="trust-stats-grid" id="trustStatsContainer"></div>
+
+    <!-- Section Header & Rating Summary -->
+    <div class="testimonials-header">
+      <h2>🙏 भक्तांचे अनुभव (What Our Devotees Say)</h2>
+      <div id="ratingSummaryContainer"></div>
+    </div>
+
+    <!-- Controls Bar: Category Filters & Search -->
+    <div class="controls-bar">
+      <div class="filter-chips">
+        <button class="filter-chip active" data-category="all">All</button>
+        <button class="filter-chip" data-category="griha-pravesh">Griha Pravesh</button>
+        <button class="filter-chip" data-category="marriage">Marriage</button>
+        <button class="filter-chip" data-category="satyanarayan">Satyanarayan</button>
+        <button class="filter-chip" data-category="kundali">Kundali</button>
+        <button class="filter-chip" data-category="vastu">Vastu</button>
+        <button class="filter-chip" data-category="business">Business</button>
+      </div>
+
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="reviewSearchInput" placeholder="Search by name, city or puja..."/>
+      </div>
+    </div>
+
+    <!-- Featured Devotee Story -->
+    <div id="featuredStoryContainer"></div>
+
+    <!-- Testimonials Carousel -->
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="carousel-track" id="testimonialTrack"></div>
+
+      <!-- Controls & Pagination -->
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevReviewBtn" aria-label="Previous Review">❮</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="nextReviewBtn" aria-label="Next Review">❯</button>
+      </div>
+    </div>
+
+    <!-- Submit Review Banner -->
+    <div class="submit-review-banner">
+      <div>
+        <h4 style="margin: 0 0 4px 0; color: var(--rev-maroon); font-family: 'Tiro Devanagari Marathi', serif; font-size: 1.1rem;">
+          आपला अनुभव शेअर करा (Share Your Experience)
+        </h4>
+        <p style="margin: 0; font-size: 0.85rem; color: var(--rev-text-muted);">
+          Have you recently experienced a puja or consultation with Trimurti Jyotishalay?
+        </p>
+      </div>
+      <button class="btn-open-review-modal" id="openReviewModalBtn">
+        ✍️ अनुभव लिहा (Write a Review)
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUBMIT REVIEW MODAL OVERLAY -->
+<div class="review-modal-overlay" id="reviewModalOverlay" style="display: none;">
+  <div class="review-modal">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <h3 style="margin: 0; color: var(--rev-maroon); font-family: 'Tiro Devanagari Marathi', serif;">
+        🙏 आपला अभिप्राय नोंदवा
+      </h3>
+      <button id="closeReviewModalBtn" style="background: none; border: none; font-size: 1.4rem; cursor: pointer;">&times;</button>
+    </div>
+
+    <form id="addReviewForm">
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">पूर्ण नाव (Your Name)</label>
+        <input type="text" id="revInputName" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;"/>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">शहर (City)</label>
+          <input type="text" id="revInputCity" required placeholder="e.g. Pune" style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;"/>
         </div>
-        <div class="form-group">
-          <label for="fphone" data-mr="मोबाईल नंबर *" data-hi="मोबाइल नंबर *" data-en="Mobile Number *">मोबाईल नंबर *</label>
-          <input type="tel" id="fphone" name="phone" placeholder="9XXXXXXXXX" required/>
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">सेवा (Service)</label>
+          <input type="text" id="revInputService" required placeholder="e.g. Vastu Shanti" style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;"/>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fservice" data-mr="सेवेचा प्रकार *" data-hi="सेवा का प्रकार *" data-en="Type of Service *">सेवेचा प्रकार *</label>
-          <select id="fservice" name="service" required>
-            <option value="" data-mr="-- सेवा निवडा --" data-hi="-- सेवा चुनें --" data-en="-- Select Service --">-- सेवा निवडा --</option>
-            <option value="kundali" data-mr="कुंडली विश्लेषण" data-hi="कुंडली विश्लेषण" data-en="Kundali Analysis">कुंडली विश्लेषण</option>
-            <option value="marriage" data-mr="विवाह जुळवणी" data-hi="विवाह मिलान" data-en="Kundali Matching">विवाह जुळवणी</option>
-            <option value="muhurta" data-mr="मुहूर्त सल्ला" data-hi="मुहूर्त परामर्श" data-en="Muhurta Advice">मुहूर्त सल्ला</option>
-            <option value="vastu" data-mr="वास्तु सल्ला" data-hi="वास्तु परामर्श" data-en="Vastu Advice">वास्तु सल्ला</option>
-            <option value="puja" data-mr="पूजाविधी" data-hi="पूजा विधि" data-en="Puja Ritual">पूजाविधी</option>
-            <option value="bhagwat" data-mr="भागवत कथा" data-hi="भागवत कथा" data-en="Bhagavat Katha">भागवत कथा</option>
-            <option value="other" data-mr="इतर" data-hi="अन्य" data-en="Other">इतर</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="fdate" data-mr="पसंतीची तारीख" data-hi="पसंदीदा तारीख" data-en="Preferred Date">पसंतीची तारीख</label>
-          <input type="date" id="fdate" name="date"/>
-        </div>
+
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">रेटिंग (Rating)</label>
+        <select id="revInputRating" style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box;">
+          <option value="5">★★★★★ (5 / 5)</option>
+          <option value="4">★★★★☆ (4 / 5)</option>
+          <option value="3">★★★☆☆ (3 / 5)</option>
+        </select>
       </div>
-      <div class="form-group full-width">
-        <label for="fmessage" data-mr="आपला संदेश" data-hi="आपका संदेश" data-en="Your Message">आपला संदेश</label>
-        <textarea id="fmessage" name="message" rows="4"
-          placeholder="आपली समस्या किंवा प्रश्न येथे लिहा..."></textarea>
+
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 4px;">आपला अनुभव (Your Review)</label>
+        <textarea id="revInputText" rows="4" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--rev-border); border-radius: 6px; box-sizing: border-box; font-family: inherit;"></textarea>
       </div>
-      <button type="submit" class="submit-btn">
-        <span data-mr="📅 अपॉइंटमेंट बुक करा" data-hi="📅 अपॉइंटमेंट बुक करें" data-en="📅 Book Appointment">📅 अपॉइंटमेंट बुक करा</span>
+
+      <button type="submit" class="btn-open-review-modal" style="width: 100%; border-radius: 8px;">
+        अभिप्राय सबमिट करा
       </button>
     </form>
   </div>
+</div>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2 data-mr="आजच आपल्या समस्येचे निराकरण करा" data-hi="आज ही अपनी समस्या का समाधान करें" data-en="Solve Your Problems Today">आजच आपल्या समस्येचे निराकरण करा</h2>
+    <p data-mr="ज्योतिष मार्गदर्शन, पूजा विधी, कुंडली सेवा — सर्व काही एका छताखाली" data-hi="ज्योतिष मार्गदर्शन, पूजा विधि, कुंडली सेवा — सब कुछ एक छत के नीचे" data-en="Astrology guidance, Puja rituals, Kundali services — all under one roof">ज्योतिष मार्गदर्शन, पूजा विधी, कुंडली सेवा — सर्व काही एका छताखाली</p>
+    <div class="final-cta-btns">
+      <a href="login.html" class="hbtn hbtn-maroon"><span class="hbtn-icon">🔑</span><span class="hbtn-text"><strong data-mr="लॉगिन करा" data-hi="लॉगिन करें" data-en="Login">लॉगिन करा</strong></span></a>
+      <a href="register.html" class="hbtn hbtn-green"><span class="hbtn-icon">📝</span><span class="hbtn-text"><strong data-mr="नोंदणी करा" data-hi="रजिस्टर करें" data-en="Register">नोंदणी करा</strong></span></a>
+      <a href="tel:+919999999999" class="hbtn hbtn-orange"><span class="hbtn-icon">📞</span><span class="hbtn-text"><strong data-mr="Call Now" data-hi="अभी कॉल करें" data-en="Call Now">Call Now</strong></span></a>
+    </div>
+  </div>
 </section>
 
-<!-- ===== BHAJAN SANGRAH ===== -->
-<section class="bhajan-section" id="bhajan">
-  <div class="section-header">
-    <span class="section-deco">❧</span>
-    <h2 class="section-title" data-mr="भजन संग्रह" data-hi="भजन संग्रह" data-en="Bhajan Sangrah">भजन संग्रह</h2>
-    <span class="section-deco">❧</span>
-  </div>
-  <p class="bhajan-subtitle" data-mr="देवतेवर क्लिक करा — भजन, आरती, स्तोत्रे ऐका" data-hi="देवता पर क्लिक करें — भजन, आरती, स्तोत्र सुनें" data-en="Click a deity to browse and listen to bhajans, aartis &amp; stotras">देवतेवर क्लिक करा — भजन, आरती, स्तोत्रे ऐका</p>
-  <div class="deity-grid" id="deityGrid">
+<!-- Gallery Feature Teaser on index.html -->
+<section class="home-gallery-teaser" style="background: #fdf8f0; padding: 50px 20px; text-align: center; border-top: 1px solid #ebdcc4; border-bottom: 1px solid #ebdcc4;">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <h2 style="font-family: 'Tiro Devanagari Marathi', serif; color: #8b1a1a; font-size: 1.8rem; margin: 10px 0;">
+      आमची फोटो गॅलरी पहा
+    </h2>
+    <p style="color: #665243; font-size: 1rem; margin-bottom: 24px;">
+      मंदिर परिसर, विशेष पूजा विधी आणि उत्सवांचे पवित्र क्षण पहा.
+    </p>
+    <a href="gallery.html" style="background: #8b1a1a; color: #ffffff; text-decoration: none; padding: 10px 24px; border-radius: 25px; font-weight: 600; display: inline-block;">
+      संपूर्ण गॅलरी पहा &rarr;
+    </a>
   </div>
 </section>
 
-<!-- ===== KUNDALI SECTION ===== -->
-<section class="kundali-section" id="kundali">
-  <div class="section-header">
-    <span class="section-deco">❧</span>
-    <h2 class="section-title"
-        data-mr="कुंडली सेवा" data-hi="कुंडली सेवाएं" data-en="Kundali Services">कुंडली सेवा</h2>
-    <span class="section-deco">❧</span>
-  </div>
-  <p class="kundali-subtitle"
-     data-mr="माहिती भरा आणि तयार कुंडली PDF डाउनलोड करा — एकदम प्रिंट-रेडी"
-     data-hi="जानकारी भरें और तैयार कुंडली PDF डाउनलोड करें — एकदम प्रिंट-रेडी"
-     data-en="Fill in the details and download a print-ready Kundali PDF instantly">माहिती भरा आणि तयार कुंडली PDF डाउनलोड करा — एकदम प्रिंट-रेडी</p>
+<!-- ── HOMEPAGE FAQ PREVIEW SECTION ── -->
+<section class="home-faq-section" id="faq-preview">
+  <div class="home-faq-container">
+    <div class="section-header-center">
+      <span class="section-badge">❓ FAQ</span>
+      <h2 class="section-title" data-i18n="home_faq_title">वारंवार विचारले जाणारे प्रश्न</h2>
+      <p class="section-subtitle" data-i18n="home_faq_sub">तुमच्या मनातील महत्त्वाच्या प्रश्नांची उत्तरे</p>
+    </div>
 
-  <!-- Login gate banner (shown for guests) -->
-  <div class="kc-login-gate" id="kcLoginGate">
-    <div class="kc-login-gate-inner">
-      <span class="kc-lock-icon">🔒</span>
-      <p data-mr="कुंडली सेवा वापरण्यासाठी लॉगिन करा किंवा नोंदणी करा" data-hi="कुंडली सेवा का उपयोग करने के लिए लॉगिन करें या रजिस्टर करें" data-en="Please login or register to access Kundali tools">कुंडली सेवा वापरण्यासाठी लॉगिन करा किंवा नोंदणी करा</p>
-      <div class="kc-login-gate-btns">
-        <a href="login.html" class="btn-primary" style="padding:10px 28px;border-radius:30px;font-size:.88rem;font-weight:600;background:var(--maroon);color:#fff;text-decoration:none;">लॉगिन</a>
-        <a href="register.html" class="btn-secondary" style="padding:10px 28px;border-radius:30px;font-size:.88rem;font-weight:600;background:#e8e0d0;color:var(--brown);text-decoration:none;">नोंदणी</a>
-      </div>
+    <div class="home-faq-accordion" id="homeFaqList">
+      <!-- Question 1 -->
+      <article class="home-faq-item">
+        <button class="home-faq-header" onclick="toggleHomeFaq(this)" aria-expanded="false">
+          <span class="faq-q-text" data-i18n="faq_q1">पूजा कशी बुक करायची?</span>
+          <span class="faq-icon">＋</span>
+        </button>
+        <div class="home-faq-body">
+          <p data-i18n="faq_a1">सेवा विभागातून आवश्यक पूजा निवडा, उपलब्ध तारीख आणि वेळ निवडून तुमची माहिती भरा व बुकिंग पूर्ण करा.</p>
+        </div>
+      </article>
+
+      <!-- Question 2 -->
+      <article class="home-faq-item">
+        <button class="home-faq-header" onclick="toggleHomeFaq(this)" aria-expanded="false">
+          <span class="faq-q-text" data-i18n="faq_q2">कुंडलीसाठी कोणती माहिती लागते?</span>
+          <span class="faq-icon">＋</span>
+        </button>
+        <div class="home-faq-body">
+          <p data-i18n="faq_a2">अचूक जन्म तारीख, अचूक जन्म वेळ आणि अचूक जन्म ठिकाण आवश्यक आहे.</p>
+        </div>
+      </article>
+
+      <!-- Question 3 -->
+      <article class="home-faq-item">
+        <button class="home-faq-header" onclick="toggleHomeFaq(this)" aria-expanded="false">
+          <span class="faq-q-text" data-i18n="faq_q3">Online consultation उपलब्ध आहे का?</span>
+          <span class="faq-icon">＋</span>
+        </button>
+        <div class="home-faq-body">
+          <p data-i18n="faq_a3">होय, तुम्ही WhatsApp व्हिडिओ कॉल किंवा फोनद्वारे गुरुजींशी ऑनलाईन मार्गदर्शन घेऊ शकता.</p>
+        </div>
+      </article>
+
+      <!-- Question 4 -->
+      <article class="home-faq-item">
+        <button class="home-faq-header" onclick="toggleHomeFaq(this)" aria-expanded="false">
+          <span class="faq-q-text" data-i18n="faq_q4">कोणते payment methods उपलब्ध आहेत?</span>
+          <span class="faq-icon">＋</span>
+        </button>
+        <div class="home-faq-body">
+          <p data-i18n="faq_a4">आम्ही UPI (Google Pay, PhonePe, Paytm), डेबिट/क्रेडिट कार्ड आणि नेट बँकिंग स्वीकारतो.</p>
+        </div>
+      </article>
+
+      <!-- Question 5 -->
+      <article class="home-faq-item">
+        <button class="home-faq-header" onclick="toggleHomeFaq(this)" aria-expanded="false">
+          <span class="faq-q-text" data-i18n="faq_q5">पूजेचे साहित्य कोण पुरवते?</span>
+          <span class="faq-icon">＋</span>
+        </button>
+        <div class="home-faq-body">
+          <p data-i18n="faq_a5">गुरुजी आवश्यक साहित्याची यादी देतात किंवा इच्छेनुसार सर्व साहित्याची सोय गुरुजींमार्फतही केली जाते.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- CTA to dedicated FAQ page -->
+    <div class="home-faq-more">
+      <a href="faq.html" class="btn-secondary-gold" data-i18n="btn_view_all_faqs">सर्व प्रश्न पहा (20+) &rarr;</a>
     </div>
   </div>
-
-  <div class="kundali-grid kc-gated-section" id="kundaliGrid" style="display:none;">
-
-    <!-- जन्म कुंडली -->
-    <div class="kundali-card">
-      <div class="kc-icon">🕉</div>
-      <h3 class="kc-title"
-          data-mr="जन्म कुंडली" data-hi="जन्म कुंडली" data-en="Janma Kundali">जन्म कुंडली</h3>
-      <p class="kc-desc"
-         data-mr="एक चार्ट — नाव, जन्मतारीख, वेळ, ग्रहस्थिती, ज्योतिषशास्त्रीय माहिती"
-         data-hi="एक चार्ट — नाम, जन्मतिथि, समय, ग्रहस्थिति, ज्योतिषीय जानकारी"
-         data-en="Single chart — Name, DOB, Time, Planetary positions, Jyotish details">एक चार्ट — नाव, जन्मतारीख, वेळ, ग्रहस्थिती, ज्योतिषशास्त्रीय माहिती</p>
-      <div class="kc-tags">
-        <span class="kc-tag">१२ भाव</span>
-        <span class="kc-tag">ग्रह निवड</span>
-        <span class="kc-tag">A4 प्रिंट</span>
-      </div>
-      <a href="login.html?redirect=janma-kundali.html" class="kc-btn kc-gated" data-real-href="janma-kundali.html">
-        📄 <span data-mr="कुंडली तयार करा" data-hi="कुंडली बनाएं" data-en="Create Kundali">कुंडली तयार करा</span>
-      </a>
-    </div>
-
-    <!-- जन्म + लग्न कुंडली -->
-    <div class="kundali-card">
-      <div class="kc-icon">☸</div>
-      <h3 class="kc-title"
-          data-mr="जन्म + लग्न कुंडली" data-hi="जन्म + लग्न कुंडली" data-en="Janma + Lagna Kundali">जन्म + लग्न कुंडली</h3>
-      <p class="kc-desc"
-         data-mr="एकाच पानावर दोन चार्ट — जन्म कुंडली व लग्न कुंडली एकत्र"
-         data-hi="एक ही पृष्ठ पर दो चार्ट — जन्म कुंडली और लग्न कुंडली एक साथ"
-         data-en="Two charts on one page — Birth chart and Lagna chart together">एकाच पानावर दोन चार्ट — जन्म कुंडली व लग्न कुंडली एकत्र</p>
-      <div class="kc-tags">
-        <span class="kc-tag">२४ भाव</span>
-        <span class="kc-tag">दोन चार्ट</span>
-        <span class="kc-tag">A4 प्रिंट</span>
-      </div>
-      <a href="login.html?redirect=janma-lagna-kundali.html" class="kc-btn kc-gated" data-real-href="janma-lagna-kundali.html">
-        📄 <span data-mr="कुंडली तयार करा" data-hi="कुंडली बनाएं" data-en="Create Kundali">कुंडली तयार करा</span>
-      </a>
-    </div>
-
-    <!-- वधू-वर मिलन -->
-    <div class="kundali-card">
-      <div class="kc-icon">💒</div>
-      <h3 class="kc-title"
-          data-mr="वधू-वर कुंडली मिलन" data-hi="वधू-वर कुंडली मिलन" data-en="Kundali Matching">वधू-वर कुंडली मिलन</h3>
-      <p class="kc-desc"
-         data-mr="वधू व वराची कुंडली, गुण मिलन तक्ता, निष्कर्ष एकाच पानावर"
-         data-hi="वधू और वर की कुंडली, गुण मिलान तालिका, निष्कर्ष एक ही पृष्ठ पर"
-         data-en="Bride &amp; Groom charts, Guna Milan table, conclusion on one page">वधू व वराची कुंडली, गुण मिलन तक्ता, निष्कर्ष एकाच पानावर</p>
-      <div class="kc-tags">
-        <span class="kc-tag">२४ भाव</span>
-        <span class="kc-tag">गुण मिलन</span>
-        <span class="kc-tag">A4 प्रिंट</span>
-      </div>
-      <a href="login.html?redirect=vadhu-var-milan.html" class="kc-btn kc-gated" data-real-href="vadhu-var-milan.html">
-        📄 <span data-mr="कुंडली तयार करा" data-hi="कुंडली बनाएं" data-en="Create Kundali">कुंडली तयार करा</span>
-      </a>
-    </div>
-
-  </div>
-
-  <!-- Puja PDFs download strip (login gated) -->
-  <div class="puja-pdfs kc-gated-section" style="display:none;">
-    <h3 class="puja-pdfs-title"
-        data-mr="पूजा साहित्य यादी — PDF डाउनलोड"
-        data-hi="पूजा सामग्री सूची — PDF डाउनलोड"
-        data-en="Puja Samagri List — PDF Download">पूजा साहित्य यादी — PDF डाउनलोड</h3>
-    <div class="puja-pdf-grid">
-      <a href="https://drive.google.com/uc?export=download&id=PUJA_PDF_1_ID" target="_blank" rel="noopener" class="puja-pdf-btn">
-        🔥 <span data-mr="नूतन मूर्ती प्राणप्रतिष्ठा पूजा" data-hi="नूतन मूर्ती प्राणप्रतिष्ठा पूजा" data-en="Pranpratishtha Puja List">नूतन मूर्ती प्राणप्रतिष्ठा पूजा</span>
-      </a>
-      <a href="https://drive.google.com/uc?export=download&id=PUJA_PDF_2_ID" target="_blank" rel="noopener" class="puja-pdf-btn">
-        🕉 <span data-mr="लघुरुद्र पूजा साहित्य" data-hi="लघुरुद्र पूजा सामग्री" data-en="Laghurudra Puja List">लघुरुद्र पूजा साहित्य</span>
-      </a>
-      <a href="https://drive.google.com/uc?export=download&id=PUJA_PDF_3_ID" target="_blank" rel="noopener" class="puja-pdf-btn">
-        🪔 <span data-mr="पूजा मांडणी सामग्री" data-hi="पूजा मांडणी सामग्री" data-en="Puja Mandani Samagri">पूजा मांडणी सामग्री</span>
-      </a>
-    </div>
-    <p class="puja-note"
-       data-mr="* पूजेपूर्वी ही यादी प्रिंट करून ठेवा"
-       data-hi="* पूजा से पहले यह सूची प्रिंट करके रखें"
-       data-en="* Print this list before the puja ceremony">* पूजेपूर्वी ही यादी प्रिंट करून ठेवा</p>
-  </div>
-
 </section>
+
+<a href="https://wa.me/919876543210?text=नमस्कार%20🙏" 
+   class="floating-wa-btn" 
+   target="_blank" 
+   rel="noopener" 
+   aria-label="Contact on WhatsApp">
+  💬
+</a>
 
 <!-- ===== CONTACT STRIP ===== -->
 <div class="contact-strip" id="contact">
@@ -543,7 +714,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="footer-logo"/>
+      <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="footer-logo"/>
       <p data-mr="ज्योतिष मार्गदर्शन • वैदिक पूजा विधी • भागवत कथा प्रवचन"
          data-hi="ज्योतिष मार्गदर्शन • वैदिक पूजा विधी • भागवत कथा प्रवचन"
          data-en="Astrology Guidance • Vedic Puja • Bhagavat Katha">ज्योतिष मार्गदर्शन • वैदिक पूजा विधी • भागवत कथा प्रवचन</p>
@@ -553,14 +724,13 @@
       <h4 data-mr="त्वरित दुवे" data-hi="त्वरित लिंक" data-en="Quick Links">त्वरित दुवे</h4>
       <ul>
         <li><a href="#home"        data-mr="होम"          data-hi="होम"            data-en="Home">होम</a></li>
-        <li><a href="#services"    data-mr="सेवा"          data-hi="सेवाएं"          data-en="Services">सेवा</a></li>
-        <li><a href="#appointment" data-mr="अपॉइंटमेंट"   data-hi="अपॉइंटमेंट"     data-en="Appointment">अपॉइंटमेंट</a></li>
         <li><a href="#about"       data-mr="आमच्याबद्दल"  data-hi="हमारे बारे में"  data-en="About Us">आमच्याबद्दल</a></li>
+        <li><a href="#testimonials" data-mr="अभिप्राय"    data-hi="प्रशंसापत्र"     data-en="Testimonials">अभिप्राय</a></li>
+        <li><a href="#testimonials">Devotee Reviews & Stories</a></li>
         <li><a href="#contact"     data-mr="संपर्क"        data-hi="संपर्क"          data-en="Contact">संपर्क</a></li>
-        <li><a href="#bhajan"      data-mr="भजन संग्रह"   data-hi="भजन संग्रह"      data-en="Bhajan Sangrah">भजन संग्रह</a></li>
-        <li><a href="#kundali"     data-mr="कुंडली"        data-hi="कुंडली"           data-en="Kundali">कुंडली</a></li>
-        <li><a href="booking.html" data-mr="बुक करा" data-hi="बुक करें" data-en="Book Now">बुक करा</a></li>
-        <li><a href="admin.html" data-mr="व्यवस्थापन" data-hi="व्यवस्थापन" data-en="Admin">व्यवस्थापन</a></li>
+        <li><a href="login.html" data-mr="लॉगिन" data-hi="लॉगिन" data-en="Login">लॉगिन</a></li>
+        <li><a href="gallery.html" data-mr="गॅलरी" data-hi="गॅलरी" data-en="Gallery">गॅलरी</a></li>
+        <li><a href="register.html" data-mr="नोंदणी" data-hi="रजिस्टर" data-en="Register">नोंदणी</a></li>
       </ul>
     </div>
     <div class="footer-links">
@@ -570,6 +740,7 @@
         <li><span data-mr="धार्मिक सेवा"    data-hi="धार्मिक सेवाएं"   data-en="Religious Services">धार्मिक सेवा</span></li>
         <li><span data-mr="वास्तु सल्ला"    data-hi="वास्तु परामर्श"    data-en="Vastu Advice">वास्तु सल्ला</span></li>
         <li><span data-mr="भागवत कथा"       data-hi="भागवत कथा"        data-en="Bhagavat Katha">भागवत कथा</span></li>
+        <li><a href="festival.html" data-mr="सण उत्सव" data-hi="त्योहार कैलेंडर" data-en="Festival Calendar">सण उत्सव कॅलेंडर</a></li>
       </ul>
     </div>
     <div class="footer-contact">
@@ -590,26 +761,175 @@
 <!-- Success Toast -->
 <div class="toast" id="toast"></div>
 
-<script type="module" src="/src/scripts/script.js"></script>
+<script type="module" src="src/scripts/script.js"></script>
+<script type="module" src="src/scripts/home-gate.js"></script>
+<script src="src/scripts/panchang.js"></script>
+<script src="src/scripts/wizard.js"></script>
+
+<!-- 📅 PANCHANG MODAL (Dashboard Card Style) -->
+<div id="panchangModal" class="panchang-modal-overlay">
+  <div class="panchang-card-wrapper">
+    <button class="panchang-modal-close" onclick="closePanchangModal()">&times;</button>
+    
+    <!-- Header -->
+    <div class="panchang-card-header">
+      <div class="p-title-group">
+        <span class="p-om-symbol">🕉</span>
+        <div>
+          <h2 class="p-card-title">Today's Panchang</h2>
+          <p class="p-card-date" id="panchangTodayDate">7 August 2026</p>
+        </div>
+      </div>
+      <div class="p-header-actions">
+        <button class="p-icon-btn" title="Copy">📋</button>
+        <button class="p-icon-btn" title="Share">💬</button>
+        <button class="p-icon-btn" title="Download">📄</button>
+      </div>
+    </div>
+
+    <hr class="p-divider">
+
+    <!-- 3-Column Grid -->
+    <div class="panchang-items-grid">
+      <!-- Row 1 -->
+      <div class="p-stat-card">
+        <div class="p-stat-icon-bg">🌞</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Sunrise</span>
+          <strong class="p-stat-value">06:12 AM</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card">
+        <div class="p-stat-icon-bg">🌆</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Sunset</span>
+          <strong class="p-stat-value">06:58 PM</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card">
+        <div class="p-stat-icon-bg">🌙</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Tithi</span>
+          <strong class="p-stat-value">Shukla Tritiya</strong>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="p-stat-card">
+        <div class="p-stat-icon-bg">⭐</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Nakshatra</span>
+          <strong class="p-stat-value">Rohini</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card">
+        <div class="p-stat-icon-bg">📖</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Yoga</span>
+          <strong class="p-stat-value">Siddha</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card">
+        <div class="p-stat-icon-bg">🐚</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Karana</span>
+          <strong class="p-stat-value">Garaja</strong>
+        </div>
+      </div>
+
+      <!-- Row 3: Inauspicious & Timings -->
+      <div class="p-stat-card card-rahu">
+        <div class="p-stat-icon-bg">🕒</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Rahu Kaal</span>
+          <strong class="p-stat-value">01:30 PM – 03:00 PM</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card card-yamaganda">
+        <div class="p-stat-icon-bg">⏳</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Yamaganda</span>
+          <strong class="p-stat-value">09:00 AM – 10:30 AM</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card card-gulika">
+        <div class="p-stat-icon-bg">🐍</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Gulika Kalam</span>
+          <strong class="p-stat-value">06:00 AM – 07:30 AM</strong>
+        </div>
+      </div>
+
+      <!-- Row 4: Festival & Recommended Puja -->
+      <div class="p-stat-card span-2 card-gold-border">
+        <div class="p-stat-icon-bg">🙏</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Today's Festival</span>
+          <strong class="p-stat-value highlight-maroon">Nag Panchami</strong>
+        </div>
+      </div>
+
+      <div class="p-stat-card card-gold-border">
+        <div class="p-stat-icon-bg">📿</div>
+        <div class="p-stat-info">
+          <span class="p-stat-label">Recommended Puja</span>
+          <strong class="p-stat-value highlight-maroon">Nag Puja</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auspicious & Inauspicious Guidelines -->
+    <div class="p-auspicious-container">
+      <div class="p-guide-card">
+        <div class="p-guide-header">
+          <span class="dot dot-green"></span>
+          <span class="guide-title text-green">Good For</span>
+        </div>
+        <div class="p-pill-group">
+          <span class="p-pill pill-green">✓ Business</span>
+          <span class="p-pill pill-green">✓ Education</span>
+          <span class="p-pill pill-green">✓ Housewarming</span>
+        </div>
+      </div>
+
+      <div class="p-guide-card">
+        <div class="p-guide-header">
+          <span class="dot dot-red"></span>
+          <span class="guide-title text-red">Avoid</span>
+        </div>
+        <div class="p-pill-group">
+          <span class="p-pill pill-red">✕ Marriage</span>
+          <span class="p-pill pill-red">✕ Vehicle Purchase</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centered Action Button -->
+    <div class="p-card-footer">
+      <a href="#full-panchang" class="p-btn-full" onclick="closePanchangModal()">View Full Panchang &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="src/scripts/main.js"></script>
+<!-- Load and Initialize Testimonials Module -->
 <script type="module">
-  import { supabase } from '/src/lib/supabase.js';
-  (async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    const gated = document.querySelectorAll('.kc-gated-section');
-    const gateBanner = document.getElementById('kcLoginGate');
-    if (session) {
-      // Logged in — show tools, hide banner, restore real hrefs
-      gated.forEach(el => el.style.display = '');
-      if (gateBanner) gateBanner.style.display = 'none';
-      document.querySelectorAll('.kc-gated[data-real-href]').forEach(a => {
-        a.href = a.dataset.realHref;
-      });
-    } else {
-      // Guest — keep tools hidden, show banner
-      gated.forEach(el => el.style.display = 'none');
-      if (gateBanner) gateBanner.style.display = 'block';
-    }
-  })();
+  import { TestimonialEngine } from './src/scripts/testimonials-engine.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const testimonials = new TestimonialEngine('./public/data/reviews.json');
+    testimonials.init();
+  });
 </script>
+
+<script src="src/scripts/dailyQuote.js"></script>
+
 </body>
 </html>

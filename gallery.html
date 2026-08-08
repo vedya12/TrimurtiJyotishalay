@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>आमची गॅलरी | त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="src/styles/gallery.css"/>
+
+  <script src="src/scripts/gallery.js" defer></script>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+      <span class="navbar-brand">त्रिमूर्ती ज्योतिषालय</span>
+    </div>
+
+    <div class="nav-right">
+      <!-- Language Switcher Button Group (Matching index.html) -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="mr">मराठी</button>
+        <button class="lang-btn" data-lang="hi">हिंदी</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <a href="index.html" class="btn-primary-nav" ">मुख्यपृष्ठावर जा</a>
+    </div>
+  </nav>
+
+  <!-- ── GALLERY HERO SECTION ── -->
+  <section class="gallery-hero">
+    <div class="hero-container">
+      <div class="hero-om">🛕</div>
+      <h1 class="hero-title" data-i18n="hero_title">आमची गॅलरी</h1>
+      <p class="hero-subbrand">Trimurti Jyotishalay</p>
+
+      <div class="hero-divider">
+        <span class="line"></span>
+        <span class="symbol">🪔</span>
+        <span class="line"></span>
+      </div>
+
+      <p class="hero-tagline" data-i18n="hero_tagline">पवित्र क्षण आणि आपल्या आठवणी</p>
+    </div>
+  </section>
+
+  <!-- ── MAIN GALLERY SECTION ── -->
+  <main class="gallery-main-container">
+    
+    <!-- Category Filters -->
+    <div class="filter-bar-wrapper">
+      <div class="filter-bar" id="filterBar" role="tablist" aria-label="गॅलरी श्रेणी filter">
+        <button class="filter-btn active" data-category="all" role="tab" aria-selected="true" data-i18n="cat_all">सर्व</button>
+        <button class="filter-btn" data-category="puja" role="tab" aria-selected="false" data-i18n="cat_puja">पूजा</button>
+        <button class="filter-btn" data-category="festival" role="tab" aria-selected="false" data-i18n="cat_festival">उत्सव</button>
+        <button class="filter-btn" data-category="temple" role="tab" aria-selected="false" data-i18n="cat_temple">मंदिर</button>
+        <button class="filter-btn" data-category="guruji" role="tab" aria-selected="false" data-i18n="cat_guruji">गुरुजी</button>
+        <button class="filter-btn" data-category="events" role="tab" aria-selected="false" data-i18n="cat_events">कार्यक्रम</button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="galleryGrid" aria-live="polite">
+      <!-- Dynamically populated by JS / Skeleton placeholders initially -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="gallery-empty-state" id="galleryEmptyState" style="display: none;">
+      <div class="empty-icon">🖼️</div>
+      <h3 class="empty-title" data-i18n="empty_title">या श्रेणीमध्ये सध्या कोणतेही फोटो उपलब्ध नाहीत.</h3>
+      <p class="empty-sub" data-i18n="empty_sub">लवकरच नवीन फोटो जोडले जातील.</p>
+    </div>
+
+  </main>
+
+  <!-- ── LIGHTBOX MODAL ── -->
+  <div class="lightbox-overlay" id="lightboxOverlay" aria-hidden="true" role="dialog" aria-label="मोठ्या आकारात चित्र पहा">
+    <div class="lightbox-content" id="lightboxContent">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="बंद करा">&times;</button>
+      
+      <button class="lightbox-nav-btn prev" id="lightboxPrevBtn" aria-label="मागील चित्र">&lsaquo;</button>
+      
+      <div class="lightbox-image-wrapper">
+        <img src="" id="lightboxImg" alt="" />
+        <div class="lightbox-caption">
+          <span class="lightbox-badge" id="lightboxCategoryBadge"></span>
+          <h2 class="lightbox-title" id="lightboxTitle"></h2>
+        </div>
+      </div>
+
+      <button class="lightbox-nav-btn next" id="lightboxNextBtn" aria-label="पुढील चित्र">&rsaquo;</button>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <p>© 2026 त्रिमूर्ती ज्योतिषालय. सर्व हक्क सुरक्षित.</p>
+  </footer>
+
+</body>
+</html>

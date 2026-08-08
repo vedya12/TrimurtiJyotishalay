@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>विचार गुरुजींना (Ask Guruji) | Knowledge Base - त्रिमूर्ती ज्योतिषालय</title>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="src/styles/dashboard.css"/>
+  <link rel="stylesheet" href="src/styles/knowledge-base.css"/>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" style="display:flex;">
+    <div class="navbar-left">
+      <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+      <span class="navbar-brand">त्रिमूर्ती ज्योतिषालय</span>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="dashboard.html" style="text-decoration:none; color:#8b1a1a; font-weight:600; font-size:0.88rem;">🏠 डॅशबोर्ड</a>
+      <button id="adminDrawerTrigger" class="kb-action-btn secondary" style="display:none; font-size:0.8rem;">
+        ⚙️ Admin Panel
+      </button>
+    </div>
+  </nav>
+
+  <div class="kb-container">
+    
+    <!-- Hero & Global Search Section -->
+    <div class="kb-hero">
+      <span class="kb-hero-badge">🙏 गुरुजींचे मार्गदर्शन (Guruji's Knowledge Base)</span>
+      <h1>धार्मिक शंका? गुरुजींना विचारा</h1>
+      <p>Have a religious or astrological query? Search Vedic answers and rituals verified by Guruji.</p>
+
+      <div class="kb-search-wrapper">
+        <div class="kb-search-input-group">
+          <span class="kb-search-icon">🔍</span>
+          <input type="text" id="kbSearchInput" class="kb-search-input" placeholder="Search question (e.g. Satyanarayan Puja, Rahu Kaal, Griha Pravesh)..." autocomplete="off"/>
+          <button class="kb-search-btn" id="kbSearchBtn">शोध घ्या</button>
+        </div>
+        <!-- Live Auto-Suggestion Dropdown -->
+        <div class="kb-suggestions-dropdown" id="kbSuggestions"></div>
+      </div>
+    </div>
+
+    <!-- Category Browser -->
+    <div class="kb-section-title">
+      <span>📂 वर्गवारीने पहा (Categories)</span>
+    </div>
+    <div class="kb-categories-scroll" id="categoryList">
+      <button class="kb-category-chip active" data-cat="all">🌟 सर्व (All)</button>
+      <button class="kb-category-chip" data-cat="Pujas">🕉️ पूजाहूटी (Pujas)</button>
+      <button class="kb-category-chip" data-cat="Rituals">📿 विधी (Rituals)</button>
+      <button class="kb-category-chip" data-cat="House">🏠 वास्तू / गृह (House)</button>
+      <button class="kb-category-chip" data-cat="Panchang">🌞 पंचांग (Panchang)</button>
+      <button class="kb-category-chip" data-cat="Astrology">🔮 ज्योतिष (Astrology)</button>
+      <button class="kb-category-chip" data-cat="Marriage">💍 विवाह (Marriage)</button>
+    </div>
+
+    <!-- Tab Section Controls -->
+    <div style="display:flex; gap:16px; margin-bottom:20px; border-bottom:1px solid #ebdcc4; padding-bottom:8px;">
+      <button class="tab-btn active" id="tabPopular" style="background:none; border:none; font-weight:700; color:#8b1a1a; cursor:pointer;">
+        🔥 सर्वाधिक विचारलेले प्रश्न (Popular)
+      </button>
+      <button class="tab-btn" id="tabRecent" style="background:none; border:none; font-weight:600; color:#665243; cursor:pointer;">
+        🆕 नवीन प्रश्न (Recent)
+      </button>
+      <button class="tab-btn" id="tabSaved" style="background:none; border:none; font-weight:600; color:#665243; cursor:pointer;">
+        ⭐ माझे जतन केलेले प्रश्न (Saved)
+      </button>
+    </div>
+
+    <!-- Questions Grid Container -->
+    <div class="kb-questions-grid" id="questionsGrid">
+      <div style="text-align:center; grid-column: 1/-1; padding: 40px; color:#887262;">लोड होत आहे...</div>
+    </div>
+
+  </div>
+
+  <!-- QUESTION DETAIL MODAL -->
+  <div class="kb-modal-overlay" id="questionModal" style="display:none;">
+    <div class="kb-modal">
+      <div class="kb-modal-header">
+        <span class="kb-card-category" id="modalCategory">Pujas</span>
+        <button class="kb-modal-close" id="closeModalBtn">&times;</button>
+      </div>
+
+      <div class="kb-modal-body">
+        <h2 id="modalQuestionTitle" style="color:#8b1a1a; margin-top:0; font-family:'Tiro Devanagari Marathi', serif;"></h2>
+        <p id="modalQuestionMr" style="color:#665243; font-weight:500; margin-top:-8px;"></p>
+
+        <!-- Guruji's Answer Box -->
+        <div class="kb-answer-box">
+          <div class="kb-guruji-badge">
+            <div class="kb-guruji-avatar">🕉</div>
+            <div>
+              <div style="font-size:0.95rem;">गुरुजींचे उत्तर (Guruji's Answer)</div>
+              <div style="font-size:0.75rem; color:#887262; font-weight:normal;" id="modalLastUpdated">Updated recently</div>
+            </div>
+          </div>
+          <div class="kb-answer-text" id="modalAnswerText"></div>
+        </div>
+
+        <!-- PDF Attachments if available -->
+        <div id="modalAttachmentsContainer" style="margin-bottom:16px;"></div>
+
+        <!-- Tags -->
+        <div class="kb-tags-list" id="modalTagsList"></div>
+
+        <!-- Action & Voting Toolbar -->
+        <div class="kb-actions-bar">
+          <div class="kb-vote-group">
+            <span style="font-size:0.85rem; color:#665243;">हे उत्तर उपयुक्त वाटले का?</span>
+            <button class="kb-vote-btn" id="voteYesBtn">👍 <span id="voteYesCount">0</span></button>
+            <button class="kb-vote-btn" id="voteNoBtn">👎 <span id="voteNoCount">0</span></button>
+          </div>
+
+          <div style="display:flex; gap:8px;">
+            <button class="kb-action-btn secondary" id="saveQuestionModalBtn">⭐ Save</button>
+            <button class="kb-action-btn secondary" id="shareWhatsappBtn">📤 WhatsApp</button>
+            <button class="kb-action-btn" id="downloadPdfBtn">📄 Download PDF</button>
+          </div>
+        </div>
+
+        <!-- Related Questions -->
+        <div class="kb-related-box">
+          <h4>संबधित प्रश्न (Related Topics)</h4>
+          <ul class="kb-related-list" id="modalRelatedList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN MANAGEMENT DRAWER (Guruji Only) -->
+  <div class="kb-admin-drawer" id="adminDrawer">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h3 style="margin:0; color:#8b1a1a;">⚙️ गुरुजी नॉलेज बेस ॲडमिन</h3>
+      <button id="closeAdminDrawerBtn" style="background:none; border:none; font-size:1.4rem; cursor:pointer;">&times;</button>
+    </div>
+
+    <form id="adminQuestionForm">
+      <input type="hidden" id="adminQuestionId" />
+      
+      <div class="kb-form-group">
+        <label>प्रश्न (English / Hinglish)</label>
+        <input type="text" id="adminQuestionEn" class="kb-form-control" required placeholder="Can Satyanarayan Puja be done on Ekadashi?"/>
+      </div>
+
+      <div class="kb-form-group">
+        <label>प्रश्न (मराठी)</label>
+        <input type="text" id="adminQuestionMr" class="kb-form-control" placeholder="एकादशीच्या दिवशी सत्यनारायण पूजा करता येते का?"/>
+      </div>
+
+      <div class="kb-form-group">
+        <label>वर्गवारी (Category)</label>
+        <select id="adminCategory" class="kb-form-control">
+          <option value="Pujas">Pujas</option>
+          <option value="Rituals">Rituals</option>
+          <option value="House">House</option>
+          <option value="Panchang">Panchang</option>
+          <option value="Astrology">Astrology</option>
+          <option value="Marriage">Marriage</option>
+        </select>
+      </div>
+
+      <div class="kb-form-group">
+        <label>टॅग्स (Comma Separated Tags)</label>
+        <input type="text" id="adminTags" class="kb-form-control" placeholder="satyanarayan, ekadashi, vrat"/>
+      </div>
+
+      <div class="kb-form-group">
+        <label>गुरुजींचे सविस्तर उत्तर (Guruji's Answer)</label>
+        <textarea id="adminAnswer" class="kb-form-control" rows="6" required placeholder="Write Guruji's authoritative explanation..."></textarea>
+      </div>
+
+      <button type="submit" class="kb-action-btn" style="width:100%; justify-content:center; padding:12px;">
+        💾 प्रश्न जतन करा (Save Question)
+      </button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { KnowledgeEngine } from './src/scripts/knowledge-engine.js';
+    import { getSession } from './src/lib/auth.js';
+
+    const engine = new KnowledgeEngine();
+    let currentQuestions = [];
+    let currentCategory = 'all';
+    let currentTab = 'popular';
+    let activeQuestion = null;
+
+    // DOM References
+    const searchInput = document.getElementById('kbSearchInput');
+    const searchBtn = document.getElementById('kbSearchBtn');
+    const suggestionsEl = document.getElementById('kbSuggestions');
+    const questionsGrid = document.getElementById('questionsGrid');
+    const questionModal = document.getElementById('questionModal');
+
+    // Admin References
+    const adminDrawerTrigger = document.getElementById('adminDrawerTrigger');
+    const adminDrawer = document.getElementById('adminDrawer');
+    const closeAdminDrawerBtn = document.getElementById('closeAdminDrawerBtn');
+    const adminQuestionForm = document.getElementById('adminQuestionForm');
+
+    // Initialize App
+    async function init() {
+      await engine.init();
+      
+      // Check user session for admin permissions
+      const session = getSession();
+      if (session && (session.role === 'admin' || session.user === 'guruji')) {
+        adminDrawerTrigger.style.display = 'inline-flex';
+      }
+
+      setupEvents();
+      renderCurrentTab();
+    }
+
+    function setupEvents() {
+      // Live Search Suggestions
+      searchInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const matches = engine.getSuggestions(val);
+        
+        if (matches.length > 0) {
+          suggestionsEl.innerHTML = matches.map(m => `
+            <div class="kb-suggestion-item" data-id="${m.id}">
+              <span class="kb-suggestion-title">${m.question}</span>
+              <span class="kb-suggestion-category">${m.category}</span>
+            </div>
+          `).join('');
+          suggestionsEl.style.display = 'block';
+        } else {
+          suggestionsEl.style.display = 'none';
+        }
+      });
+
+      // Execute Search
+      const executeSearch = async () => {
+        suggestionsEl.style.display = 'none';
+        const query = searchInput.value;
+        currentQuestions = await engine.search(query, currentCategory);
+        renderQuestions(currentQuestions);
+      };
+
+      searchBtn.addEventListener('click', executeSearch);
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') executeSearch();
+      });
+
+      // Suggestion click
+      suggestionsEl.addEventListener('click', (e) => {
+        const item = e.target.closest('.kb-suggestion-item');
+        if (item) {
+          const id = item.dataset.id;
+          openQuestionModal(id);
+          suggestionsEl.style.display = 'none';
+        }
+      });
+
+      // Category Click
+      document.getElementById('categoryList').addEventListener('click', async (e) => {
+        const chip = e.target.closest('.kb-category-chip');
+        if (chip) {
+          document.querySelectorAll('.kb-category-chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          currentCategory = chip.dataset.cat;
+          currentQuestions = await engine.search(searchInput.value, currentCategory);
+          renderQuestions(currentQuestions);
+        }
+      });
+
+      // Tabs
+      document.getElementById('tabPopular').addEventListener('click', () => switchTab('popular'));
+      document.getElementById('tabRecent').addEventListener('click', () => switchTab('recent'));
+      document.getElementById('tabSaved').addEventListener('click', () => switchTab('saved'));
+
+      // Close Modal
+      document.getElementById('closeModalBtn').addEventListener('click', () => {
+        questionModal.style.display = 'none';
+      });
+
+      // Voting
+      document.getElementById('voteYesBtn').addEventListener('click', () => handleVote('yes'));
+      document.getElementById('voteNoBtn').addEventListener('click', () => handleVote('no'));
+
+      // Save Modal Question
+      document.getElementById('saveQuestionModalBtn').addEventListener('click', () => {
+        if (activeQuestion) {
+          const isSaved = engine.toggleSaveQuestion(activeQuestion.id);
+          document.getElementById('saveQuestionModalBtn').textContent = isSaved ? '⭐ Saved' : '⭐ Save';
+          if (currentTab === 'saved') renderCurrentTab();
+        }
+      });
+
+      // Share WhatsApp
+      document.getElementById('shareWhatsappBtn').addEventListener('click', () => {
+        if (activeQuestion) {
+          const text = encodeURIComponent(`*${activeQuestion.question}*\n\nRead Guruji's Answer on Trimurti Jyotishalay: ${window.location.href}`);
+          window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+      });
+
+      // Download PDF
+      document.getElementById('downloadPdfBtn').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Admin Panel Handlers
+      adminDrawerTrigger.addEventListener('click', () => adminDrawer.classList.add('open'));
+      closeAdminDrawerBtn.addEventListener('click', () => adminDrawer.classList.remove('open'));
+
+      adminQuestionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const payload = {
+          id: document.getElementById('adminQuestionId').value || null,
+          question: document.getElementById('adminQuestionEn').value,
+          question_mr: document.getElementById('adminQuestionMr').value,
+          category: document.getElementById('adminCategory').value,
+          tags: document.getElementById('adminTags').value.split(',').map(t => t.trim()),
+          answer: document.getElementById('adminAnswer').value
+        };
+
+        engine.saveQuestionAdmin(payload);
+        alert('प्रश्न यशस्वीरित्या जतन झाला!');
+        adminDrawer.classList.remove('open');
+        adminQuestionForm.reset();
+        renderCurrentTab();
+      });
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.style.fontWeight = '600');
+      if (tab === 'popular') document.getElementById('tabPopular').style.fontWeight = '700';
+      if (tab === 'recent') document.getElementById('tabRecent').style.fontWeight = '700';
+      if (tab === 'saved') document.getElementById('tabSaved').style.fontWeight = '700';
+      renderCurrentTab();
+    }
+
+    function renderCurrentTab() {
+      if (currentTab === 'popular') currentQuestions = engine.getPopularQuestions();
+      if (currentTab === 'recent') currentQuestions = engine.getRecentQuestions();
+      if (currentTab === 'saved') currentQuestions = engine.getSavedQuestions();
+      renderQuestions(currentQuestions);
+    }
+
+    function renderQuestions(items) {
+      if (!items || items.length === 0) {
+        questionsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:#665243;">कोणतेही प्रश्न सापडले नाहीत (No questions found).</div>`;
+        return;
+      }
+
+      questionsGrid.innerHTML = items.map(q => {
+        const isSaved = engine.isSaved(q.id);
+        return `
+          <div class="kb-card" data-id="${q.id}">
+            <div>
+              <div class="kb-card-header">
+                <span class="kb-card-category">${q.category}</span>
+                <button class="kb-save-btn ${isSaved ? 'saved' : ''}" data-saveid="${q.id}">
+                  ${isSaved ? '★' : '☆'}
+                </button>
+              </div>
+              <h3 class="kb-card-title">${q.question}</h3>
+              <p class="kb-card-preview">${q.answer}</p>
+            </div>
+            <div class="kb-card-footer">
+              <div class="kb-card-meta">
+                <span>👁️ ${q.views} views</span>
+                <span>👍 ${q.helpful_yes}</span>
+              </div>
+              <span style="color:#8b1a1a; font-weight:600;">वाचा &rarr;</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Attach Card Click Events
+      document.querySelectorAll('.kb-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.classList.contains('kb-save-btn')) {
+            e.stopPropagation();
+            const id = e.target.dataset.saveid;
+            engine.toggleSaveQuestion(id);
+            renderCurrentTab();
+            return;
+          }
+          openQuestionModal(card.dataset.id);
+        });
+      });
+    }
+
+    function openQuestionModal(id) {
+      activeQuestion = engine.getQuestionById(id);
+      if (!activeQuestion) return;
+
+      engine.incrementView(id);
+
+      document.getElementById('modalCategory').textContent = activeQuestion.category;
+      document.getElementById('modalQuestionTitle').textContent = activeQuestion.question;
+      document.getElementById('modalQuestionMr').textContent = activeQuestion.question_mr || '';
+      document.getElementById('modalAnswerText').textContent = activeQuestion.answer;
+      document.getElementById('modalLastUpdated').textContent = `अद्यतन: ${activeQuestion.updated_at}`;
+
+      document.getElementById('voteYesCount').textContent = activeQuestion.helpful_yes;
+      document.getElementById('voteNoCount').textContent = activeQuestion.helpful_no;
+
+      document.getElementById('saveQuestionModalBtn').textContent = engine.isSaved(activeQuestion.id) ? '⭐ Saved' : '⭐ Save';
+
+      // Tags
+      const tagsContainer = document.getElementById('modalTagsList');
+      tagsContainer.innerHTML = activeQuestion.tags.map(t => `<span class="kb-tag-item">#${t}</span>`).join('');
+
+      // Related Questions
+      const relatedList = document.getElementById('modalRelatedList');
+      if (activeQuestion.related_ids && activeQuestion.related_ids.length > 0) {
+        relatedList.innerHTML = activeQuestion.related_ids.map(relId => {
+          const relQ = engine.getQuestionById(relId);
+          return relQ ? `<li data-relid="${relQ.id}">${relQ.question}</li>` : '';
+        }).join('');
+
+        relatedList.querySelectorAll('li').forEach(li => {
+          li.addEventListener('click', () => openQuestionModal(li.dataset.relid));
+        });
+      } else {
+        relatedList.innerHTML = '<li style="color:#a09080;">कोणतेही संबंधित प्रश्न उपलब्ध नाहीत.</li>';
+      }
+
+      questionModal.style.display = 'flex';
+    }
+
+    function handleVote(type) {
+      if (activeQuestion) {
+        const counts = engine.voteHelpful(activeQuestion.id, type);
+        if (counts) {
+          document.getElementById('voteYesCount').textContent = counts.yes;
+          document.getElementById('voteNoCount').textContent = counts.no;
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -4,21 +4,21 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>अपॉइंटमेंट बुक करा | त्रिमूर्ती ज्योतिषालय</title>
-  <link rel="icon" href="/logo.png" type="image/png"/>
+  <link rel="icon" href="public/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/src/styles/booking.css"/>
+  <link rel="stylesheet" href="src/styles/booking.css"/>
 </head>
 <body>
 
 <!-- ── NAVBAR ── -->
 <nav class="navbar" id="navbar">
-  <a href="/" class="nav-logo-link">
-    <img src="/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
+  <a href="index.html" class="nav-logo-link">
+    <img src="public/logo.png" alt="त्रिमूर्ती ज्योतिषालय" class="navbar-logo"/>
   </a>
   <div class="nav-right">
-    <a href="/" class="nav-back-btn">← मुख्यपृष्ठ</a>
+    <a href="index.html" class="nav-back-btn">← मुख्यपृष्ठ</a>
   </div>
 </nav>
 
@@ -135,12 +135,13 @@
       <div class="success-details" id="successDetails"></div>
       <div class="success-actions">
         <button class="btn-whatsapp" id="waBtn">💬 WhatsApp पाठवा</button>
-        <a href="/" class="btn-secondary btn-link">मुख्यपृष्ठावर जा</a>
+        <a href="index.html" class="btn-secondary btn-link">मुख्यपृष्ठावर जा</a>
       </div>
     </div>
   </div>
 </div>
 
-<script type="module" src="/src/scripts/booking.js"></script>
+<script type="module" src="src/scripts/booking-guard.js"></script>
+<script type="module" src="src/scripts/booking.js"></script>
 </body>
 </html>

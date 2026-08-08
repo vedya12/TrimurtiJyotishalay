@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="mr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>सण आणि उत्सव कॅलेंडर | Trimurti Jyotishalay</title>
+  <meta name="description" content="त्रिमूर्ती ज्योतिषालय - आगामी हिंदू सण, व्रत, जयंती आणि धार्मिक दिवसांचे संपूर्ण कॅलेंडर." />
+
+  <!-- Google Fonts for Marathi Text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="src/styles/index.css" />
+  <link rel="stylesheet" href="src/styles/festival.css" />
+</head>
+<body>
+
+  <!-- GLOBAL NAVBAR (Reused exact layout) -->
+  <header class="main-header">
+    <nav class="navbar-custom">
+      <div class="nav-container">
+        <ul class="nav-menu">
+          <li class="user-name">Vedant</li>
+          <li><a href="dashboard.html" class="nav-item nav-btn-filled-maroon">डॅशबोर्ड</a></li>
+          <li><a href="#logout" class="nav-item nav-btn-outline-maroon">लॉगआउट</a></li>
+
+          <li class="lang-switch-group">
+            <button class="lang-btn active" data-lang="mr">मराठी</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="en">English</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION -->
+    <section class="festival-hero">
+      <div class="container text-center">
+        <span class="section-badge">🪔 कॅलेंडर</span>
+        <h1 class="hero-title" id="txtHeroTitle">🪔 सण आणि उत्सव</h1>
+        <p class="hero-subtitle" id="txtHeroSub">आगामी धार्मिक सण आणि विशेष दिवसांचे दिनदर्शिका कॅलेंडर</p>
+      </div>
+    </section>
+
+    <!-- 2. TODAY'S HIGHLIGHT & COUNTDOWN BANNER -->
+    <section class="highlight-section container">
+      <div class="today-card" id="todayHighlightCard">
+        <div class="today-badge" id="txtTodayBadge">🌟 आजचा विशेष दिवस</div>
+        <div class="today-content" id="todayContent">
+          <!-- Dynamic Content rendered via JS -->
+        </div>
+        <div class="countdown-wrapper" id="countdownContainer" style="display: none;">
+          <span class="countdown-title" id="txtCountdownTitle">⏳ पुढील सणासाठी वेळ:</span>
+          <div class="countdown-timer">
+            <div class="time-box"><span id="cntDays">00</span><small id="lblDays">दिवस</small></div>
+            <div class="time-box"><span id="cntHours">00</span><small id="lblHours">तास</small></div>
+            <div class="time-box"><span id="cntMins">00</span><small id="lblMins">मिनिटे</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. UPCOMING FESTIVALS QUICK CAROUSEL / LIST -->
+    <section class="upcoming-section container">
+      <h2 class="section-title-sm" id="txtUpcomingTitle">आगामी सण (पुढील ३० दिवस)</h2>
+      <div class="upcoming-chips-container" id="upcomingChipsList">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 4. CONTROLS: MONTH NAV, SEARCH & CATEGORY FILTERS -->
+    <section class="controls-section container">
+      <!-- Month Navigation Bar -->
+      <div class="month-nav-bar">
+        <button class="btn-month-nav" id="btnPrevMonth" aria-label="मागील महिना">←</button>
+        <div class="month-display" id="txtCurrentMonthYear">August 2026</div>
+        <button class="btn-month-nav" id="btnNextMonth" aria-label="पुढील महिना">→</button>
+        <button class="btn-today-month" id="btnResetCurrentMonth">आजचा महिना</button>
+      </div>
+
+      <!-- Search and Filters Bar -->
+      <div class="filter-search-row">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="🔍 सण किंवा उत्सव शोधा..." aria-label="सण शोधा" />
+        </div>
+
+        <div class="category-pills" id="categoryPillsGroup">
+          <button class="pill-btn active" data-category="all" id="btnCatAll">सर्व</button>
+          <button class="pill-btn" data-category="festival" id="btnCatFestival">हिंदू सण</button>
+          <button class="pill-btn" data-category="vrat" id="btnCatVrat">व्रत</button>
+          <button class="pill-btn" data-category="jayanti" id="btnCatJayanti">जयंती</button>
+          <button class="pill-btn" data-category="religious_day" id="btnCatReligious">धार्मिक दिवस</button>
+          <button class="pill-btn" data-category="special_puja" id="btnCatSpecial">विशेष पूजा</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MAIN FESTIVAL GRID -->
+    <section class="festival-grid-section container">
+      <div class="festival-grid" id="festivalGridContainer">
+        <!-- Rendered via JS -->
+      </div>
+      
+      <!-- Empty State Container -->
+      <div class="empty-state" id="emptyStateBox" style="display: none;">
+        <span class="empty-icon">📜</span>
+        <p id="txtEmptyState">या महिन्यात किंवा फिल्टरनुसार कोणताही सण आढळला नाही.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FESTIVAL DETAILS MODAL -->
+  <div class="modal-backdrop" id="festivalModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="btnCloseModal" aria-label="Close Modal">&times;</button>
+      
+      <div class="modal-header-content">
+        <span class="modal-icon" id="mdlIcon">🪔</span>
+        <h2 class="modal-title" id="mdlTitle">श्रीकृष्ण जन्माष्टमी</h2>
+        <span class="modal-category-badge" id="mdlCategory">हिंदू सण</span>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="modal-date-row" id="mdlDateRow">
+          📅 <strong id="mdlDate">15 August 2026</strong> (<span id="mdlDay">शनिवार</span>)
+        </div>
+
+        <p class="modal-description" id="mdlDescription"></p>
+
+        <div class="modal-info-block" id="blockPujaTime">
+          <h4 id="lblPujaTimeTitle">⏰ पूजा वेळ / मुहूर्त</h4>
+          <p id="mdlPujaTime">-</p>
+        </div>
+
+        <div class="modal-info-block" id="blockVratInfo">
+          <h4 id="lblVratInfoTitle">🚩 व्रत व नियम</h4>
+          <p id="mdlVratInfo">-</p>
+        </div>
+      </div>
+
+      <div class="modal-footer-actions">
+        <a href="panchang.html" id="btnModalPanchang" class="btn btn-outline-gold">पंचांग पहा</a>
+        <a href="booking.html" id="btnModalBookService" class="btn btn-primary">पूजा बुक करा</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <h3>Trimurti Jyotishalay</h3>
+        <p>सनातन परंपरा आणि अचूक ज्योतिष मार्गदर्शन</p>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Trimurti Jyotishalay. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Page Logic Modules -->
+  <script type="module" src="src/scripts/festival.js"></script>
+</body>
+</html>
